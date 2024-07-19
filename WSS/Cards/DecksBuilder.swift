@@ -45,38 +45,51 @@ final class DecksBuilder {
         // pick x cards of level 3 BASE
         let level3BaseActionCardsTuple = pickGeneralActionCards(from: allActionCards, for: difficulty, level: .three)
         // pick x cards of level 3 ADVANCED
-        let level3AdvancedActionCardsTuple = pickAdvancedActionCards(from: allActionCards, for: difficulty, level: .three)
+        let level3AdvancedActionCardsTuple = pickAdvancedActionCards(
+            from: level3BaseActionCardsTuple.remainingCards,
+            for: difficulty,
+            level: .three
+        )
         // shuffle the above
         let level3ActionDeck = (level3BaseActionCardsTuple.pickedCards + level3AdvancedActionCardsTuple.pickedCards)
             .shuffled()
 
         // pick x cards of level 2 BASE
-        let level2BaseActionCardsTuple = pickGeneralActionCards(from: allActionCards, for: difficulty, level: .two)
+        let level2BaseActionCardsTuple = pickGeneralActionCards(
+            from: level3AdvancedActionCardsTuple.remainingCards,
+            for: difficulty,
+            level: .two
+        )
         // pick x cards of level 2 ADVANCED
-        let level2AdvancedActionCardsTuple = pickAdvancedActionCards(from: allActionCards, for: difficulty, level: .two)
+        let level2AdvancedActionCardsTuple = pickAdvancedActionCards(
+            from: level2BaseActionCardsTuple.remainingCards,
+            for: difficulty,
+            level: .two
+        )
         // shuffle the above
         let level2ActionDeck = (level2BaseActionCardsTuple.pickedCards + level2AdvancedActionCardsTuple.pickedCards)
             .shuffled()
 
         // pick x cards of level 1 BASE
-        let level1BaseActionCardsTuple = pickGeneralActionCards(from: allActionCards, for: difficulty, level: .one)
+        let level1BaseActionCardsTuple = pickGeneralActionCards(
+            from: level2AdvancedActionCardsTuple.remainingCards,
+            for: difficulty,
+            level: .one
+        )
         // pick x cards of level 1 ADVANCED
-        let level1AdvancedActionCardsTuple = pickAdvancedActionCards(from: allActionCards, for: difficulty, level: .one)
+        let level1AdvancedActionCardsTuple = pickAdvancedActionCards(
+            from: level1BaseActionCardsTuple.remainingCards,
+            for: difficulty,
+            level: .one
+        )
         // shuffle the above
         let level1ActionDeck = (level1BaseActionCardsTuple.pickedCards + level1AdvancedActionCardsTuple.pickedCards)
             .shuffled()
 
+        // put level 3 at the bottom, then level 2, then level 1
         let actionDeck = level3ActionDeck + level2ActionDeck + level1ActionDeck
 
-        // put level 3 at the bottom, then level 2, then level 1
-
-        let remainingCards = (level3BaseActionCardsTuple.remainingCards + 
-                              level3AdvancedActionCardsTuple.remainingCards +
-                              level2BaseActionCardsTuple.remainingCards +
-                              level2AdvancedActionCardsTuple.remainingCards +
-                              level1BaseActionCardsTuple.remainingCards +
-                              level2AdvancedActionCardsTuple.remainingCards)
-        return (actionDeck, remainingCards)
+        return (actionDeck, level1AdvancedActionCardsTuple.remainingCards)
     }
 
     func buildAutomaTrophiesDeck(from array: [CardModel]) -> (pickedCards: [CardModel], remainingCards: [CardModel]) {

@@ -13,6 +13,7 @@
 		F38C72522C49E42F004CDD4E /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C72512C49E42F004CDD4E /* Difficulty.swift */; };
 		F38C72562C49E850004CDD4E /* DifficultyLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */; };
 		F38C72582C4A09C9004CDD4E /* CardsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C72572C4A09C9004CDD4E /* CardsFactory.swift */; };
+		F38C725C2C4A0EA5004CDD4E /* DeckBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C725B2C4A0EA5004CDD4E /* DeckBuilderTests.swift */; };
 		F39AC93C2C49279200A5E42A /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39AC93B2C49279200A5E42A /* CardModel.swift */; };
 		F3A48F4D2C495633009E54AF /* CardFileNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A48F4C2C495633009E54AF /* CardFileNames.swift */; };
 		F3F73E322C441A24005E77CA /* WSSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F73E312C441A24005E77CA /* WSSApp.swift */; };
@@ -39,6 +40,7 @@
 		F38C72512C49E42F004CDD4E /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
 		F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyLevelTests.swift; sourceTree = "<group>"; };
 		F38C72572C4A09C9004CDD4E /* CardsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsFactory.swift; sourceTree = "<group>"; };
+		F38C725B2C4A0EA5004CDD4E /* DeckBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckBuilderTests.swift; sourceTree = "<group>"; };
 		F39AC93B2C49279200A5E42A /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		F3A48F4C2C495633009E54AF /* CardFileNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFileNames.swift; sourceTree = "<group>"; };
 		F3B1A6E22C49329900D1A682 /* back_automa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back_automa.jpg; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				F3FD63822C496C710055CEFB /* WSSTests.swift */,
 				F3FD638B2C496CA70055CEFB /* CardFactoryTests.swift */,
 				F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */,
+				F38C725B2C4A0EA5004CDD4E /* DeckBuilderTests.swift */,
 			);
 			path = WSSTests;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 			files = (
 				F3FD638C2C496CA70055CEFB /* CardFactoryTests.swift in Sources */,
 				F38C72562C49E850004CDD4E /* DifficultyLevelTests.swift in Sources */,
+				F38C725C2C4A0EA5004CDD4E /* DeckBuilderTests.swift in Sources */,
 				F3FD63832C496C710055CEFB /* WSSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
