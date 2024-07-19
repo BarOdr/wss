@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F33946C42C441B0B007D817B /* CardsShowcaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33946C32C441B0B007D817B /* CardsShowcaseView.swift */; };
 		F33946C72C441BFB007D817B /* TextFromImageRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33946C62C441BFB007D817B /* TextFromImageRecognizer.swift */; };
+		F35725552C4B267800B4A223 /* DeckBuilderTestsV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35725542C4B267800B4A223 /* DeckBuilderTestsV2.swift */; };
 		F38C72502C49E201004CDD4E /* DecksBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C724F2C49E201004CDD4E /* DecksBuilder.swift */; };
 		F38C72522C49E42F004CDD4E /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C72512C49E42F004CDD4E /* Difficulty.swift */; };
 		F38C72562C49E850004CDD4E /* DifficultyLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		F33946C32C441B0B007D817B /* CardsShowcaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsShowcaseView.swift; sourceTree = "<group>"; };
 		F33946C62C441BFB007D817B /* TextFromImageRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFromImageRecognizer.swift; sourceTree = "<group>"; };
+		F35725542C4B267800B4A223 /* DeckBuilderTestsV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckBuilderTestsV2.swift; sourceTree = "<group>"; };
 		F38C724F2C49E201004CDD4E /* DecksBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksBuilder.swift; sourceTree = "<group>"; };
 		F38C72512C49E42F004CDD4E /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
 		F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyLevelTests.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				F3FD638B2C496CA70055CEFB /* CardFactoryTests.swift */,
 				F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */,
 				F38C725B2C4A0EA5004CDD4E /* DeckBuilderTests.swift */,
+				F35725542C4B267800B4A223 /* DeckBuilderTestsV2.swift */,
 			);
 			path = WSSTests;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F35725552C4B267800B4A223 /* DeckBuilderTestsV2.swift in Sources */,
 				F3FD638C2C496CA70055CEFB /* CardFactoryTests.swift in Sources */,
 				F38C72562C49E850004CDD4E /* DifficultyLevelTests.swift in Sources */,
 				F38C725C2C4A0EA5004CDD4E /* DeckBuilderTests.swift in Sources */,

@@ -21,24 +21,37 @@ final class DeckBuilderTests: XCTestCase {
         // them
         // action deck
         XCTAssertEqual(decks.actionDeck.count, 13)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 10)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 3)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 10)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 4)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 4)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
+        XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
         XCTAssertEqual(decks.challengesDeck.count, 11)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 5)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 6)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.challengesDeck).count, 5)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.challengesDeck).count, 6)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.challengesDeck).count, 2)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.challengesDeck).count, 2)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.challengesDeck).count, 1)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
     func test_deckBuilder_medium_no_addons() {
@@ -52,30 +65,43 @@ final class DeckBuilderTests: XCTestCase {
         // them
         // action deck
         XCTAssertEqual(decks.actionDeck.count, 12)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 9)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 3)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 9)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
+        XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
         XCTAssertEqual(decks.challengesDeck.count, 12)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 6)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 6)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.challengesDeck).count, 6)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.challengesDeck).count, 6)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.challengesDeck).count, 3)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.challengesDeck).count, 3)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.challengesDeck).count, 0)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
     func test_deckBuilder_hard_no_addons() {
         // given
         let factory = CardsFactory()
-        let sut = DecksBuilder(cardsFactory: factory, addons: [], difficultyLevel: .easy)
+        let sut = DecksBuilder(cardsFactory: factory, addons: [], difficultyLevel: .hard)
 
         // when
         let decks = sut.buildDecks()
@@ -83,24 +109,37 @@ final class DeckBuilderTests: XCTestCase {
         // them
         // action deck
         XCTAssertEqual(decks.actionDeck.count, 9)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 6)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 6)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 6)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 2)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 2)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
+        XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
         XCTAssertEqual(decks.challengesDeck.count, 12)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 6)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 6)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.challengesDeck).count, 6)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.challengesDeck).count, 6)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.challengesDeck).count, 3)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.challengesDeck).count, 3)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.challengesDeck).count, 0)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
     func test_deckBuilder_easy_skellige() {
@@ -114,24 +153,37 @@ final class DeckBuilderTests: XCTestCase {
         // them
         // action deck
         XCTAssertEqual(decks.actionDeck.count, 13)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 10)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 3)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 10)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 4)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 4)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
+        XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
         XCTAssertEqual(decks.challengesDeck.count, 11)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 5)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 6)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.challengesDeck).count, 5)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.challengesDeck).count, 6)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.challengesDeck).count, 2)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.challengesDeck).count, 2)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.challengesDeck).count, 1)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
     func test_deckBuilder_medium_skellige() {
@@ -145,30 +197,43 @@ final class DeckBuilderTests: XCTestCase {
         // them
         // action deck
         XCTAssertEqual(decks.actionDeck.count, 12)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 9)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 3)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 9)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
+        XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
         XCTAssertEqual(decks.challengesDeck.count, 12)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 6)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 6)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.challengesDeck).count, 6)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.challengesDeck).count, 6)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.challengesDeck).count, 3)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.challengesDeck).count, 3)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.challengesDeck).count, 0)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
     func test_deckBuilder_hard_skellige() {
         // given
         let factory = CardsFactory()
-        let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige], difficultyLevel: .easy)
+        let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige], difficultyLevel: .hard)
 
         // when
         let decks = sut.buildDecks()
@@ -176,27 +241,40 @@ final class DeckBuilderTests: XCTestCase {
         // them
         // action deck
         XCTAssertEqual(decks.actionDeck.count, 9)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 6)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 6)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 6)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 2)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 2)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
+        XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
         XCTAssertEqual(decks.challengesDeck.count, 12)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 6)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 6)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.challengesDeck).count, 6)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.challengesDeck).count, 6)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.challengesDeck).count, 3)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.challengesDeck).count, 3)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.challengesDeck).count, 0)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
-    func test_deckBuilder_easy_skellige_legendaryHunt() {
+    func test_deckBuilder_easy_skellige_legendary_hunt() {
         // given
         let factory = CardsFactory()
         let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige, .legendaryHunt], difficultyLevel: .easy)
@@ -207,30 +285,44 @@ final class DeckBuilderTests: XCTestCase {
         // them
         // action deck
         XCTAssertEqual(decks.actionDeck.count, 14)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 10)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 3)
-        XCTAssertEqual(decks.actionDeck.filter({ model in
-            model.cardType == .legendaryHunt
-        }).count, 1)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 10)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 4)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 4)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
+
+        // legendary hunt
+        XCTAssertEqual(getLevel3Cards(from: decks.actionDeck).count, 4)
+        XCTAssertEqual(getLegendaryHuntCards(from: decks.actionDeck).count, 1)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
+        XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
         XCTAssertEqual(decks.challengesDeck.count, 11)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 5)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 6)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.challengesDeck).count, 5)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.challengesDeck).count, 6)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.challengesDeck).count, 2)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.challengesDeck).count, 2)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.challengesDeck).count, 1)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
-    func test_deckBuilder_medium_skellige_legendaryHunt() {
+    func test_deckBuilder_medium_skellige_legendary_hunt() {
         // given
         let factory = CardsFactory()
         let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige, .legendaryHunt], difficultyLevel: .medium)
@@ -241,33 +333,47 @@ final class DeckBuilderTests: XCTestCase {
         // them
         // action deck
         XCTAssertEqual(decks.actionDeck.count, 14)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 9)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 3)
-        XCTAssertEqual(decks.actionDeck.filter({ model in
-            model.cardType == .legendaryHunt
-        }).count, 2)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 9)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
+
+        // legendary hunt
+        XCTAssertEqual(getLevel3Cards(from: decks.actionDeck).count, 6)
+        XCTAssertEqual(getLegendaryHuntCards(from: decks.actionDeck).count, 2)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
+        XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
         XCTAssertEqual(decks.challengesDeck.count, 12)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 6)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 6)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.challengesDeck).count, 6)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.challengesDeck).count, 6)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.challengesDeck).count, 3)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.challengesDeck).count, 3)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.challengesDeck).count, 0)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
-    func test_deckBuilder_hard_skellige_legendaryHunt() {
+    func test_deckBuilder_hard_skellige_legendary_hunt() {
         // given
         let factory = CardsFactory()
-        let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige, .legendaryHunt], difficultyLevel: .easy)
+        let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige, .legendaryHunt], difficultyLevel: .hard)
 
         // when
         let decks = sut.buildDecks()
@@ -275,38 +381,106 @@ final class DeckBuilderTests: XCTestCase {
         // them
         // action deck
         XCTAssertEqual(decks.actionDeck.count, 12)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 6)
-        XCTAssertEqual(decks.actionDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 6)
-        XCTAssertEqual(decks.actionDeck.filter({ model in
-            model.cardType == .legendaryHunt
-        }).count, 3)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 6)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 2)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 2)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
+
+        // legendary hunt
+        XCTAssertEqual(getLevel3Cards(from: decks.actionDeck).count, 6)
+        XCTAssertEqual(getLegendaryHuntCards(from: decks.actionDeck).count, 3)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
+        XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
         XCTAssertEqual(decks.challengesDeck.count, 12)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseGeneral
-        }).count, 6)
-        XCTAssertEqual(decks.challengesDeck.filter({ card in
-            card.cardType == .baseAdvanced
-        }).count, 6)
+
+        XCTAssertEqual(getBaseGeneralCards(from: decks.challengesDeck).count, 6)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.challengesDeck).count, 6)
+
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.challengesDeck).count, 3)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.challengesDeck).count, 3)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.challengesDeck).count, 2)
+
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.challengesDeck).count, 0)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
-    private func getGeneralCards(from array: [ActionCardModel]) -> [ActionCardModel] {
+    private func getBaseGeneralCards(from array: [ActionCardModel]) -> [ActionCardModel] {
         array.filter { card in
             card.cardType == .baseGeneral
         }
     }
 
-    private func getAdvancedCards(from array: [ActionCardModel]) -> [ActionCardModel] {
+    private func getBaseAdvancedCards(from array: [ActionCardModel]) -> [ActionCardModel] {
         array.filter { card in
             card.cardType == .baseAdvanced
+        }
+    }
+
+    private func getSkelligeCards(from array: [ActionCardModel]) -> [ActionCardModel] {
+        array.filter { card in
+            card.cardType == .skellige
+        }
+    }
+
+    private func getLegendaryHuntCards(from array: [ActionCardModel]) -> [ActionCardModel] {
+        array.filter { card in
+            card.cardType == .legendaryHunt && card.level == 3
+        }
+    }
+
+    private func getLevel1GeneralCards(from array: [ActionCardModel]) -> [ActionCardModel] {
+        array.filter { card in
+            card.level == 1 && card.cardType == .baseGeneral
+        }
+    }
+
+    private func getLevel1AdvancedCards(from array: [ActionCardModel]) -> [ActionCardModel] {
+        array.filter { card in
+            card.level == 1 && card.cardType == .baseAdvanced
+        }
+    }
+
+    private func getLevel2GeneralCards(from array: [ActionCardModel]) -> [ActionCardModel] {
+        array.filter { card in
+            card.level == 2 && card.cardType == .baseGeneral
+        }
+    }
+
+    private func getLevel2AdvancedCards(from array: [ActionCardModel]) -> [ActionCardModel] {
+        array.filter { card in
+            card.level == 2 && card.cardType == .baseAdvanced
+        }
+    }
+
+    private func getLevel3GeneralCards(from array: [ActionCardModel]) -> [ActionCardModel] {
+        array.filter { card in
+            card.level == 3 && card.cardType == .baseGeneral
+        }
+    }
+
+    private func getLevel3AdvancedCards(from array: [ActionCardModel]) -> [ActionCardModel] {
+        array.filter { card in
+            card.level == 3 && card.cardType == .baseAdvanced
+        }
+    }
+
+    private func getLevel3Cards(from array: [ActionCardModel]) -> [ActionCardModel] {
+        array.filter { card in
+            card.level == 3
         }
     }
 }
