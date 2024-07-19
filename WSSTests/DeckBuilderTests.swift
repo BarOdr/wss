@@ -10,10 +10,9 @@ import XCTest
 
 final class DeckBuilderTests: XCTestCase {
 
-    let factory = CardsFactory()
-
     func test_deckBuilder_easy() {
         // given
+        let factory = CardsFactory(addonsTypes: [])
         let sut = DecksBuilder(allBaseCards: factory.buildDeck(), addons: [], difficultyLevel: .easy)
 
         // when

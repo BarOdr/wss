@@ -9,11 +9,22 @@ import Foundation
 
 struct CardsFactory {
 
+    let addonsTypes: [AddonType]
+
     private let actionCardBack = "back_automa"
 
     func buildDeck() -> [ActionCardModel] {
+        var deck: [ActionCardModel] = []
+        deck.append(contentsOf: buildCards(fileNames: CardFileNames.baseActionCards))
+        for addon in addonsTypes {
+            deck.append(contentsOf: buildCards(fileNames: addon.cardFileNames))
+        }
+        return deck
+    }
+
+    private func buildCards(fileNames: [String]) -> [ActionCardModel] {
         var cards: [ActionCardModel] = []
-        for cardFileName in CardFileNames.baseActionCards {
+        for cardFileName in fileNames {
             let strippedFileName = cardFileName.replacingOccurrences(of: ".jpg", with: "")
             let components = getComponents(for: strippedFileName)
             guard

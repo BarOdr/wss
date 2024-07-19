@@ -10,6 +10,15 @@ import Foundation
 enum AddonType {
     case skellige
     case legendaryHunt
+
+    var cardFileNames: [String] {
+        switch self {
+        case .skellige:
+            return CardFileNames.skelligeActionCards
+        case .legendaryHunt:
+            return CardFileNames.legendaryHuntActionCards
+        }
+    }
 }
 
 struct Addon {
@@ -69,13 +78,22 @@ final class DecksBuilder {
             level: .three
         )
 
-        var legendaryHuntCards: [ActionCardModel]?
+        // if legendary hunt addon is selected, add appropriate amount to level 3 cards according to difficulty level
+        var legendaryHuntCardsToAddToDeck: [ActionCardModel]?
         if let legendaryHuntAddon = addons.first(where: { $0.addonType == .legendaryHunt }) {
-            legendaryHuntCards = legendaryHuntAddon.cards
+            let legendaryHuntAllCards = legendaryHuntAddon.cards.shuffled()
+            legendaryHuntCardsToAddToDeck = []
+            for i in 0...difficulty.legendaryHuntCardsAmount - 1 {
+                legendaryHuntCardsToAddToDeck?.append(legendaryHuntAllCards[i])
+            }
         }
+
         // shuffle the above
-        let level3ActionDeck = (level3BaseActionCardsTuple.pickedCards + level3AdvancedActionCardsTuple.pickedCards + (legendaryHuntCards ?? []))
-            .shuffled()
+        let level3ActionDeck = (
+            level3BaseActionCardsTuple.pickedCards + level3AdvancedActionCardsTuple.pickedCards + (
+                legendaryHuntCardsToAddToDeck ?? []
+            )
+        ).shuffled()
 
         // pick x cards of level 2 BASE
         let level2BaseActionCardsTuple = pickGeneralActionCards(

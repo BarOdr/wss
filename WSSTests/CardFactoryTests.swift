@@ -10,17 +10,8 @@ import XCTest
 
 final class CardFactoryTests: XCTestCase {
 
-    var sut: CardsFactory!
-
-    override func setUp() {
-        sut = CardsFactory()
-    }
-
-    override func tearDown() {
-        sut = nil
-    }
-
-    func test_actionCardsQuantity() {
+    func test_base_actionCardsQuantity() {
+        let sut = CardsFactory(addonsTypes: [])
         let baseGeneralCards = sut.buildDeck().filter { model in
             model.cardType == .baseGeneral
         }
@@ -34,7 +25,53 @@ final class CardFactoryTests: XCTestCase {
         let skelligeCards = sut.buildDeck().filter { model in
             model.cardType == .skellige
         }
+        XCTAssertEqual(skelligeCards.count, 0)
+
+        let legendaryHuntCards = sut.buildDeck().filter { model in
+            model.cardType == .legendaryHunt
+        }
+        XCTAssertEqual(legendaryHuntCards.count, 0)
+    }
+
+    func test_skellige_actionCardsQuantity() {
+        let sut = CardsFactory(addonsTypes: [.skellige])
+        let baseGeneralCards = sut.buildDeck().filter { model in
+            model.cardType == .baseGeneral
+        }
+        XCTAssertEqual(baseGeneralCards.count, 18)
+
+        let baseAdvancedCards = sut.buildDeck().filter { model in
+            model.cardType == .baseAdvanced
+        }
+        XCTAssertEqual(baseAdvancedCards.count, 9)
+
+        let skelligeCards = sut.buildDeck().filter { model in
+            model.cardType == .skellige
+        }
         XCTAssertEqual(skelligeCards.count, 9)
+
+        let legendaryHuntCards = sut.buildDeck().filter { model in
+            model.cardType == .legendaryHunt
+        }
+        XCTAssertEqual(legendaryHuntCards.count, 0)
+    }
+
+    func test_legendaryHunt_actionCardsQuantity() {
+        let sut = CardsFactory(addonsTypes: [.legendaryHunt])
+        let baseGeneralCards = sut.buildDeck().filter { model in
+            model.cardType == .baseGeneral
+        }
+        XCTAssertEqual(baseGeneralCards.count, 18)
+
+        let baseAdvancedCards = sut.buildDeck().filter { model in
+            model.cardType == .baseAdvanced
+        }
+        XCTAssertEqual(baseAdvancedCards.count, 9)
+
+        let skelligeCards = sut.buildDeck().filter { model in
+            model.cardType == .skellige
+        }
+        XCTAssertEqual(skelligeCards.count, 0)
 
         let legendaryHuntCards = sut.buildDeck().filter { model in
             model.cardType == .legendaryHunt

@@ -20,6 +20,17 @@ enum Difficulty {
 
     // MARK: - Action cards
 
+    var legendaryHuntCardsAmount: Int {
+        switch self {
+        case .easy:
+            return 1
+        case .medium:
+            return 2
+        case .hard:
+            return 3
+        }
+    }
+
     func generalActionCardsAmount(for level: Level) -> Int {
         switch level {
         case .one:
