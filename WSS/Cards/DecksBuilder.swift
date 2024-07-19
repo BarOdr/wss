@@ -27,7 +27,7 @@ final class DecksBuilder {
 
     func buildDecks() -> Decks {
         let actionDeckTuple = buildActionDeck(for: difficultyLevel)
-        let automaTrophiesTuple = buildAutomaTrophiesDeck(from: actionDeckTuple.actionDeck)
+        let automaTrophiesTuple = buildAutomaTrophiesDeck(from: actionDeckTuple.remainingCards)
         let challengesDeck = automaTrophiesTuple.remainingCards.shuffled()
         return Decks(
             actionDeck: actionDeckTuple.actionDeck,
@@ -80,7 +80,12 @@ final class DecksBuilder {
     }
 
     func buildAutomaTrophiesDeck(from array: [CardModel]) -> (pickedCards: [CardModel], remainingCards: [CardModel]) {
-        pickCards(from: array, amount: 3)
+        let level3Cards = selectAllGeneralCards(from: array, for: .three) + selectAllAdvancedCards(from: array, for: .three)
+        let automaTrophiesTuple = pickCards(from: level3Cards, amount: 3)
+        let remainingCards = array.filter { cardModel in
+            automaTrophiesTuple.pickedCards.contains(cardModel) == false
+        }
+        return (automaTrophiesTuple.pickedCards, remainingCards)
     }
     
     // MARK: - Private action deck methods
