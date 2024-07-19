@@ -13,7 +13,7 @@ final class CardsShowcaseViewModel: ObservableObject {
     @Published var cards: [ActionCardModel]
 
     init(factory: CardsFactory) {
-        self.cards = factory.buildDeck()
+        self.cards = factory.buildBaseCards()
     }
 }
 

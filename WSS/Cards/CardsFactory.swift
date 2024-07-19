@@ -9,19 +9,20 @@ import Foundation
 
 struct CardsFactory {
 
-    let addonsTypes: [AddonType]
-
     private let actionCardBack = "back_automa"
 
-    func buildDeck() -> [ActionCardModel] {
-        var deck: [ActionCardModel] = []
-        deck.append(contentsOf: buildCards(fileNames: CardFileNames.baseActionCards))
-        for addon in addonsTypes {
-            deck.append(contentsOf: buildCards(fileNames: addon.cardFileNames))
-        }
-        return deck
+    func buildBaseCards() -> [ActionCardModel] {
+        buildCards(fileNames: CardFileNames.baseActionCards)
     }
 
+    func buildSkelligeDeck() -> [ActionCardModel] {
+        buildCards(fileNames: CardFileNames.skelligeActionCards)
+    }
+
+    func buildLegendaryHuntDeck() -> [ActionCardModel] {
+        buildCards(fileNames: CardFileNames.legendaryHuntActionCards)
+    }
+    
     private func buildCards(fileNames: [String]) -> [ActionCardModel] {
         var cards: [ActionCardModel] = []
         for cardFileName in fileNames {

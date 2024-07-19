@@ -15,7 +15,7 @@ struct WSSApp: App {
         WindowGroup {
             CardsShowcaseView(
                 viewModel: CardsShowcaseViewModel(
-                    factory: CardsFactory(addonsTypes: [.legendaryHunt, .skellige])
+                    factory: CardsFactory()
                 )
             )
         }

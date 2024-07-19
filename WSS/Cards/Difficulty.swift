@@ -118,7 +118,7 @@ fileprivate extension Difficulty {
         case .medium:
             3
         case .hard:
-            3
+            2
         }
     }
 

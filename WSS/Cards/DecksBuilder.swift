@@ -21,11 +21,6 @@ enum AddonType {
     }
 }
 
-struct Addon {
-    let addonType: AddonType
-    let cards: [ActionCardModel]
-}
-
 struct Decks {
     let actionDeck: [ActionCardModel]
     let automaTrophies: [ActionCardModel]
@@ -34,14 +29,18 @@ struct Decks {
 
 final class DecksBuilder {
 
-    private let allBaseCards: [ActionCardModel]
-    private let addons: [Addon]
+    private let cardsFactory: CardsFactory
+    private let addons: [AddonType]
     private let difficultyLevel: Difficulty
 
-    init(allBaseCards: [ActionCardModel], addons: [Addon], difficultyLevel: Difficulty) {
-        self.allBaseCards = allBaseCards
-        self.difficultyLevel = difficultyLevel
+    init(
+        cardsFactory: CardsFactory,
+        addons: [AddonType],
+        difficultyLevel: Difficulty
+    ) {
+        self.cardsFactory = cardsFactory
         self.addons = addons
+        self.difficultyLevel = difficultyLevel
     }
 
     // MARK: - Public methods
@@ -61,12 +60,13 @@ final class DecksBuilder {
         // we build action deck first so we pick from ALL action cards.
         // then we will pick 3 cards from the remaining 3 level cards. That will be automa trophies
         // all other remaining cards from this step will be challenges deck
-        var allActionCards = allBaseCards
+        var allActionCards = cardsFactory.buildBaseCards()
 
         // add 3 Skellige cards of each level (1/2/3) to the all cards deck, then shuffle the levels and remove 3 cards from each level
         // so that the final amount is the same as without Skellige addon
-        if let skelligeAddon = addons.first(where: { $0.addonType == .skellige }) {
-            allActionCards.append(contentsOf: skelligeAddon.cards)
+        if let skelligeAddon = addons.first(where: { $0 == .skellige }) {
+            let skelligeAdjustedDeck = skelligeAdjustedDeck(baseDeck: allActionCards, skelligeDeck: cardsFactory.buildSkelligeDeck())
+            allActionCards = skelligeAdjustedDeck
         }
 
         // pick x cards of level 3 BASE
@@ -80,8 +80,8 @@ final class DecksBuilder {
 
         // if legendary hunt addon is selected, add appropriate amount to level 3 cards according to difficulty level
         var legendaryHuntCardsToAddToDeck: [ActionCardModel]?
-        if let legendaryHuntAddon = addons.first(where: { $0.addonType == .legendaryHunt }) {
-            let legendaryHuntAllCards = legendaryHuntAddon.cards.shuffled()
+        if let legendaryHuntAddon = addons.first(where: { $0 == .legendaryHunt }) {
+            let legendaryHuntAllCards = cardsFactory.buildLegendaryHuntDeck().shuffled()
             legendaryHuntCardsToAddToDeck = []
             for i in 0...difficulty.legendaryHuntCardsAmount - 1 {
                 legendaryHuntCardsToAddToDeck?.append(legendaryHuntAllCards[i])

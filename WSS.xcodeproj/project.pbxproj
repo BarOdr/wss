@@ -19,7 +19,6 @@
 		F3F73E322C441A24005E77CA /* WSSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F73E312C441A24005E77CA /* WSSApp.swift */; };
 		F3F73E382C441A25005E77CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F73E372C441A25005E77CA /* Assets.xcassets */; };
 		F3F73E3B2C441A25005E77CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F73E3A2C441A25005E77CA /* Preview Assets.xcassets */; };
-		F3FD63832C496C710055CEFB /* WSSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD63822C496C710055CEFB /* WSSTests.swift */; };
 		F3FD638C2C496CA70055CEFB /* CardFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD638B2C496CA70055CEFB /* CardFactoryTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -103,7 +102,6 @@
 		F3F73E372C441A25005E77CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3F73E3A2C441A25005E77CA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F3FD63802C496C710055CEFB /* WSSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WSSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F3FD63822C496C710055CEFB /* WSSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSSTests.swift; sourceTree = "<group>"; };
 		F3FD638B2C496CA70055CEFB /* CardFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFactoryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -258,7 +256,6 @@
 		F3FD63812C496C710055CEFB /* WSSTests */ = {
 			isa = PBXGroup;
 			children = (
-				F3FD63822C496C710055CEFB /* WSSTests.swift */,
 				F3FD638B2C496CA70055CEFB /* CardFactoryTests.swift */,
 				F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */,
 				F38C725B2C4A0EA5004CDD4E /* DeckBuilderTests.swift */,
@@ -384,7 +381,6 @@
 				F3FD638C2C496CA70055CEFB /* CardFactoryTests.swift in Sources */,
 				F38C72562C49E850004CDD4E /* DifficultyLevelTests.swift in Sources */,
 				F38C725C2C4A0EA5004CDD4E /* DeckBuilderTests.swift in Sources */,
-				F3FD63832C496C710055CEFB /* WSSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

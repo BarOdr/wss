@@ -10,72 +10,60 @@ import XCTest
 
 final class CardFactoryTests: XCTestCase {
 
-    func test_base_actionCardsQuantity() {
-        let sut = CardsFactory(addonsTypes: [])
-        let baseGeneralCards = sut.buildDeck().filter { model in
+    func test_cardFactory() {
+        let sut = CardsFactory()
+        let baseGeneralCards = sut.buildBaseCards().filter { model in
             model.cardType == .baseGeneral
         }
         XCTAssertEqual(baseGeneralCards.count, 18)
-        
-        let baseAdvancedCards = sut.buildDeck().filter { model in
+        XCTAssertEqual(baseGeneralCards.filter({ card in
+            card.level == 1
+        }).count, 6)
+        XCTAssertEqual(baseGeneralCards.filter({ card in
+            card.level == 2
+        }).count, 6)
+        XCTAssertEqual(baseGeneralCards.filter({ card in
+            card.level == 3
+        }).count, 6)
+
+        let baseAdvancedCards = sut.buildBaseCards().filter { model in
             model.cardType == .baseAdvanced
         }
+        XCTAssertEqual(baseAdvancedCards.filter({ model in
+            model.level == 1
+        }).count, 3)
+        XCTAssertEqual(baseAdvancedCards.filter({ model in
+            model.level == 2
+        }).count, 3)
+        XCTAssertEqual(baseAdvancedCards.filter({ model in
+            model.level == 3
+        }).count, 3)
+
         XCTAssertEqual(baseAdvancedCards.count, 9)
 
-        let skelligeCards = sut.buildDeck().filter { model in
-            model.cardType == .skellige
-        }
-        XCTAssertEqual(skelligeCards.count, 0)
-
-        let legendaryHuntCards = sut.buildDeck().filter { model in
-            model.cardType == .legendaryHunt
-        }
-        XCTAssertEqual(legendaryHuntCards.count, 0)
-    }
-
-    func test_skellige_actionCardsQuantity() {
-        let sut = CardsFactory(addonsTypes: [.skellige])
-        let baseGeneralCards = sut.buildDeck().filter { model in
-            model.cardType == .baseGeneral
-        }
-        XCTAssertEqual(baseGeneralCards.count, 18)
-
-        let baseAdvancedCards = sut.buildDeck().filter { model in
-            model.cardType == .baseAdvanced
-        }
-        XCTAssertEqual(baseAdvancedCards.count, 9)
-
-        let skelligeCards = sut.buildDeck().filter { model in
-            model.cardType == .skellige
+        let skelligeCards = sut.buildSkelligeDeck()
+        for card in skelligeCards {
+            XCTAssertEqual(card.cardType, .skellige)
         }
         XCTAssertEqual(skelligeCards.count, 9)
+        XCTAssertEqual(skelligeCards.filter({ model in
+            model.level == 1
+        }).count, 3)
+        XCTAssertEqual(skelligeCards.filter({ model in
+            model.level == 2
+        }).count, 3)
+        XCTAssertEqual(skelligeCards.filter({ model in
+            model.level == 3
+        }).count, 3)
 
-        let legendaryHuntCards = sut.buildDeck().filter { model in
-            model.cardType == .legendaryHunt
-        }
-        XCTAssertEqual(legendaryHuntCards.count, 0)
-    }
-
-    func test_legendaryHunt_actionCardsQuantity() {
-        let sut = CardsFactory(addonsTypes: [.legendaryHunt])
-        let baseGeneralCards = sut.buildDeck().filter { model in
-            model.cardType == .baseGeneral
-        }
-        XCTAssertEqual(baseGeneralCards.count, 18)
-
-        let baseAdvancedCards = sut.buildDeck().filter { model in
-            model.cardType == .baseAdvanced
-        }
-        XCTAssertEqual(baseAdvancedCards.count, 9)
-
-        let skelligeCards = sut.buildDeck().filter { model in
-            model.cardType == .skellige
-        }
-        XCTAssertEqual(skelligeCards.count, 0)
-
-        let legendaryHuntCards = sut.buildDeck().filter { model in
-            model.cardType == .legendaryHunt
+        let legendaryHuntCards = sut.buildLegendaryHuntDeck()
+        for card in legendaryHuntCards {
+            XCTAssertEqual(card.cardType, .legendaryHunt)
         }
         XCTAssertEqual(legendaryHuntCards.count, 3)
+        XCTAssertEqual(legendaryHuntCards.filter({ model in
+            model.level == 3
+        }).count, 3)
     }
+
 }
