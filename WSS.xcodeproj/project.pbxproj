@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F33946C42C441B0B007D817B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33946C32C441B0B007D817B /* RootView.swift */; };
+		F33946C42C441B0B007D817B /* CardsShowcaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33946C32C441B0B007D817B /* CardsShowcaseView.swift */; };
 		F33946C72C441BFB007D817B /* TextFromImageRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33946C62C441BFB007D817B /* TextFromImageRecognizer.swift */; };
+		F38C72502C49E201004CDD4E /* DecksBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C724F2C49E201004CDD4E /* DecksBuilder.swift */; };
+		F38C72522C49E42F004CDD4E /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C72512C49E42F004CDD4E /* Difficulty.swift */; };
+		F38C72562C49E850004CDD4E /* DifficultyLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */; };
+		F38C72582C4A09C9004CDD4E /* CardsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C72572C4A09C9004CDD4E /* CardsFactory.swift */; };
 		F39AC93C2C49279200A5E42A /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39AC93B2C49279200A5E42A /* CardModel.swift */; };
 		F3A48F4D2C495633009E54AF /* CardFileNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A48F4C2C495633009E54AF /* CardFileNames.swift */; };
 		F3F73E322C441A24005E77CA /* WSSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F73E312C441A24005E77CA /* WSSApp.swift */; };
-		F3F73E342C441A24005E77CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F73E332C441A24005E77CA /* ContentView.swift */; };
-		F3F73E362C441A24005E77CA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F73E352C441A24005E77CA /* Item.swift */; };
 		F3F73E382C441A25005E77CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F73E372C441A25005E77CA /* Assets.xcassets */; };
 		F3F73E3B2C441A25005E77CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F73E3A2C441A25005E77CA /* Preview Assets.xcassets */; };
 		F3FD63832C496C710055CEFB /* WSSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD63822C496C710055CEFB /* WSSTests.swift */; };
@@ -31,8 +33,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F33946C32C441B0B007D817B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		F33946C32C441B0B007D817B /* CardsShowcaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsShowcaseView.swift; sourceTree = "<group>"; };
 		F33946C62C441BFB007D817B /* TextFromImageRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFromImageRecognizer.swift; sourceTree = "<group>"; };
+		F38C724F2C49E201004CDD4E /* DecksBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksBuilder.swift; sourceTree = "<group>"; };
+		F38C72512C49E42F004CDD4E /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
+		F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyLevelTests.swift; sourceTree = "<group>"; };
+		F38C72572C4A09C9004CDD4E /* CardsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsFactory.swift; sourceTree = "<group>"; };
 		F39AC93B2C49279200A5E42A /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		F3A48F4C2C495633009E54AF /* CardFileNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFileNames.swift; sourceTree = "<group>"; };
 		F3B1A6E22C49329900D1A682 /* back_automa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back_automa.jpg; sourceTree = "<group>"; };
@@ -92,8 +98,6 @@
 		F3B1A74E2C4932E800D1A682 /* witcher_manticore.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = witcher_manticore.jpg; sourceTree = "<group>"; };
 		F3F73E2E2C441A24005E77CA /* WSS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F73E312C441A24005E77CA /* WSSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSSApp.swift; sourceTree = "<group>"; };
-		F3F73E332C441A24005E77CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		F3F73E352C441A24005E77CA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		F3F73E372C441A25005E77CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3F73E3A2C441A25005E77CA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F3FD63802C496C710055CEFB /* WSSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WSSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,15 +123,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F33946C52C441B33007D817B /* Sample */ = {
-			isa = PBXGroup;
-			children = (
-				F3F73E332C441A24005E77CA /* ContentView.swift */,
-				F3F73E352C441A24005E77CA /* Item.swift */,
-			);
-			path = Sample;
-			sourceTree = "<group>";
-		};
 		F33946C82C441D8B007D817B /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,8 +141,11 @@
 		F39AC93A2C49278000A5E42A /* Cards */ = {
 			isa = PBXGroup;
 			children = (
+				F38C724F2C49E201004CDD4E /* DecksBuilder.swift */,
+				F38C72512C49E42F004CDD4E /* Difficulty.swift */,
 				F39AC93B2C49279200A5E42A /* CardModel.swift */,
 				F3A48F4C2C495633009E54AF /* CardFileNames.swift */,
+				F38C72572C4A09C9004CDD4E /* CardsFactory.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -239,9 +237,8 @@
 				F39AC93A2C49278000A5E42A /* Cards */,
 				F39AC9392C49276E00A5E42A /* Utilities */,
 				F33946C82C441D8B007D817B /* Assets */,
-				F33946C52C441B33007D817B /* Sample */,
 				F3F73E312C441A24005E77CA /* WSSApp.swift */,
-				F33946C32C441B0B007D817B /* RootView.swift */,
+				F33946C32C441B0B007D817B /* CardsShowcaseView.swift */,
 				F3F73E372C441A25005E77CA /* Assets.xcassets */,
 				F3F73E392C441A25005E77CA /* Preview Content */,
 			);
@@ -261,6 +258,7 @@
 			children = (
 				F3FD63822C496C710055CEFB /* WSSTests.swift */,
 				F3FD638B2C496CA70055CEFB /* CardFactoryTests.swift */,
+				F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */,
 			);
 			path = WSSTests;
 			sourceTree = "<group>";
@@ -365,10 +363,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F38C72522C49E42F004CDD4E /* Difficulty.swift in Sources */,
+				F38C72502C49E201004CDD4E /* DecksBuilder.swift in Sources */,
+				F38C72582C4A09C9004CDD4E /* CardsFactory.swift in Sources */,
 				F33946C72C441BFB007D817B /* TextFromImageRecognizer.swift in Sources */,
-				F33946C42C441B0B007D817B /* RootView.swift in Sources */,
-				F3F73E342C441A24005E77CA /* ContentView.swift in Sources */,
-				F3F73E362C441A24005E77CA /* Item.swift in Sources */,
+				F33946C42C441B0B007D817B /* CardsShowcaseView.swift in Sources */,
 				F3A48F4D2C495633009E54AF /* CardFileNames.swift in Sources */,
 				F3F73E322C441A24005E77CA /* WSSApp.swift in Sources */,
 				F39AC93C2C49279200A5E42A /* CardModel.swift in Sources */,
@@ -380,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3FD638C2C496CA70055CEFB /* CardFactoryTests.swift in Sources */,
+				F38C72562C49E850004CDD4E /* DifficultyLevelTests.swift in Sources */,
 				F3FD63832C496C710055CEFB /* WSSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,7 +447,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -504,7 +504,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

@@ -8,29 +8,6 @@
 import XCTest
 @testable import WSS
 
-extension CardType {
-    enum SimpleCardType {
-        case baseGeneral
-        case baseAdvanced
-        case skellige
-        case legendaryHunt
-        case witcherAbility
-    }
-    var caseWithoutAssociatedValues: SimpleCardType {
-        switch self {
-        case .baseGeneral:
-            return .baseGeneral
-        case .baseAdvanced:
-            return .baseAdvanced
-        case .skellige:
-            return .skellige
-        case .legendaryHunt:
-            return .legendaryHunt
-        case .witcherAbility:
-            return .witcherAbility
-        }
-    }
-}
 final class CardFactoryTests: XCTestCase {
 
     var sut: CardsFactory!
@@ -43,7 +20,7 @@ final class CardFactoryTests: XCTestCase {
         sut = nil
     }
 
-    func testCardsQuantity() {
+    func test_cardsQuantity() {
         let baseGeneralCards = sut.buildDeck().filter { model in
             model.cardType.caseWithoutAssociatedValues == .baseGeneral
         }
