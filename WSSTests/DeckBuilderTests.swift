@@ -166,6 +166,9 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
         XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
 
+        // skellige
+        XCTAssertEqual(getSkelligeCards(from: decks.actionDeck).count, 9)
+
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
         XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
@@ -209,6 +212,9 @@ final class DeckBuilderTests: XCTestCase {
 
         XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 3)
         XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
+
+        // skellige
+        XCTAssertEqual(getSkelligeCards(from: decks.actionDeck).count, 9)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
@@ -254,6 +260,9 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
         XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
 
+        // skellige
+        XCTAssertEqual(getSkelligeCards(from: decks.actionDeck).count, 9)
+
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
         XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
@@ -297,6 +306,9 @@ final class DeckBuilderTests: XCTestCase {
 
         XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
         XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
+
+        // skellige
+        XCTAssertEqual(getSkelligeCards(from: decks.actionDeck).count, 9)
 
         // legendary hunt
         XCTAssertEqual(getLevel3Cards(from: decks.actionDeck).count, 4)
@@ -346,6 +358,9 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 3)
         XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
 
+        // skellige
+        XCTAssertEqual(getSkelligeCards(from: decks.actionDeck).count, 9)
+
         // legendary hunt
         XCTAssertEqual(getLevel3Cards(from: decks.actionDeck).count, 6)
         XCTAssertEqual(getLegendaryHuntCards(from: decks.actionDeck).count, 2)
@@ -394,6 +409,9 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
         XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
 
+        // skellige
+        XCTAssertEqual(getSkelligeCards(from: decks.actionDeck).count, 9)
+        
         // legendary hunt
         XCTAssertEqual(getLevel3Cards(from: decks.actionDeck).count, 6)
         XCTAssertEqual(getLegendaryHuntCards(from: decks.actionDeck).count, 3)
