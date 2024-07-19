@@ -8,16 +8,8 @@
 import Foundation
 
 struct CardFileNames {
-    static let array: [String] = [
-        "back_automa-alternate.jpg",
-        "back_automa.jpg",
-        "back_bear.jpg",
-        "back_cat.jpg",
-        "back_ciri.jpg",
-        "back_griffin.jpg",
-        "back_manticore.jpg",
-        "back_viper.jpg",
-        "back_wolf.jpg",
+
+    static let baseActionCards: [String] = [
         "base_01_general_lvl_1.jpg",
         "base_02_general_lvl_1.jpg",
         "base_03_general_lvl_1.jpg",
@@ -45,9 +37,17 @@ struct CardFileNames {
         "base_25_advanced_lvl_3.jpg",
         "base_26_advanced_lvl_3.jpg",
         "base_27_advanced_lvl_3.jpg",
+        "back_automa-alternate.jpg",
+        "back_automa.jpg",
+    ]
+
+    static let legendaryHuntActionCards: [String] = [
         "legendary-hunt_01_lvl_3.jpg",
         "legendary-hunt_02_lvl_3.jpg",
         "legendary-hunt_03_lvl_3.jpg",
+    ]
+
+    static let skelligeActionCards: [String] = [
         "skellige_01_general_lvl_1.jpg",
         "skellige_02_general_lvl_1.jpg",
         "skellige_03_general_lvl_1.jpg",
@@ -57,6 +57,16 @@ struct CardFileNames {
         "skellige_07_general_lvl_3.jpg",
         "skellige_08_general_lvl_3.jpg",
         "skellige_09_general_lvl_3.jpg",
+    ]
+
+    static let witcherCards: [String] = [
+        "back_bear.jpg",
+        "back_cat.jpg",
+        "back_ciri.jpg",
+        "back_griffin.jpg",
+        "back_manticore.jpg",
+        "back_viper.jpg",
+        "back_wolf.jpg",
         "witcher_bear.jpg",
         "witcher_cat.jpg",
         "witcher_ciri.jpg",

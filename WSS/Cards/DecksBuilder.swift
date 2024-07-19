@@ -7,20 +7,32 @@
 
 import Foundation
 
+enum AddonType {
+    case skellige
+    case legendaryHunt
+}
+
+struct Addon {
+    let addonType: AddonType
+    let cards: [ActionCardModel]
+}
+
 struct Decks {
-    let actionDeck: [CardModel]
-    let automaTrophies: [CardModel]
-    let challengesDeck: [CardModel]
+    let actionDeck: [ActionCardModel]
+    let automaTrophies: [ActionCardModel]
+    let challengesDeck: [ActionCardModel]
 }
 
 final class DecksBuilder {
 
-    private let allCards: [CardModel]
+    private let allBaseCards: [ActionCardModel]
+    private let addons: [Addon]
     private let difficultyLevel: Difficulty
 
-    init(allCards: [CardModel], difficultyLevel: Difficulty) {
-        self.allCards = allCards
+    init(allBaseCards: [ActionCardModel], addons: [Addon], difficultyLevel: Difficulty) {
+        self.allBaseCards = allBaseCards
         self.difficultyLevel = difficultyLevel
+        self.addons = addons
     }
 
     // MARK: - Public methods
@@ -36,11 +48,17 @@ final class DecksBuilder {
         )
     }
 
-    func buildActionDeck(for difficulty: Difficulty) -> (actionDeck: [CardModel], remainingCards: [CardModel]) {
+    func buildActionDeck(for difficulty: Difficulty) -> (actionDeck: [ActionCardModel], remainingCards: [ActionCardModel]) {
         // we build action deck first so we pick from ALL action cards.
         // then we will pick 3 cards from the remaining 3 level cards. That will be automa trophies
         // all other remaining cards from this step will be challenges deck
-        let allActionCards = allCards
+        var allActionCards = allBaseCards
+
+        // add 3 Skellige cards of each level (1/2/3) to the all cards deck, then shuffle the levels and remove 3 cards from each level
+        // so that the final amount is the same as without Skellige addon
+        if let skelligeAddon = addons.first(where: { $0.addonType == .skellige }) {
+            allActionCards.append(contentsOf: skelligeAddon.cards)
+        }
 
         // pick x cards of level 3 BASE
         let level3BaseActionCardsTuple = pickGeneralActionCards(from: allActionCards, for: difficulty, level: .three)
@@ -50,8 +68,13 @@ final class DecksBuilder {
             for: difficulty,
             level: .three
         )
+
+        var legendaryHuntCards: [ActionCardModel]?
+        if let legendaryHuntAddon = addons.first(where: { $0.addonType == .legendaryHunt }) {
+            legendaryHuntCards = legendaryHuntAddon.cards
+        }
         // shuffle the above
-        let level3ActionDeck = (level3BaseActionCardsTuple.pickedCards + level3AdvancedActionCardsTuple.pickedCards)
+        let level3ActionDeck = (level3BaseActionCardsTuple.pickedCards + level3AdvancedActionCardsTuple.pickedCards + (legendaryHuntCards ?? []))
             .shuffled()
 
         // pick x cards of level 2 BASE
@@ -92,7 +115,7 @@ final class DecksBuilder {
         return (actionDeck, level1AdvancedActionCardsTuple.remainingCards)
     }
 
-    func buildAutomaTrophiesDeck(from array: [CardModel]) -> (pickedCards: [CardModel], remainingCards: [CardModel]) {
+    func buildAutomaTrophiesDeck(from array: [ActionCardModel]) -> (pickedCards: [ActionCardModel], remainingCards: [ActionCardModel]) {
         let level3Cards = selectAllGeneralCards(from: array, for: .three) + selectAllAdvancedCards(from: array, for: .three)
         let automaTrophiesTuple = pickCards(from: level3Cards, amount: 3)
         let remainingCards = array.filter { cardModel in
@@ -101,26 +124,55 @@ final class DecksBuilder {
         return (automaTrophiesTuple.pickedCards, remainingCards)
     }
     
+    func skelligeAdjustedDeck(baseDeck: [ActionCardModel], skelligeDeck: [ActionCardModel]) -> [ActionCardModel] {
+        let combinedDeck = baseDeck + skelligeDeck
+        var level3Cards = (selectAllGeneralCards(from: combinedDeck, for: .three) + selectAllAdvancedCards(from: combinedDeck, for: .three))
+            .shuffled()
+        for _ in 1...3 {
+            let cardToRemove = level3Cards.randomElement()
+            level3Cards.removeAll { card in
+                card == cardToRemove
+            }
+        }
+        var level2Cards = (selectAllGeneralCards(from: combinedDeck, for: .two) + selectAllAdvancedCards(from: combinedDeck, for: .two))
+            .shuffled()
+        for _ in 1...3 {
+            let cardToRemove = level2Cards.randomElement()
+            level2Cards.removeAll { card in
+                card == cardToRemove
+            }
+        }
+        var level1Cards = (selectAllGeneralCards(from: combinedDeck, for: .one) + selectAllAdvancedCards(from: combinedDeck, for: .one))
+            .shuffled()
+        for _ in 1...3 {
+            let cardToRemove = level1Cards.randomElement()
+            level1Cards.removeAll { card in
+                card == cardToRemove
+            }
+        }
+        return (level3Cards + level2Cards + level1Cards).shuffled()
+    }
+
     // MARK: - Private action deck methods
 
     private func pickGeneralActionCards(
-        from array: [CardModel],
+        from array: [ActionCardModel],
         for difficulty: Difficulty,
         level: Level
     ) -> (
-        pickedCards: [CardModel],
-        remainingCards: [CardModel]
+        pickedCards: [ActionCardModel],
+        remainingCards: [ActionCardModel]
     ) {
         pickCards(from: array, amount: difficulty.generalActionCardsAmount(for: level))
     }
 
     private func pickAdvancedActionCards(
-        from array: [CardModel],
+        from array: [ActionCardModel],
         for difficulty: Difficulty,
         level: Level
     ) -> (
-        pickedCards: [CardModel],
-        remainingCards: [CardModel]
+        pickedCards: [ActionCardModel],
+        remainingCards: [ActionCardModel]
     ) {
         pickCards(from: array, amount: difficulty.advancedActionCardsAmount(for: level))
     }
@@ -130,22 +182,22 @@ final class DecksBuilder {
     
     // MARK: - General methods
 
-    private func selectAllGeneralCards(from array: [CardModel], for level: Level) -> [CardModel] {
+    private func selectAllGeneralCards(from array: [ActionCardModel], for level: Level) -> [ActionCardModel] {
         array.filter { card in
             switch card.cardType {
-            case .baseGeneral(let cardLevel, _):
-                return cardLevel == level.rawValue
+            case .baseGeneral:
+                return card.level == level.rawValue
             default:
                 return false
             }
         }
     }
 
-    private func selectAllAdvancedCards(from array: [CardModel], for level: Level) -> [CardModel] {
+    private func selectAllAdvancedCards(from array: [ActionCardModel], for level: Level) -> [ActionCardModel] {
         array.filter { card in
             switch card.cardType {
-            case .baseAdvanced(let cardLevel, _):
-                return cardLevel == level.rawValue
+            case .baseAdvanced:
+                return card.level == level.rawValue
             default:
                 return false
             }
@@ -153,13 +205,13 @@ final class DecksBuilder {
     }
 
     private func pickCards(
-        from array: [CardModel],
+        from array: [ActionCardModel],
         amount: Int
     ) -> (
-        pickedCards: [CardModel],
-        remainingCards: [CardModel]
+        pickedCards: [ActionCardModel],
+        remainingCards: [ActionCardModel]
     ) {
-        var pickedCards: [CardModel] = []
+        var pickedCards: [ActionCardModel] = []
         var remainingCards = array
 
         for _ in 1...amount {

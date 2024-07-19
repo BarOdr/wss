@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 final class CardsShowcaseViewModel: ObservableObject {
-    @Published var cards: [CardModel]
+    @Published var cards: [ActionCardModel]
 
     init(factory: CardsFactory) {
         self.cards = factory.buildDeck()
@@ -43,7 +43,7 @@ struct CardsShowcaseView: View {
 
 struct CardView: View {
 
-    @State var model: CardModel
+    @State var model: ActionCardModel
 
     var body: some View {
         Image(model.imageName, bundle: .main)

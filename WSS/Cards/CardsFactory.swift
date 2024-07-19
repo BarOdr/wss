@@ -11,14 +11,14 @@ struct CardsFactory {
 
     private let actionCardBack = "back_automa"
 
-    func buildDeck() -> [CardModel] {
-        var cards: [CardModel] = []
-        for cardFileName in CardFileNames.array {
+    func buildDeck() -> [ActionCardModel] {
+        var cards: [ActionCardModel] = []
+        for cardFileName in CardFileNames.baseActionCards {
             let strippedFileName = cardFileName.replacingOccurrences(of: ".jpg", with: "")
             let components = getComponents(for: strippedFileName)
             guard
                 let categoryString = components.first,
-                let category = CardCategory(rawValue: categoryString) else {
+                let category = ActionCardCategory(rawValue: categoryString) else {
                 continue
             }
             if let card = getCard(for: category, fileName: strippedFileName) {
@@ -30,12 +30,10 @@ struct CardsFactory {
         return cards
     }
 
-    private func getCard(for category: CardCategory, fileName: String) -> CardModel? {
+    private func getCard(for category: ActionCardCategory, fileName: String) -> ActionCardModel? {
         switch category {
         case .baseAction:
             return getActionCard(for: fileName, category: category)
-        case .witcher:
-            return getWitcherCard(for: fileName)
         case .legendaryHuntAction:
             return getActionCard(for: fileName, category: category)
         case .skelligeAction:
@@ -43,7 +41,7 @@ struct CardsFactory {
         }
     }
 
-    private func getWitcherCard(for string: String) -> CardModel? {
+    private func getWitcherCard(for string: String) -> WitcherAbilityCardModel? {
         let components = getComponents(for: string)
         guard
             components.count > 1,
@@ -52,13 +50,11 @@ struct CardsFactory {
             print("No card for \(string). \(#line)")
             return nil
         }
-        return CardModel(frontName: string,
-                         backName: "back_\(witcher.rawValue)",
-                         cardType: .witcherAbility(witcher: witcher))
+        return WitcherAbilityCardModel(witcher: witcher, frontName: string, backName: "back_\(witcher.rawValue)")
     }
 
     // base (general / advanced) / skellige / legendary hunt
-    private func getActionCard(for string: String, category: CardCategory) -> CardModel? {
+    private func getActionCard(for string: String, category: ActionCardCategory) -> ActionCardModel? {
         let components = getComponents(for: string)
         guard components.count > 3 else {
             print("No card for \(string). \(#line)")
@@ -71,12 +67,10 @@ struct CardsFactory {
             return getSkelligeCard(for: string)
         case .legendaryHuntAction:
             return getLegendaryHuntCard(for: string)
-        default:
-            return nil
         }
     }
 
-    private func getBaseCard(for string: String) -> CardModel? {
+    private func getBaseCard(for string: String) -> ActionCardModel? {
         let components = getComponents(for: string)
         guard components.count > 4, let subtype = CardSubtype(rawValue: components[2]) else {
             return nil
@@ -89,24 +83,25 @@ struct CardsFactory {
 
         switch subtype {
         case .general:
-            return CardModel(
+            return ActionCardModel(
                 frontName: string,
                 backName: actionCardBack,
-                cardType: .baseGeneral(level: cardLevel, number: cardNumber)
+                cardType: .baseGeneral,
+                level: cardLevel,
+                number: cardNumber
             )
         case .advanced:
-            return CardModel(
+            return ActionCardModel(
                 frontName: string,
                 backName: actionCardBack,
-                cardType: .baseAdvanced(
-                    level: cardLevel,
-                    number: cardNumber
-                )
+                cardType: .baseAdvanced,
+                level: cardLevel,
+                number: cardNumber
             )
         }
     }
 
-    private func getSkelligeCard(for string: String) -> CardModel? {
+    private func getSkelligeCard(for string: String) -> ActionCardModel? {
         let components = getComponents(for: string)
         guard components.count > 4 else {
             return nil
@@ -116,17 +111,16 @@ struct CardsFactory {
             let cardLevel = Int(components[4]) else {
             return nil
         }
-        return CardModel(
+        return ActionCardModel(
             frontName: string,
             backName: actionCardBack,
-            cardType: .skellige(
-                level: cardLevel,
-                number: cardNumber
-            )
+            cardType: .skellige,
+            level: cardLevel,
+            number: cardNumber
         )
     }
 
-    private func getLegendaryHuntCard(for string: String) -> CardModel? {
+    private func getLegendaryHuntCard(for string: String) -> ActionCardModel? {
         let components = getComponents(for: string)
         guard components.count > 3 else {
             return nil
@@ -136,10 +130,12 @@ struct CardsFactory {
             let cardLevel = Int(components[3]) else {
             return nil
         }
-        return CardModel(
+        return ActionCardModel(
             frontName: string,
             backName: actionCardBack,
-            cardType: .legendaryHunt(level: cardLevel, number: cardNumber)
+            cardType: .legendaryHunt,
+            level: cardLevel,
+            number: cardNumber
         )
     }
 

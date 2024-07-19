@@ -20,30 +20,25 @@ final class CardFactoryTests: XCTestCase {
         sut = nil
     }
 
-    func test_cardsQuantity() {
+    func test_actionCardsQuantity() {
         let baseGeneralCards = sut.buildDeck().filter { model in
-            model.cardType.caseWithoutAssociatedValues == .baseGeneral
+            model.cardType == .baseGeneral
         }
         XCTAssertEqual(baseGeneralCards.count, 18)
         
         let baseAdvancedCards = sut.buildDeck().filter { model in
-            model.cardType.caseWithoutAssociatedValues == .baseAdvanced
+            model.cardType == .baseAdvanced
         }
         XCTAssertEqual(baseAdvancedCards.count, 9)
 
         let skelligeCards = sut.buildDeck().filter { model in
-            model.cardType.caseWithoutAssociatedValues == .skellige
+            model.cardType == .skellige
         }
         XCTAssertEqual(skelligeCards.count, 9)
 
         let legendaryHuntCards = sut.buildDeck().filter { model in
-            model.cardType.caseWithoutAssociatedValues == .legendaryHunt
+            model.cardType == .legendaryHunt
         }
         XCTAssertEqual(legendaryHuntCards.count, 3)
-
-        let witcherAbilityCards = sut.buildDeck().filter { model in
-            model.cardType.caseWithoutAssociatedValues == .witcherAbility
-        }
-        XCTAssertEqual(witcherAbilityCards.count, 7)
     }
 }
