@@ -411,7 +411,7 @@ final class DeckBuilderTests: XCTestCase {
 
         // skellige
         XCTAssertEqual(getSkelligeCards(from: decks.actionDeck).count, 9)
-        
+
         // legendary hunt
         XCTAssertEqual(getLevel3Cards(from: decks.actionDeck).count, 6)
         XCTAssertEqual(getLegendaryHuntCards(from: decks.actionDeck).count, 3)

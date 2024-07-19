@@ -146,6 +146,11 @@ final class DecksBuilder {
         let combinedDeck = baseDeck + skelligeDeck
         var level3Cards = (selectAllGeneralCards(from: combinedDeck, for: .three) + selectAllAdvancedCards(from: combinedDeck, for: .three))
             .shuffled()
+
+        if level3Cards.count != 9 {
+            assertionFailure("When combining with skellige, at some point there should be nine cards of every level")
+        }
+
         for _ in 1...3 {
             let cardToRemove = level3Cards.randomElement()
             level3Cards.removeAll { card in
@@ -154,6 +159,11 @@ final class DecksBuilder {
         }
         var level2Cards = (selectAllGeneralCards(from: combinedDeck, for: .two) + selectAllAdvancedCards(from: combinedDeck, for: .two))
             .shuffled()
+
+        if level2Cards.count != 9 {
+            assertionFailure("When combining with skellige, at some point there should be nine cards of every level")
+        }
+
         for _ in 1...3 {
             let cardToRemove = level2Cards.randomElement()
             level2Cards.removeAll { card in
@@ -162,13 +172,25 @@ final class DecksBuilder {
         }
         var level1Cards = (selectAllGeneralCards(from: combinedDeck, for: .one) + selectAllAdvancedCards(from: combinedDeck, for: .one))
             .shuffled()
+
+        if level1Cards.count != 9 {
+            assertionFailure("When combining with skellige, at some point there should be nine cards of every level")
+        }
+
         for _ in 1...3 {
             let cardToRemove = level1Cards.randomElement()
             level1Cards.removeAll { card in
                 card == cardToRemove
             }
         }
-        return (level3Cards + level2Cards + level1Cards).shuffled()
+
+        let adjustedDeck = (level3Cards + level2Cards + level1Cards).shuffled()
+
+        if adjustedDeck.count != 18 {
+            assertionFailure("When combining with skellige, adjusted deck should have the same amount of cards as without skellige")
+        }
+
+        return adjustedDeck
     }
 
     // MARK: - Private action deck methods
