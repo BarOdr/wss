@@ -60,6 +60,7 @@ final class DecksBuilder {
     }
 
     func buildChallengesDeck(for difficulty: Difficulty, remainingCards: [ActionCardModel]) -> [ActionCardModel] {
+        // TODO: - fix this, select according to the table how many cards there should be. The actual numbers might differ so don't unit test it so hard
         switch difficulty {
         case .easy, .medium:
             return remainingCards
@@ -81,10 +82,10 @@ final class DecksBuilder {
 
         // add 3 Skellige cards of each level (1/2/3) to the all cards deck, then shuffle the levels and remove 3 cards from each level
         // so that the final amount is the same as without Skellige addon
-//        if let _ = addons.first(where: { $0 == .skellige }) {
-//            let skelligeAdjustedDeck = skelligeAdjustedDeck(baseDeck: allActionCards, skelligeDeck: cardsFactory.buildSkelligeDeck())
-//            allActionCards = skelligeAdjustedDeck
-//        }
+        if let _ = addons.first(where: { $0 == .skellige }) {
+            let skelligeAdjustedDeck = skelligeAdjustedDeck(baseDeck: allActionCards, skelligeDeck: cardsFactory.buildSkelligeDeck())
+            allActionCards = skelligeAdjustedDeck
+        }
 
         // pick x cards of level 3 BASE
         let level3BaseActionCardsTuple = pickGeneralActionCards(from: allActionCards, for: difficulty, level: .three)
