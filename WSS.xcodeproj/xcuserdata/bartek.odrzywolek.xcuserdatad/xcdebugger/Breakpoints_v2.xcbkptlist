@@ -14,25 +14,9 @@
             filePath = "WSSTests/DeckBuilderTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "560"
-            endingLineNumber = "560"
+            startingLineNumber = "380"
+            endingLineNumber = "380"
             landmarkName = "test_deckBuilder_hard_skellige_legendary_hunt()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3D01C7D1-2A54-4818-B08B-8C7126EAD752"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WSSTests/DeckBuilderTests.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
-            landmarkName = "test_deckBuilder_easy_skellige()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
