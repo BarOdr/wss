@@ -144,10 +144,19 @@ final class DecksBuilder {
     
     func skelligeAdjustedDeck(baseDeck: [ActionCardModel], skelligeDeck: [ActionCardModel]) -> [ActionCardModel] {
         let combinedDeck = baseDeck + skelligeDeck
-        var level3Cards = (selectAllGeneralCards(from: combinedDeck, for: .three) + selectAllAdvancedCards(from: combinedDeck, for: .three))
+
+        var advancedCardsLv1 = selectAllAdvancedCards(from: baseDeck, for: .one)
+        var advancedCardsLv2 = selectAllAdvancedCards(from: baseDeck, for: .two)
+        var advancedCardsLv3 = selectAllAdvancedCards(from: baseDeck, for: .three)
+        var advancedCardsToShuffleBackIntoAdjustedDeck = advancedCardsLv1 + advancedCardsLv2 + advancedCardsLv3
+
+        let level3BaseCards = selectAllGeneralCards(from: baseDeck, for: .three)
+        let skelligeLevel3Cards = selectAllSkelligeCards(from: skelligeDeck, for: .three)
+        var level3Cards = (level3BaseCards + skelligeLevel3Cards)
             .shuffled()
 
         if level3Cards.count != 9 {
+
             assertionFailure("When combining with skellige, at some point there should be nine cards of every level")
         }
 
@@ -157,7 +166,10 @@ final class DecksBuilder {
                 card == cardToRemove
             }
         }
-        var level2Cards = (selectAllGeneralCards(from: combinedDeck, for: .two) + selectAllAdvancedCards(from: combinedDeck, for: .two))
+
+        let level2BaseCards = selectAllGeneralCards(from: baseDeck, for: .two)
+        let skelligeLevel2Cards = selectAllSkelligeCards(from: skelligeDeck, for: .two)
+        var level2Cards = (level2BaseCards + skelligeLevel2Cards)
             .shuffled()
 
         if level2Cards.count != 9 {
@@ -170,7 +182,10 @@ final class DecksBuilder {
                 card == cardToRemove
             }
         }
-        var level1Cards = (selectAllGeneralCards(from: combinedDeck, for: .one) + selectAllAdvancedCards(from: combinedDeck, for: .one))
+
+        let level1BaseCards = selectAllGeneralCards(from: baseDeck, for: .one)
+        let skelligeLevel1Cards = selectAllSkelligeCards(from: skelligeDeck, for: .one)
+        var level1Cards = (level1BaseCards + skelligeLevel1Cards)
             .shuffled()
 
         if level1Cards.count != 9 {
@@ -184,9 +199,9 @@ final class DecksBuilder {
             }
         }
 
-        let adjustedDeck = (level3Cards + level2Cards + level1Cards).shuffled()
+        let adjustedDeck = (level3Cards + level2Cards + level1Cards + advancedCardsToShuffleBackIntoAdjustedDeck).shuffled()
 
-        if adjustedDeck.count != 18 {
+        if adjustedDeck.count != 27 {
             assertionFailure("When combining with skellige, adjusted deck should have the same amount of cards as without skellige")
         }
 
@@ -237,6 +252,17 @@ final class DecksBuilder {
         array.filter { card in
             switch card.cardType {
             case .baseAdvanced:
+                return card.level == level.rawValue
+            default:
+                return false
+            }
+        }
+    }
+
+    private func selectAllSkelligeCards(from array: [ActionCardModel], for level: Level) -> [ActionCardModel] {
+        array.filter { card in
+            switch card.cardType {
+            case .skellige:
                 return card.level == level.rawValue
             default:
                 return false
