@@ -133,12 +133,12 @@ final class DeckBuilderTests: XCTestCase {
         // them
         // all decks combined
         let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
-        XCTAssertEqual(allDeckCombined.count, 27)
+        XCTAssertEqual(allDeckCombined.count, 24)
         XCTAssertTrue(decks.actionDeck.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
         XCTAssertTrue(decks.challengesDeck.isUnique)
         XCTAssertTrue(allDeckCombined.isUnique)
-        XCTAssertEqual(getBaseGeneralCards(from: allDeckCombined).count, 18)
+        XCTAssertEqual(getBaseGeneralCards(from: allDeckCombined).count, 15)
         XCTAssertEqual(getBaseAdvancedCards(from: allDeckCombined).count, 9)
         XCTAssertEqual(getSkelligeCards(from: allDeckCombined).count, 0)
         XCTAssertEqual(getLegendaryHuntCards(from: allDeckCombined).count, 0)
@@ -299,12 +299,12 @@ final class DeckBuilderTests: XCTestCase {
         // them
         // all decks combined
         let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
-        XCTAssertEqual(allDeckCombined.count, 27)
+        XCTAssertEqual(allDeckCombined.count, 24)
         XCTAssertTrue(decks.actionDeck.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
         XCTAssertTrue(decks.challengesDeck.isUnique)
         XCTAssertTrue(allDeckCombined.isUnique)
-        XCTAssertEqual((getBaseGeneralCards(from: allDeckCombined) + getSkelligeCards(from: allDeckCombined)).count, 18)
+        XCTAssertEqual((getBaseGeneralCards(from: allDeckCombined) + getSkelligeCards(from: allDeckCombined)).count, 15)
         XCTAssertEqual(getBaseAdvancedCards(from: allDeckCombined).count, 9)
         XCTAssertEqual(getLegendaryHuntCards(from: allDeckCombined).count, 0)
 
@@ -472,12 +472,12 @@ final class DeckBuilderTests: XCTestCase {
         // them
         // all decks combined
         let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
-        XCTAssertEqual(allDeckCombined.count, 30)
+        XCTAssertEqual(allDeckCombined.count, 27)
         XCTAssertTrue(decks.actionDeck.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
         XCTAssertTrue(decks.challengesDeck.isUnique)
         XCTAssertTrue(allDeckCombined.isUnique)
-        XCTAssertEqual((getBaseGeneralCards(from: allDeckCombined) + getSkelligeCards(from: allDeckCombined)).count, 18)
+        XCTAssertEqual((getBaseGeneralCards(from: allDeckCombined) + getSkelligeCards(from: allDeckCombined)).count, 15)
         XCTAssertEqual(getBaseAdvancedCards(from: allDeckCombined).count, 9)
         XCTAssertEqual(getLegendaryHuntCards(from: allDeckCombined).count, 3)
 

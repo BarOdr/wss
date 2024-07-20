@@ -14,73 +14,89 @@
             filePath = "WSS/Cards/DecksBuilder.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "buildActionDeck(for:)"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "buildAutomaTrophiesDeck(from:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7F2A3805-5439-431B-8EB8-8AE7A4636A30"
+            uuid = "10AB4DDD-97F7-40AC-B7F9-FEE94585DC40"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WSS/Cards/DecksBuilder.swift"
+            filePath = "WSSTests/DeckBuilderTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281"
-            landmarkName = "pickCards(from:originalArray:amount:)"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "test_deckBuilder_hard_no_addons()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F2113E43-FD92-4BBD-B349-EE3EFE22B5AA"
+            uuid = "DA5ED2B4-80D1-414E-B944-E3F043AE3780"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WSS/Cards/DecksBuilder.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
-            landmarkName = "pickCards(from:originalArray:amount:)"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "buildDecks()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "16D04190-BAD8-4D3C-9DB3-22B7E851AD7A"
+            uuid = "81853DB6-E9E1-4B83-935A-4BBC73FB2A9A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WSS/Cards/DecksBuilder.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
-            landmarkName = "pickCards(from:originalArray:amount:)"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "skelligeAdjustedDeck(baseDeck:skelligeDeck:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9F99C950-DEBC-4FA9-A45F-337FD0123B37"
+            uuid = "6BB404B0-9C77-401D-889F-8947AAD53A8D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WSS/Cards/DecksBuilder.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
-            landmarkName = "pickAdvancedActionCards(from:for:level:)"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "DecksBuilder"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F9D2E58B-AA51-4D17-820C-7E8ABEFF4DCD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WSS/Cards/DecksBuilder.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "buildChallengesDeck(for:remainingCards:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

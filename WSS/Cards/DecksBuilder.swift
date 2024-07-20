@@ -48,12 +48,29 @@ final class DecksBuilder {
     func buildDecks() -> Decks {
         let actionDeckTuple = buildActionDeck(for: difficultyLevel)
         let automaTrophiesTuple = buildAutomaTrophiesDeck(from: actionDeckTuple.remainingCards)
-        let challengesDeck = automaTrophiesTuple.remainingCards.shuffled()
+        let challengesDeck = buildChallengesDeck(
+            for: difficultyLevel,
+            remainingCards: automaTrophiesTuple.remainingCards
+        ).shuffled()
         return Decks(
             actionDeck: actionDeckTuple.actionDeck,
             automaTrophies: automaTrophiesTuple.pickedCards,
             challengesDeck: challengesDeck
         )
+    }
+
+    func buildChallengesDeck(for difficulty: Difficulty, remainingCards: [ActionCardModel]) -> [ActionCardModel] {
+        switch difficulty {
+        case .easy, .medium:
+            return remainingCards
+        case .hard:
+            // for level hard we need to remove general cards of level 3 (there is 0 in the table)
+            // 3 cards go to trash
+            let remainingCardsFiltered = remainingCards.filter { model in
+                !(model.cardType == .baseGeneral && model.level == 3)
+            }
+            return remainingCardsFiltered
+        }
     }
 
     func buildActionDeck(for difficulty: Difficulty) -> (actionDeck: [ActionCardModel], remainingCards: [ActionCardModel]) {
@@ -64,10 +81,10 @@ final class DecksBuilder {
 
         // add 3 Skellige cards of each level (1/2/3) to the all cards deck, then shuffle the levels and remove 3 cards from each level
         // so that the final amount is the same as without Skellige addon
-        if let _ = addons.first(where: { $0 == .skellige }) {
-            let skelligeAdjustedDeck = skelligeAdjustedDeck(baseDeck: allActionCards, skelligeDeck: cardsFactory.buildSkelligeDeck())
-            allActionCards = skelligeAdjustedDeck
-        }
+//        if let _ = addons.first(where: { $0 == .skellige }) {
+//            let skelligeAdjustedDeck = skelligeAdjustedDeck(baseDeck: allActionCards, skelligeDeck: cardsFactory.buildSkelligeDeck())
+//            allActionCards = skelligeAdjustedDeck
+//        }
 
         // pick x cards of level 3 BASE
         let level3BaseActionCardsTuple = pickGeneralActionCards(from: allActionCards, for: difficulty, level: .three)
