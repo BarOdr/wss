@@ -64,7 +64,7 @@ final class DecksBuilder {
 
         // add 3 Skellige cards of each level (1/2/3) to the all cards deck, then shuffle the levels and remove 3 cards from each level
         // so that the final amount is the same as without Skellige addon
-        if let skelligeAddon = addons.first(where: { $0 == .skellige }) {
+        if let _ = addons.first(where: { $0 == .skellige }) {
             let skelligeAdjustedDeck = skelligeAdjustedDeck(baseDeck: allActionCards, skelligeDeck: cardsFactory.buildSkelligeDeck())
             allActionCards = skelligeAdjustedDeck
         }
@@ -135,7 +135,7 @@ final class DecksBuilder {
 
     func buildAutomaTrophiesDeck(from array: [ActionCardModel]) -> (pickedCards: [ActionCardModel], remainingCards: [ActionCardModel]) {
         let level3Cards = selectAllGeneralCards(from: array, for: .three) + selectAllAdvancedCards(from: array, for: .three)
-        let automaTrophiesTuple = pickCards(from: level3Cards, amount: 3)
+        let automaTrophiesTuple = pickCards(from: level3Cards, originalArray: array, amount: 3)
         let remainingCards = array.filter { cardModel in
             automaTrophiesTuple.pickedCards.contains(cardModel) == false
         }
@@ -143,12 +143,10 @@ final class DecksBuilder {
     }
     
     func skelligeAdjustedDeck(baseDeck: [ActionCardModel], skelligeDeck: [ActionCardModel]) -> [ActionCardModel] {
-        let combinedDeck = baseDeck + skelligeDeck
-
-        var advancedCardsLv1 = selectAllAdvancedCards(from: baseDeck, for: .one)
-        var advancedCardsLv2 = selectAllAdvancedCards(from: baseDeck, for: .two)
-        var advancedCardsLv3 = selectAllAdvancedCards(from: baseDeck, for: .three)
-        var advancedCardsToShuffleBackIntoAdjustedDeck = advancedCardsLv1 + advancedCardsLv2 + advancedCardsLv3
+        let advancedCardsLv1 = selectAllAdvancedCards(from: baseDeck, for: .one)
+        let advancedCardsLv2 = selectAllAdvancedCards(from: baseDeck, for: .two)
+        let advancedCardsLv3 = selectAllAdvancedCards(from: baseDeck, for: .three)
+        let advancedCardsToShuffleBackIntoAdjustedDeck = advancedCardsLv1 + advancedCardsLv2 + advancedCardsLv3
 
         let level3BaseCards = selectAllGeneralCards(from: baseDeck, for: .three)
         let skelligeLevel3Cards = selectAllSkelligeCards(from: skelligeDeck, for: .three)
@@ -156,7 +154,6 @@ final class DecksBuilder {
             .shuffled()
 
         if level3Cards.count != 9 {
-
             assertionFailure("When combining with skellige, at some point there should be nine cards of every level")
         }
 
@@ -218,7 +215,8 @@ final class DecksBuilder {
         pickedCards: [ActionCardModel],
         remainingCards: [ActionCardModel]
     ) {
-        pickCards(from: array, amount: difficulty.generalActionCardsAmount(for: level))
+        let filteredArray = selectAllGeneralCards(from: array, for: level)
+        return pickCards(from: filteredArray, originalArray: array, amount: difficulty.generalActionCardsAmount(for: level))
     }
 
     private func pickAdvancedActionCards(
@@ -229,7 +227,8 @@ final class DecksBuilder {
         pickedCards: [ActionCardModel],
         remainingCards: [ActionCardModel]
     ) {
-        pickCards(from: array, amount: difficulty.advancedActionCardsAmount(for: level))
+        let filteredArray = selectAllAdvancedCards(from: array, for: level)
+        return pickCards(from: filteredArray, originalArray: array, amount: difficulty.advancedActionCardsAmount(for: level))
     }
 
     // MARK: - Private challenges methods
@@ -272,21 +271,29 @@ final class DecksBuilder {
 
     private func pickCards(
         from array: [ActionCardModel],
+        originalArray: [ActionCardModel],
         amount: Int
     ) -> (
         pickedCards: [ActionCardModel],
         remainingCards: [ActionCardModel]
     ) {
+        var filteredArray = array
         var pickedCards: [ActionCardModel] = []
-        var remainingCards = array
 
         for _ in 1...amount {
-            guard let pseudorandomPick = remainingCards.randomElement() else {
+            guard let pseudorandomPick = filteredArray.randomElement() else {
                 break
             }
             pickedCards.append(pseudorandomPick)
-            remainingCards.removeAll { model in
+            filteredArray.removeAll { model in
                 model == pseudorandomPick
+            }
+        }
+
+        var remainingCards: [ActionCardModel] = originalArray
+        for pickedCard in pickedCards {
+            remainingCards.removeAll { card in
+                pickedCard == card
             }
         }
         return (pickedCards, remainingCards)
