@@ -31,6 +31,7 @@ final class DifficultyLevelTests: XCTestCase {
         XCTAssertEqual(difficulty.advancedChallengesCardsAmount(for: .three), 2)
 
         XCTAssertEqual(difficulty.legendaryHuntCardsAmount, 1)
+        XCTAssertEqual(difficulty.challengesDeckSize, 11)
     }
 
     func test_medium() {
@@ -53,6 +54,7 @@ final class DifficultyLevelTests: XCTestCase {
         XCTAssertEqual(difficulty.advancedChallengesCardsAmount(for: .three), 2)
 
         XCTAssertEqual(difficulty.legendaryHuntCardsAmount, 2)
+        XCTAssertEqual(difficulty.challengesDeckSize, 12)
     }
 
     func test_hard() {
@@ -75,5 +77,6 @@ final class DifficultyLevelTests: XCTestCase {
         XCTAssertEqual(difficulty.advancedChallengesCardsAmount(for: .three), 2)
 
         XCTAssertEqual(difficulty.legendaryHuntCardsAmount, 3)
+        XCTAssertEqual(difficulty.challengesDeckSize, 12)
     }
 }

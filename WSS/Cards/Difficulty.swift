@@ -74,6 +74,15 @@ enum Difficulty {
             return lvl3AdvancedChallengeCardsAmount
         }
     }
+
+    var challengesDeckSize: Int {
+        generalChallengesCardsAmount(for: .one) +
+        generalChallengesCardsAmount(for: .two) +
+        generalChallengesCardsAmount(for: .three) +
+        advancedChallengesCardsAmount(for: .one) +
+        advancedChallengesCardsAmount(for: .two) +
+        advancedChallengesCardsAmount(for: .three)
+    }
 }
 
 fileprivate extension Difficulty {

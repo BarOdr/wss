@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		F33946C42C441B0B007D817B /* CardsShowcaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33946C32C441B0B007D817B /* CardsShowcaseView.swift */; };
 		F33946C72C441BFB007D817B /* TextFromImageRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33946C62C441BFB007D817B /* TextFromImageRecognizer.swift */; };
-		F35725582C4BB2FA00B4A223 /* Array+isUnique.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35725572C4BB2FA00B4A223 /* Array+isUnique.swift */; };
+		F35725582C4BB2FA00B4A223 /* Array+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35725572C4BB2FA00B4A223 /* Array+extensions.swift */; };
 		F38C72502C49E201004CDD4E /* DecksBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C724F2C49E201004CDD4E /* DecksBuilder.swift */; };
 		F38C72522C49E42F004CDD4E /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C72512C49E42F004CDD4E /* Difficulty.swift */; };
 		F38C72562C49E850004CDD4E /* DifficultyLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */; };
@@ -17,6 +17,7 @@
 		F38C725C2C4A0EA5004CDD4E /* DeckBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C725B2C4A0EA5004CDD4E /* DeckBuilderTests.swift */; };
 		F39AC93C2C49279200A5E42A /* ActionCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39AC93B2C49279200A5E42A /* ActionCardModel.swift */; };
 		F3A48F4D2C495633009E54AF /* CardFileNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A48F4C2C495633009E54AF /* CardFileNames.swift */; };
+		F3E9F7472C4BE5390060FD6D /* Array+reduced.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E9F7462C4BE5390060FD6D /* Array+reduced.swift */; };
 		F3F73E322C441A24005E77CA /* WSSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F73E312C441A24005E77CA /* WSSApp.swift */; };
 		F3F73E382C441A25005E77CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F73E372C441A25005E77CA /* Assets.xcassets */; };
 		F3F73E3B2C441A25005E77CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F73E3A2C441A25005E77CA /* Preview Assets.xcassets */; };
@@ -36,7 +37,7 @@
 /* Begin PBXFileReference section */
 		F33946C32C441B0B007D817B /* CardsShowcaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsShowcaseView.swift; sourceTree = "<group>"; };
 		F33946C62C441BFB007D817B /* TextFromImageRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFromImageRecognizer.swift; sourceTree = "<group>"; };
-		F35725572C4BB2FA00B4A223 /* Array+isUnique.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+isUnique.swift"; sourceTree = "<group>"; };
+		F35725572C4BB2FA00B4A223 /* Array+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extensions.swift"; sourceTree = "<group>"; };
 		F38C724F2C49E201004CDD4E /* DecksBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksBuilder.swift; sourceTree = "<group>"; };
 		F38C72512C49E42F004CDD4E /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
 		F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyLevelTests.swift; sourceTree = "<group>"; };
@@ -99,6 +100,7 @@
 		F3B1A74C2C4932E800D1A682 /* base_25_advanced_lvl_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = base_25_advanced_lvl_3.jpg; sourceTree = "<group>"; };
 		F3B1A74D2C4932E800D1A682 /* witcher_ciri.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = witcher_ciri.jpg; sourceTree = "<group>"; };
 		F3B1A74E2C4932E800D1A682 /* witcher_manticore.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = witcher_manticore.jpg; sourceTree = "<group>"; };
+		F3E9F7462C4BE5390060FD6D /* Array+reduced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+reduced.swift"; sourceTree = "<group>"; };
 		F3F73E2E2C441A24005E77CA /* WSS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F73E312C441A24005E77CA /* WSSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSSApp.swift; sourceTree = "<group>"; };
 		F3F73E372C441A25005E77CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -135,7 +137,7 @@
 		F35725562C4BB2EA00B4A223 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				F35725572C4BB2FA00B4A223 /* Array+isUnique.swift */,
+				F35725572C4BB2FA00B4A223 /* Array+extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -222,6 +224,14 @@
 			path = CardImages;
 			sourceTree = "<group>";
 		};
+		F3E9F7452C4BE5300060FD6D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F3E9F7462C4BE5390060FD6D /* Array+reduced.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		F3F73E252C441A24005E77CA = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +253,7 @@
 		F3F73E302C441A24005E77CA /* WSS */ = {
 			isa = PBXGroup;
 			children = (
+				F3E9F7452C4BE5300060FD6D /* Extensions */,
 				F3B1A7182C49329900D1A682 /* CardImages */,
 				F39AC93A2C49278000A5E42A /* Cards */,
 				F39AC9392C49276E00A5E42A /* Utilities */,
@@ -382,6 +393,7 @@
 				F3A48F4D2C495633009E54AF /* CardFileNames.swift in Sources */,
 				F3F73E322C441A24005E77CA /* WSSApp.swift in Sources */,
 				F39AC93C2C49279200A5E42A /* ActionCardModel.swift in Sources */,
+				F3E9F7472C4BE5390060FD6D /* Array+reduced.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F35725582C4BB2FA00B4A223 /* Array+isUnique.swift in Sources */,
+				F35725582C4BB2FA00B4A223 /* Array+extensions.swift in Sources */,
 				F3FD638C2C496CA70055CEFB /* CardFactoryTests.swift in Sources */,
 				F38C72562C49E850004CDD4E /* DifficultyLevelTests.swift in Sources */,
 				F38C725C2C4A0EA5004CDD4E /* DeckBuilderTests.swift in Sources */,

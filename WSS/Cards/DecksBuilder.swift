@@ -46,17 +46,7 @@ final class DecksBuilder {
     // MARK: - Public methods
 
     func buildDecks() -> Decks {
-        var actionDeckTuple = buildActionDeck(for: difficultyLevel)
-        // if legendary hunt addon is selected, add appropriate amount to level 3 cards according to difficulty level
-        var legendaryHuntCardsToAddToDeck: [ActionCardModel]?
-        if let legendaryHuntAddon = addons.first(where: { $0 == .legendaryHunt }) {
-            let legendaryHuntAllCards = cardsFactory.buildLegendaryHuntDeck().shuffled()
-            legendaryHuntCardsToAddToDeck = []
-            for i in 0...difficultyLevel.legendaryHuntCardsAmount - 1 {
-                legendaryHuntCardsToAddToDeck?.append(legendaryHuntAllCards[i])
-            }
-        }
-        actionDeckTuple.actionDeck.append(contentsOf: legendaryHuntCardsToAddToDeck ?? [])
+        let actionDeckTuple = buildActionDeck(for: difficultyLevel)
         let automaTrophiesTuple = buildAutomaTrophiesDeck(from: actionDeckTuple.remainingCards)
         let challengesDeck = buildChallengesDeck(
             for: difficultyLevel,
@@ -71,17 +61,9 @@ final class DecksBuilder {
 
     func buildChallengesDeck(for difficulty: Difficulty, remainingCards: [ActionCardModel]) -> [ActionCardModel] {
         // TODO: - fix this, select according to the table how many cards there should be. The actual numbers might differ so don't unit test it so hard
-        switch difficulty {
-        case .easy, .medium:
-            return remainingCards
-        case .hard:
-            // for level hard we need to remove general cards of level 3 (there is 0 in the table)
-            // 3 cards go to trash
-            let remainingCardsFiltered = remainingCards.filter { model in
-                !(model.cardType == .baseGeneral && model.level == 3)
-            }
-            return remainingCardsFiltered
-        }
+        let deckSize = difficulty.challengesDeckSize
+        let reducedArray = remainingCards.reduced(tolimit: deckSize)
+        return reducedArray
     }
 
     func buildActionDeck(for difficulty: Difficulty) -> (actionDeck: [ActionCardModel], remainingCards: [ActionCardModel]) {
@@ -107,7 +89,7 @@ final class DecksBuilder {
         )
 
         // shuffle the above
-        let level3ActionDeck = (level3BaseActionCardsTuple.pickedCards + level3AdvancedActionCardsTuple.pickedCards).shuffled()
+        var level3ActionDeck = (level3BaseActionCardsTuple.pickedCards + level3AdvancedActionCardsTuple.pickedCards).shuffled()
 
         // pick x cards of level 2 BASE
         let level2BaseActionCardsTuple = pickGeneralActionCards(
@@ -140,6 +122,18 @@ final class DecksBuilder {
         // shuffle the above
         let level1ActionDeck = (level1BaseActionCardsTuple.pickedCards + level1AdvancedActionCardsTuple.pickedCards)
             .shuffled()
+
+        // if legendary hunt addon is selected, add appropriate amount to level 3 cards according to difficulty level
+        if let legendaryHuntAddon = addons.first(where: { $0 == .legendaryHunt }) {
+            var legendaryHuntCardsToAddToDeck: [ActionCardModel] = []
+            let legendaryHuntAllCards = cardsFactory.buildLegendaryHuntDeck().shuffled()
+            legendaryHuntCardsToAddToDeck = []
+            for i in 0...difficultyLevel.legendaryHuntCardsAmount - 1 {
+                legendaryHuntCardsToAddToDeck.append(legendaryHuntAllCards[i])
+            }
+            level3ActionDeck.append(contentsOf: legendaryHuntCardsToAddToDeck)
+            level3ActionDeck = level3ActionDeck.shuffled()
+        }
 
         // put level 3 at the bottom, then level 2, then level 1
         let actionDeck = level3ActionDeck + level2ActionDeck + level1ActionDeck
