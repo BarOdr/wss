@@ -10,7 +10,7 @@ import XCTest
 
 final class DeckBuilderTests: XCTestCase {
 
-    func test_deckBuilder_easy_no_addons() {
+    func test_deckBuilder_easy_no_addons() throws {
         // given
         let factory = CardsFactory()
         let sut = DecksBuilder(cardsFactory: factory, addons: [], difficultyLevel: .easy)
@@ -20,7 +20,16 @@ final class DeckBuilderTests: XCTestCase {
 
         // them
         // all decks combined
+        let allFactory = factory.buildBaseCards() + factory.buildSkelligeDeck() + factory.buildLegendaryHuntDeck()
         let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let arrayComparison = Array<ActionCardModel>.compareArrays(allFactory, allDeckCombined)
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseGeneral
+        }))
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseAdvanced
+        }))
+
         XCTAssertEqual(allDeckCombined.count, 27)
         XCTAssertTrue(decks.actionDeck.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
@@ -66,7 +75,7 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
-    func test_deckBuilder_medium_no_addons() {
+    func test_deckBuilder_medium_no_addons() throws {
         // given
         let factory = CardsFactory()
         let sut = DecksBuilder(cardsFactory: factory, addons: [], difficultyLevel: .medium)
@@ -76,7 +85,16 @@ final class DeckBuilderTests: XCTestCase {
 
         // them
         // all decks combined
+        let allFactory = factory.buildBaseCards() + factory.buildSkelligeDeck() + factory.buildLegendaryHuntDeck()
         let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let arrayComparison = Array<ActionCardModel>.compareArrays(allFactory, allDeckCombined)
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseGeneral
+        }))
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseAdvanced
+        }))
+
         XCTAssertEqual(allDeckCombined.count, 27)
         XCTAssertTrue(decks.actionDeck.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
@@ -122,7 +140,7 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
-    func test_deckBuilder_hard_no_addons() {
+    func test_deckBuilder_hard_no_addons() throws {
         // given
         let factory = CardsFactory()
         let sut = DecksBuilder(cardsFactory: factory, addons: [], difficultyLevel: .hard)
@@ -132,7 +150,15 @@ final class DeckBuilderTests: XCTestCase {
 
         // them
         // all decks combined
+        let allFactory = factory.buildBaseCards() + factory.buildSkelligeDeck() + factory.buildLegendaryHuntDeck()
         let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let arrayComparison = Array<ActionCardModel>.compareArrays(allFactory, allDeckCombined)
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseGeneral
+        }), "\(arrayComparison.onlyInArray1?.count) in only array 1")
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseAdvanced
+        }))
         XCTAssertEqual(allDeckCombined.count, 24)
         XCTAssertTrue(decks.actionDeck.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
@@ -178,7 +204,7 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
-    func test_deckBuilder_easy_skellige() {
+    func test_deckBuilder_easy_skellige() throws {
         // given
         let factory = CardsFactory()
         let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige], difficultyLevel: .easy)
@@ -188,7 +214,15 @@ final class DeckBuilderTests: XCTestCase {
 
         // them
         // all decks combined
+        let allFactory = factory.buildBaseCards() + factory.buildSkelligeDeck() + factory.buildLegendaryHuntDeck()
         let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let arrayComparison = Array<ActionCardModel>.compareArrays(allFactory, allDeckCombined)
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseGeneral
+        }))
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseAdvanced
+        }))
         XCTAssertEqual(allDeckCombined.count, 27)
         XCTAssertTrue(decks.actionDeck.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
@@ -233,7 +267,7 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
-    func test_deckBuilder_medium_skellige() {
+    func test_deckBuilder_medium_skellige() throws {
         // given
         let factory = CardsFactory()
         let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige], difficultyLevel: .medium)
@@ -243,7 +277,15 @@ final class DeckBuilderTests: XCTestCase {
 
         // them
         // all decks combined
+        let allFactory = factory.buildBaseCards() + factory.buildSkelligeDeck() + factory.buildLegendaryHuntDeck()
         let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let arrayComparison = Array<ActionCardModel>.compareArrays(allFactory, allDeckCombined)
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseGeneral
+        }))
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseAdvanced
+        }))
         XCTAssertEqual(allDeckCombined.count, 27)
         XCTAssertTrue(decks.actionDeck.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
@@ -288,7 +330,7 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
-    func test_deckBuilder_hard_skellige() {
+    func test_deckBuilder_hard_skellige() throws {
         // given
         let factory = CardsFactory()
         let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige], difficultyLevel: .hard)
@@ -298,7 +340,15 @@ final class DeckBuilderTests: XCTestCase {
 
         // them
         // all decks combined
+        let allFactory = factory.buildBaseCards() + factory.buildSkelligeDeck() + factory.buildLegendaryHuntDeck()
         let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let arrayComparison = Array<ActionCardModel>.compareArrays(allFactory, allDeckCombined)
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseGeneral
+        }))
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseAdvanced
+        }))
         XCTAssertEqual(allDeckCombined.count, 24)
         XCTAssertTrue(decks.actionDeck.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
@@ -343,7 +393,7 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
-    func test_deckBuilder_easy_skellige_legendary_hunt() {
+    func test_deckBuilder_easy_skellige_legendary_hunt() throws {
         // given
         let factory = CardsFactory()
         let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige, .legendaryHunt], difficultyLevel: .easy)
@@ -353,7 +403,15 @@ final class DeckBuilderTests: XCTestCase {
 
         // them
         // all decks combined
+        let allFactory = factory.buildBaseCards() + factory.buildSkelligeDeck() + factory.buildLegendaryHuntDeck()
         let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let arrayComparison = Array<ActionCardModel>.compareArrays(allFactory, allDeckCombined)
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseGeneral
+        }))
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseAdvanced
+        }))
         XCTAssertEqual(allDeckCombined.count, 28)
         XCTAssertTrue(decks.actionDeck.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
@@ -402,7 +460,7 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
-    func test_deckBuilder_medium_skellige_legendary_hunt() {
+    func test_deckBuilder_medium_skellige_legendary_hunt() throws {
         // given
         let factory = CardsFactory()
         let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige, .legendaryHunt], difficultyLevel: .medium)
@@ -412,7 +470,15 @@ final class DeckBuilderTests: XCTestCase {
 
         // them
         // all decks combined
+        let allFactory = factory.buildBaseCards() + factory.buildSkelligeDeck() + factory.buildLegendaryHuntDeck()
         let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let arrayComparison = Array<ActionCardModel>.compareArrays(allFactory, allDeckCombined)
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseGeneral
+        }))
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseAdvanced
+        }))
         XCTAssertEqual(allDeckCombined.count, 29)
         XCTAssertTrue(decks.actionDeck.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
@@ -461,7 +527,7 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertEqual(getLevel3AdvancedCards(from: decks.challengesDeck).count, 2)
     }
 
-    func test_deckBuilder_hard_skellige_legendary_hunt() {
+    func test_deckBuilder_hard_skellige_legendary_hunt() throws {
         // given
         let factory = CardsFactory()
         let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige, .legendaryHunt], difficultyLevel: .hard)
@@ -471,7 +537,15 @@ final class DeckBuilderTests: XCTestCase {
 
         // them
         // all decks combined
+        let allFactory = factory.buildBaseCards() + factory.buildSkelligeDeck() + factory.buildLegendaryHuntDeck()
         let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let arrayComparison = Array<ActionCardModel>.compareArrays(allFactory, allDeckCombined)
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseGeneral
+        }))
+        XCTAssertFalse(try XCTUnwrap(arrayComparison.onlyInArray1).contains(where: { card in
+            card.cardType == .baseAdvanced
+        }))
         XCTAssertEqual(allDeckCombined.count, 27)
         XCTAssertTrue(decks.actionDeck.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
