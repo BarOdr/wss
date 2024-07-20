@@ -286,7 +286,7 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertTrue(decks.automaTrophies.isUnique)
         XCTAssertTrue(decks.challengesDeck.isUnique)
         XCTAssertTrue(allDeckCombined.isUnique)
-        XCTAssertEqual((getBaseGeneralCards(from: allDeckCombined) + getSkelligeCards(from: allDeckCombined)).count, 18)
+        XCTAssertEqual(getBaseGeneralCards(from: allDeckCombined).count, 18)
         XCTAssertEqual(getBaseAdvancedCards(from: allDeckCombined).count, 9)
         XCTAssertEqual(getLegendaryHuntCards(from: allDeckCombined).count, 1)
 
@@ -334,7 +334,7 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertTrue(decks.automaTrophies.isUnique)
         XCTAssertTrue(decks.challengesDeck.isUnique)
         XCTAssertTrue(allDeckCombined.isUnique)
-        XCTAssertEqual((getBaseGeneralCards(from: allDeckCombined) + getSkelligeCards(from: allDeckCombined)).count, 18)
+        XCTAssertEqual(getBaseGeneralCards(from: allDeckCombined).count, 18)
         XCTAssertEqual(getBaseAdvancedCards(from: allDeckCombined).count, 9)
         XCTAssertEqual(getLegendaryHuntCards(from: allDeckCombined).count, 2)
 
@@ -413,7 +413,7 @@ final class DeckBuilderTests: XCTestCase {
 
     private func getBaseGeneralCards(
         from array: [ActionCardModel],
-        treatSkelligeAsBaseGeneral: Bool = false
+        treatSkelligeAsBaseGeneral: Bool = true
     ) -> [ActionCardModel] {
         array.filter { card in
             if treatSkelligeAsBaseGeneral {
@@ -444,7 +444,7 @@ final class DeckBuilderTests: XCTestCase {
 
     private func getLevel1GeneralCards(
         from array: [ActionCardModel],
-        treatSkelligeAsBaseGeneral: Bool = false
+        treatSkelligeAsBaseGeneral: Bool = true
     ) -> [ActionCardModel] {
         array.filter { card in
             if treatSkelligeAsBaseGeneral {
@@ -463,7 +463,7 @@ final class DeckBuilderTests: XCTestCase {
 
     private func getLevel2GeneralCards(
         from array: [ActionCardModel],
-        treatSkelligeAsBaseGeneral: Bool = false
+        treatSkelligeAsBaseGeneral: Bool = true
     ) -> [ActionCardModel] {
         array.filter { card in
             if treatSkelligeAsBaseGeneral {
@@ -482,7 +482,7 @@ final class DeckBuilderTests: XCTestCase {
 
     private func getLevel3GeneralCards(
         from array: [ActionCardModel],
-        treatSkelligeAsBaseGeneral: Bool = false
+        treatSkelligeAsBaseGeneral: Bool = true
     ) -> [ActionCardModel] {
         array.filter { card in
             if treatSkelligeAsBaseGeneral {

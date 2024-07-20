@@ -165,12 +165,8 @@ final class DecksBuilder {
             assertionFailure("When combining with skellige, at some point there should be nine cards of every level")
         }
 
-        for _ in 1...3 {
-            let cardToRemove = level3Cards.randomElement()
-            level3Cards.removeAll { card in
-                card == cardToRemove
-            }
-        }
+        level3Cards = level3Cards.shuffled()
+        level3Cards.removeLast(3)
 
         let level2BaseCards = selectAllGeneralCards(from: baseDeck, for: .two)
         let skelligeLevel2Cards = selectAllSkelligeCards(from: skelligeDeck, for: .two)
@@ -181,12 +177,8 @@ final class DecksBuilder {
             assertionFailure("When combining with skellige, at some point there should be nine cards of every level")
         }
 
-        for _ in 1...3 {
-            let cardToRemove = level2Cards.randomElement()
-            level2Cards.removeAll { card in
-                card == cardToRemove
-            }
-        }
+        level2Cards = level2Cards.shuffled()
+        level2Cards.removeLast(3)
 
         let level1BaseCards = selectAllGeneralCards(from: baseDeck, for: .one)
         let skelligeLevel1Cards = selectAllSkelligeCards(from: skelligeDeck, for: .one)
@@ -196,13 +188,9 @@ final class DecksBuilder {
         if level1Cards.count != 9 {
             assertionFailure("When combining with skellige, at some point there should be nine cards of every level")
         }
-
-        for _ in 1...3 {
-            let cardToRemove = level1Cards.randomElement()
-            level1Cards.removeAll { card in
-                card == cardToRemove
-            }
-        }
+        
+        level1Cards = level1Cards.shuffled()
+        level1Cards.removeLast(3)
 
         let adjustedDeck = (level3Cards + level2Cards + level1Cards + advancedCardsToShuffleBackIntoAdjustedDeck).shuffled()
 
@@ -247,7 +235,7 @@ final class DecksBuilder {
     private func selectAllGeneralCards(from array: [ActionCardModel], for level: Level) -> [ActionCardModel] {
         array.filter { card in
             switch card.cardType {
-            case .baseGeneral:
+            case .baseGeneral, .skellige:
                 return card.level == level.rawValue
             default:
                 return false
@@ -290,6 +278,7 @@ final class DecksBuilder {
 
         for _ in 1...amount {
             guard let pseudorandomPick = filteredArray.randomElement() else {
+                assertionFailure("There was no cards to pick from! Probably shouldn't happen...")
                 break
             }
             pickedCards.append(pseudorandomPick)

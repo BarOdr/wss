@@ -7,16 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DD7F083D-1A53-4E31-A8D6-E864D8492D1F"
+            uuid = "3A9D8D8B-7C84-4EDF-A664-55C4CDB977B1"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WSSTests/DeckBuilderTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
-            landmarkName = "test_deckBuilder_hard_skellige_legendary_hunt()"
+            startingLineNumber = "296"
+            endingLineNumber = "296"
+            landmarkName = "test_deckBuilder_easy_skellige_legendary_hunt()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FCDA5DC6-B256-4EAA-935A-DE9F39917369"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WSS/Cards/DecksBuilder.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "skelligeAdjustedDeck(baseDeck:skelligeDeck:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
