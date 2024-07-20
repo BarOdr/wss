@@ -46,7 +46,17 @@ final class DecksBuilder {
     // MARK: - Public methods
 
     func buildDecks() -> Decks {
-        let actionDeckTuple = buildActionDeck(for: difficultyLevel)
+        var actionDeckTuple = buildActionDeck(for: difficultyLevel)
+        // if legendary hunt addon is selected, add appropriate amount to level 3 cards according to difficulty level
+        var legendaryHuntCardsToAddToDeck: [ActionCardModel]?
+        if let legendaryHuntAddon = addons.first(where: { $0 == .legendaryHunt }) {
+            let legendaryHuntAllCards = cardsFactory.buildLegendaryHuntDeck().shuffled()
+            legendaryHuntCardsToAddToDeck = []
+            for i in 0...difficultyLevel.legendaryHuntCardsAmount - 1 {
+                legendaryHuntCardsToAddToDeck?.append(legendaryHuntAllCards[i])
+            }
+        }
+        actionDeckTuple.actionDeck.append(contentsOf: legendaryHuntCardsToAddToDeck ?? [])
         let automaTrophiesTuple = buildAutomaTrophiesDeck(from: actionDeckTuple.remainingCards)
         let challengesDeck = buildChallengesDeck(
             for: difficultyLevel,
@@ -96,22 +106,8 @@ final class DecksBuilder {
             level: .three
         )
 
-        // if legendary hunt addon is selected, add appropriate amount to level 3 cards according to difficulty level
-        var legendaryHuntCardsToAddToDeck: [ActionCardModel]?
-        if let legendaryHuntAddon = addons.first(where: { $0 == .legendaryHunt }) {
-            let legendaryHuntAllCards = cardsFactory.buildLegendaryHuntDeck().shuffled()
-            legendaryHuntCardsToAddToDeck = []
-            for i in 0...difficulty.legendaryHuntCardsAmount - 1 {
-                legendaryHuntCardsToAddToDeck?.append(legendaryHuntAllCards[i])
-            }
-        }
-
         // shuffle the above
-        let level3ActionDeck = (
-            level3BaseActionCardsTuple.pickedCards + level3AdvancedActionCardsTuple.pickedCards + (
-                legendaryHuntCardsToAddToDeck ?? []
-            )
-        ).shuffled()
+        let level3ActionDeck = (level3BaseActionCardsTuple.pickedCards + level3AdvancedActionCardsTuple.pickedCards).shuffled()
 
         // pick x cards of level 2 BASE
         let level2BaseActionCardsTuple = pickGeneralActionCards(
