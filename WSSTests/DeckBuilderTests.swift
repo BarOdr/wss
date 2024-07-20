@@ -165,16 +165,16 @@ final class DeckBuilderTests: XCTestCase {
         // action deck
         XCTAssertEqual(decks.actionDeck.count, 13)
 
-        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck, treatSkelligeAsBaseGeneral: true).count, 10)
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 10)
         XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
 
-        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck, treatSkelligeAsBaseGeneral: true).count, 4)
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 4)
         XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
 
-        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck, treatSkelligeAsBaseGeneral: true).count, 4)
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 4)
         XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
 
-        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck, treatSkelligeAsBaseGeneral: true).count, 2)
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
         XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
 
         // automa trophies
@@ -411,16 +411,9 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertEqual(decks.challengesDeck.count, 12)
     }
 
-    private func getBaseGeneralCards(
-        from array: [ActionCardModel],
-        treatSkelligeAsBaseGeneral: Bool = true
-    ) -> [ActionCardModel] {
+    private func getBaseGeneralCards(from array: [ActionCardModel]) -> [ActionCardModel] {
         array.filter { card in
-            if treatSkelligeAsBaseGeneral {
-                return card.cardType == .baseGeneral || card.cardType == .skellige
-            } else {
-                return card.cardType == .baseGeneral
-            }
+            return card.cardType == .baseGeneral || card.cardType == .skellige
         }
     }
 
@@ -442,16 +435,9 @@ final class DeckBuilderTests: XCTestCase {
         }
     }
 
-    private func getLevel1GeneralCards(
-        from array: [ActionCardModel],
-        treatSkelligeAsBaseGeneral: Bool = true
-    ) -> [ActionCardModel] {
+    private func getLevel1GeneralCards(from array: [ActionCardModel]) -> [ActionCardModel] {
         array.filter { card in
-            if treatSkelligeAsBaseGeneral {
-                return card.level == 1 && (card.cardType == .baseGeneral || card.cardType == .skellige)
-            } else {
-                return card.level == 1 && card.cardType == .baseGeneral
-            }
+            return card.level == 1 && (card.cardType == .baseGeneral || card.cardType == .skellige)
         }
     }
 
@@ -461,16 +447,9 @@ final class DeckBuilderTests: XCTestCase {
         }
     }
 
-    private func getLevel2GeneralCards(
-        from array: [ActionCardModel],
-        treatSkelligeAsBaseGeneral: Bool = true
-    ) -> [ActionCardModel] {
+    private func getLevel2GeneralCards(from array: [ActionCardModel]) -> [ActionCardModel] {
         array.filter { card in
-            if treatSkelligeAsBaseGeneral {
-                return card.level == 2 && (card.cardType == .baseGeneral || card.cardType == .skellige)
-            } else {
-                return card.level == 2 && card.cardType == .baseGeneral
-            }
+            return card.level == 2 && (card.cardType == .baseGeneral || card.cardType == .skellige)
         }
     }
 
@@ -480,16 +459,9 @@ final class DeckBuilderTests: XCTestCase {
         }
     }
 
-    private func getLevel3GeneralCards(
-        from array: [ActionCardModel],
-        treatSkelligeAsBaseGeneral: Bool = true
-    ) -> [ActionCardModel] {
+    private func getLevel3GeneralCards(from array: [ActionCardModel]) -> [ActionCardModel] {
         array.filter { card in
-            if treatSkelligeAsBaseGeneral {
-                return card.level == 3 && (card.cardType == .baseGeneral || card.cardType == .skellige)
-            } else {
-                return card.level == 3 && card.cardType == .baseGeneral
-            }
+            return card.level == 3 && (card.cardType == .baseGeneral || card.cardType == .skellige)
         }
     }
 
