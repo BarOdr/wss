@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F33946C42C441B0B007D817B /* CardsShowcaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33946C32C441B0B007D817B /* CardsShowcaseView.swift */; };
 		F33946C72C441BFB007D817B /* TextFromImageRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33946C62C441BFB007D817B /* TextFromImageRecognizer.swift */; };
+		F35725582C4BB2FA00B4A223 /* Array+isUnique.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35725572C4BB2FA00B4A223 /* Array+isUnique.swift */; };
 		F38C72502C49E201004CDD4E /* DecksBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C724F2C49E201004CDD4E /* DecksBuilder.swift */; };
 		F38C72522C49E42F004CDD4E /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C72512C49E42F004CDD4E /* Difficulty.swift */; };
 		F38C72562C49E850004CDD4E /* DifficultyLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		F33946C32C441B0B007D817B /* CardsShowcaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsShowcaseView.swift; sourceTree = "<group>"; };
 		F33946C62C441BFB007D817B /* TextFromImageRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFromImageRecognizer.swift; sourceTree = "<group>"; };
+		F35725572C4BB2FA00B4A223 /* Array+isUnique.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+isUnique.swift"; sourceTree = "<group>"; };
 		F38C724F2C49E201004CDD4E /* DecksBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksBuilder.swift; sourceTree = "<group>"; };
 		F38C72512C49E42F004CDD4E /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
 		F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyLevelTests.swift; sourceTree = "<group>"; };
@@ -128,6 +130,14 @@
 			children = (
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		F35725562C4BB2EA00B4A223 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F35725572C4BB2FA00B4A223 /* Array+isUnique.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		F39AC9392C49276E00A5E42A /* Utilities */ = {
@@ -256,6 +266,7 @@
 		F3FD63812C496C710055CEFB /* WSSTests */ = {
 			isa = PBXGroup;
 			children = (
+				F35725562C4BB2EA00B4A223 /* Extensions */,
 				F3FD638B2C496CA70055CEFB /* CardFactoryTests.swift */,
 				F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */,
 				F38C725B2C4A0EA5004CDD4E /* DeckBuilderTests.swift */,
@@ -378,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F35725582C4BB2FA00B4A223 /* Array+isUnique.swift in Sources */,
 				F3FD638C2C496CA70055CEFB /* CardFactoryTests.swift in Sources */,
 				F38C72562C49E850004CDD4E /* DifficultyLevelTests.swift in Sources */,
 				F38C725C2C4A0EA5004CDD4E /* DeckBuilderTests.swift in Sources */,
