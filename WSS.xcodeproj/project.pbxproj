@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F33946C42C441B0B007D817B /* CardsShowcaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33946C32C441B0B007D817B /* CardsShowcaseView.swift */; };
 		F33946C72C441BFB007D817B /* TextFromImageRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33946C62C441BFB007D817B /* TextFromImageRecognizer.swift */; };
 		F35725582C4BB2FA00B4A223 /* Array+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35725572C4BB2FA00B4A223 /* Array+extensions.swift */; };
 		F38C72502C49E201004CDD4E /* DecksBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C724F2C49E201004CDD4E /* DecksBuilder.swift */; };
@@ -39,7 +38,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F33946C32C441B0B007D817B /* CardsShowcaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsShowcaseView.swift; sourceTree = "<group>"; };
 		F33946C62C441BFB007D817B /* TextFromImageRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFromImageRecognizer.swift; sourceTree = "<group>"; };
 		F35725572C4BB2FA00B4A223 /* Array+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extensions.swift"; sourceTree = "<group>"; };
 		F38C724F2C49E201004CDD4E /* DecksBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksBuilder.swift; sourceTree = "<group>"; };
@@ -180,9 +178,9 @@
 			children = (
 				F38C724F2C49E201004CDD4E /* DecksBuilder.swift */,
 				F38C72512C49E42F004CDD4E /* Difficulty.swift */,
-				F39AC93B2C49279200A5E42A /* ActionCardModel.swift */,
 				F3A48F4C2C495633009E54AF /* CardFileNames.swift */,
 				F38C72572C4A09C9004CDD4E /* CardsFactory.swift */,
+				F39AC93B2C49279200A5E42A /* ActionCardModel.swift */,
 				F3937D612C4C0CA10070BF77 /* DeckManager.swift */,
 			);
 			path = Cards;
@@ -287,7 +285,6 @@
 				F39AC9392C49276E00A5E42A /* Utilities */,
 				F33946C82C441D8B007D817B /* Assets */,
 				F3F73E312C441A24005E77CA /* WSSApp.swift */,
-				F33946C32C441B0B007D817B /* CardsShowcaseView.swift */,
 				F3F73E372C441A25005E77CA /* Assets.xcassets */,
 				F3F73E392C441A25005E77CA /* Preview Content */,
 			);
@@ -418,7 +415,6 @@
 				F38C72502C49E201004CDD4E /* DecksBuilder.swift in Sources */,
 				F38C72582C4A09C9004CDD4E /* CardsFactory.swift in Sources */,
 				F33946C72C441BFB007D817B /* TextFromImageRecognizer.swift in Sources */,
-				F33946C42C441B0B007D817B /* CardsShowcaseView.swift in Sources */,
 				F3A48F4D2C495633009E54AF /* CardFileNames.swift in Sources */,
 				F3F73E322C441A24005E77CA /* WSSApp.swift in Sources */,
 				F39AC93C2C49279200A5E42A /* ActionCardModel.swift in Sources */,

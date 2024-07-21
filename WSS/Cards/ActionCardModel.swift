@@ -31,12 +31,13 @@ final class ActionCardModel: ObservableObject, Hashable {
 
     @Published var imageName: String
 
-    let frontName: String
-    let backName: String
+    private let frontName: String
+    private let backName: String
     let cardType: ActionCardType
     let level: Int
     // file number, not sure if will be useful
     let number: Int
+
     init(
         isDrawn: Bool,
         frontName: String,

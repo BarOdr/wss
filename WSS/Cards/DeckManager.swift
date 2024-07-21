@@ -29,14 +29,22 @@ final class DeckManager: ObservableObject {
     @Published var discarded: [ActionCardModel]
     @Published var deckEmpty: Bool
 
-
     func drawFirstCard() throws {
         print("Drawing card.")
         guard !deck.isEmpty else {
             print("Deck empty.")
             throw DeckError.deckEmpty
         }
-        deck.last?.isDrawn = true
+        deck[0].isDrawn = true
+    }
+
+    func draw(card: ActionCardModel) {
+        guard let cardIndex = deck.firstIndex(of: card) else {
+            print("Could not draw. Index not found.")
+            return
+        }
+        print("Drawing card: \(card.number)")
+        deck[cardIndex].isDrawn = true
     }
 
     func discardFirstCard() throws {
@@ -46,7 +54,13 @@ final class DeckManager: ObservableObject {
             throw DeckError.deckEmpty
         }
         let card = deck[0]
-        deck.removeLast()
+        deck.removeFirst()
         discarded.append(card)
+    }
+
+    func discard(card: ActionCardModel) {
+        deck.removeAll { element in
+            element == card
+        }
     }
 }

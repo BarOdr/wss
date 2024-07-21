@@ -15,13 +15,7 @@ struct WSSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ActionDeckView(viewModel: ActionDeckViewModel()
-            )
-//            CardsShowcaseView(
-//                viewModel: CardsShowcaseViewModel(
-//                    factory: CardsFactory()
-//                )
-//            )
+            ActionDeckView(viewModel: ActionDeckViewModel())
         }.environmentObject(appDependencies)
     }
 }

@@ -12,7 +12,7 @@ struct CardsFactory {
     private let actionCardBack = "back_automa"
 
     func previewModel() -> ActionCardModel {
-        getCard(for: .baseAction, fileName: "base_17_general_lvl_3.jpg")!
+        getCard(for: .baseAction, fileName: "base_17_general_lvl_3")!
     }
 
     func buildBaseCards() -> [ActionCardModel] {
