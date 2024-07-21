@@ -11,6 +11,10 @@ struct CardsFactory {
 
     private let actionCardBack = "back_automa"
 
+    func previewModel() -> ActionCardModel {
+        getCard(for: .baseAction, fileName: "base_17_general_lvl_3.jpg")!
+    }
+
     func buildBaseCards() -> [ActionCardModel] {
         buildCards(fileNames: CardFileNames.baseActionCards)
     }
@@ -96,6 +100,7 @@ struct CardsFactory {
         switch subtype {
         case .general:
             return ActionCardModel(
+                isDrawn: false,
                 frontName: string,
                 backName: actionCardBack,
                 cardType: .baseGeneral,
@@ -104,6 +109,7 @@ struct CardsFactory {
             )
         case .advanced:
             return ActionCardModel(
+                isDrawn: false,
                 frontName: string,
                 backName: actionCardBack,
                 cardType: .baseAdvanced,
@@ -124,6 +130,7 @@ struct CardsFactory {
             return nil
         }
         return ActionCardModel(
+            isDrawn: false,
             frontName: string,
             backName: actionCardBack,
             cardType: .skellige,
@@ -143,6 +150,7 @@ struct CardsFactory {
             return nil
         }
         return ActionCardModel(
+            isDrawn: false,
             frontName: string,
             backName: actionCardBack,
             cardType: .legendaryHunt,

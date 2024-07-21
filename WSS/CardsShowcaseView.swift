@@ -41,18 +41,4 @@ struct CardsShowcaseView: View {
     }
 }
 
-struct CardView: View {
 
-    @State var model: ActionCardModel
-
-    var body: some View {
-        Image(model.imageName, bundle: .main)
-            .resizable()
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .aspectRatio(contentMode: .fit)
-            .padding(EdgeInsets(top: 10, leading: 40, bottom: 10, trailing: 40))
-            .onTapGesture {
-                model.isFront.toggle()
-            }
-    }
-}

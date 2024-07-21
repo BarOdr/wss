@@ -20,13 +20,16 @@ struct WitcherAbilityCardModel: Hashable {
     let backName: String
 }
 
-struct ActionCardModel: Hashable {
+final class ActionCardModel: ObservableObject, Hashable {
 
-    var isFront: Bool = true
-
-    var imageName: String {
-        isFront ? frontName : backName
+    @Published var isDrawn: Bool = false {
+        didSet {
+            print("Is drawn: \(isDrawn)")
+            imageName = isDrawn ? frontName : backName
+        }
     }
+
+    @Published var imageName: String
 
     let frontName: String
     let backName: String
@@ -34,9 +37,45 @@ struct ActionCardModel: Hashable {
     let level: Int
     // file number, not sure if will be useful
     let number: Int
+    init(
+        isDrawn: Bool,
+        frontName: String,
+        backName: String,
+        cardType: ActionCardType,
+        level: Int,
+        number: Int
+    ) {
+        self.isDrawn = isDrawn
+        self.frontName = frontName
+        self.backName = backName
+        self.cardType = cardType
+        self.level = level
+        self.number = number
+        self.imageName = isDrawn ? frontName : backName
+    }
+
+    // Implement Equatable
+     static func == (lhs: ActionCardModel, rhs: ActionCardModel) -> Bool {
+         return lhs.isDrawn == rhs.isDrawn &&
+                lhs.frontName == rhs.frontName &&
+                lhs.backName == rhs.backName &&
+                lhs.cardType == rhs.cardType &&
+                lhs.level == rhs.level &&
+                lhs.number == rhs.number
+     }
+
+     // Implement Hashable
+     func hash(into hasher: inout Hasher) {
+         hasher.combine(isDrawn)
+         hasher.combine(frontName)
+         hasher.combine(backName)
+         hasher.combine(cardType)
+         hasher.combine(level)
+         hasher.combine(number)
+     }
 }
 
-enum ActionCardType: Hashable {
+enum ActionCardType: Hashable, Equatable {
     case baseGeneral
     case baseAdvanced
     case skellige

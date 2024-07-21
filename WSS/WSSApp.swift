@@ -11,13 +11,21 @@ import SwiftData
 @main
 struct WSSApp: App {
 
+    let appDependencies = AppDependencies()
+
     var body: some Scene {
         WindowGroup {
-            CardsShowcaseView(
-                viewModel: CardsShowcaseViewModel(
-                    factory: CardsFactory()
-                )
+            ActionDeckView(viewModel: ActionDeckViewModel()
             )
-        }
+//            CardsShowcaseView(
+//                viewModel: CardsShowcaseViewModel(
+//                    factory: CardsFactory()
+//                )
+//            )
+        }.environmentObject(appDependencies)
     }
+}
+
+final class AppDependencies: ObservableObject {
+    let gameOperator: GameOperator = GameOperator(addons: [], difficulty: .easy)
 }

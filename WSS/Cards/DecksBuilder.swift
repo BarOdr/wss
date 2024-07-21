@@ -21,7 +21,7 @@ enum AddonType {
     }
 }
 
-struct Decks {
+struct BaseDecks {
     let actionDeck: [ActionCardModel]
     let automaTrophies: [ActionCardModel]
     let challengesDeck: [ActionCardModel]
@@ -45,14 +45,14 @@ final class DecksBuilder {
 
     // MARK: - Public methods
 
-    func buildDecks() -> Decks {
+    func buildDecks() -> BaseDecks {
         let actionDeckTuple = buildActionDeck(for: difficultyLevel)
         let automaTrophiesTuple = buildAutomaTrophiesDeck(from: actionDeckTuple.remainingCards)
         let challengesDeck = buildChallengesDeck(
             for: difficultyLevel,
             remainingCards: automaTrophiesTuple.remainingCards
         ).shuffled()
-        return Decks(
+        return BaseDecks(
             actionDeck: actionDeckTuple.actionDeck,
             automaTrophies: automaTrophiesTuple.pickedCards,
             challengesDeck: challengesDeck
@@ -124,7 +124,7 @@ final class DecksBuilder {
             .shuffled()
 
         // if legendary hunt addon is selected, add appropriate amount to level 3 cards according to difficulty level
-        if let legendaryHuntAddon = addons.first(where: { $0 == .legendaryHunt }) {
+        if let _ = addons.first(where: { $0 == .legendaryHunt }) {
             var legendaryHuntCardsToAddToDeck: [ActionCardModel] = []
             let legendaryHuntAllCards = cardsFactory.buildLegendaryHuntDeck().shuffled()
             legendaryHuntCardsToAddToDeck = []
