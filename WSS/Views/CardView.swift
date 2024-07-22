@@ -8,21 +8,20 @@
 import SwiftUI
 
 final class CardViewModel: ObservableObject {
-
+    @Published var deckManager: DeckManager
     @ObservedObject var card: ActionCardModel
-    var discardBlock: (ActionCardModel) -> Void
 
-    init(card: ActionCardModel, discardBlock: @escaping (ActionCardModel) -> Void) {
+    init(deckManager: DeckManager, card: ActionCardModel) {
+        self.deckManager = deckManager
         self.card = card
-        self.discardBlock = discardBlock
     }
 
     func draw() {
-        self.card.isDrawn.toggle()
+        self.deckManager.draw(card: card)
     }
 
     func discard() {
-        self.discardBlock(card)
+        self.deckManager.discard(card: card)
     }
 }
 
@@ -41,6 +40,7 @@ struct CardView: View {
             VStack {
                 Text("\(viewModel.card.number)")
                 Text("\(viewModel.card.isDrawn)")
+                Text("\(isLast())")
             }
         }
         .onTapGesture(count: 2) {
@@ -53,6 +53,14 @@ struct CardView: View {
         .offset(offset)
     }
 
+    func isLast() -> Bool {
+        if let indexOfCard = viewModel.deckManager.deck.firstIndex(of: viewModel.card) {
+            return viewModel.deckManager.deck.last == viewModel.deckManager.deck[indexOfCard]
+        } else {
+            return false
+        }
+    }
+    
     func cardOffScreenDragGesture() -> some Gesture {
         return DragGesture()
             .onChanged { gesture in
