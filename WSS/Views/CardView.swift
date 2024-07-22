@@ -8,57 +8,46 @@
 import SwiftUI
 
 final class CardViewModel: ObservableObject {
-    @Published var deckManager: DeckManager
-    @ObservedObject var card: ActionCardModel
+    @Published var card: ActionCardModel
+    var discardBlock: (ActionCardModel) -> ()
 
-    init(deckManager: DeckManager, card: ActionCardModel) {
-        self.deckManager = deckManager
+    init(card: ActionCardModel, discardBlock: @escaping (ActionCardModel) -> ()) {
         self.card = card
+        self.discardBlock = discardBlock
     }
 
     func draw() {
-        self.deckManager.draw(card: card)
+        card.isDrawn.toggle()
     }
 
     func discard() {
-        self.deckManager.discard(card: card)
+        discardBlock(card)
     }
 }
 
 struct CardView: View {
 
-    @StateObject var viewModel: CardViewModel
     @State var offset: CGSize = .zero
+
+    @ObservedObject var card: ActionCardModel
+    var discardBlock: (ActionCardModel) -> ()
 
     var body: some View {
         ZStack {
-            Image(viewModel.card.imageName, bundle: .main)
+            Image(card.imageName, bundle: .main)
                 .resizable()
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .aspectRatio(contentMode: .fit)
                 .padding(EdgeInsets(top: 10, leading: 40, bottom: 10, trailing: 40))
-            VStack {
-                Text("\(viewModel.card.number)")
-                Text("\(viewModel.card.isDrawn)")
-                Text("\(isLast())")
-            }
         }
         .onTapGesture(count: 2) {
-            viewModel.card.isDrawn = true
+            card.isDrawn = true
         }
         .gesture(
             cardOffScreenDragGesture()
         )
         .animation(.spring(), value: offset)
         .offset(offset)
-    }
-
-    func isLast() -> Bool {
-        if let indexOfCard = viewModel.deckManager.deck.firstIndex(of: viewModel.card) {
-            return viewModel.deckManager.deck.last == viewModel.deckManager.deck[indexOfCard]
-        } else {
-            return false
-        }
     }
     
     func cardOffScreenDragGesture() -> some Gesture {
@@ -70,7 +59,7 @@ struct CardView: View {
                 if abs(offset.width) > 100 {
                     offset.width = offset.width > 0 ? 1000 : -1000
                     withAnimation {
-                        viewModel.discard()
+                        discardBlock(card)
                     }
                 } else {
                     offset = .zero

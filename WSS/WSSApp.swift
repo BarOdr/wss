@@ -15,7 +15,7 @@ struct WSSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ActionDeckView(viewModel: ActionDeckViewModel())
+            ActionDeckView(viewModel: ActionDeckViewModel(deck: CardsFactory().buildBaseCards().reversed(), discarded: []))
         }.environmentObject(appDependencies)
     }
 }
