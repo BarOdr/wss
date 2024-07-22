@@ -34,6 +34,7 @@ struct CardView: View {
     @State private var isImageVisible = true
 
     @ObservedObject var card: ActionCardModel
+    
     var discardBlock: (ActionCardModel) -> ()
 
     var body: some View {
