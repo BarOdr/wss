@@ -80,7 +80,7 @@ struct ActionDeckView: View {
 
             ForEach(Array(viewModel.deck.enumerated()), id: \.element) { index, card in
                 CardView(card: card, discardBlock: { card in withAnimation { viewModel.discard(card: card) }})
-                    .offset(x: CGFloat(index) * 1.0125, y: CGFloat(index) * -1.0125) // Adjust offset for a 3D effect
+                    .offset(x: CGFloat(index) * 1.00025, y: CGFloat(index) * -1.00025) // Adjust offset for a 3D effect
                     .shadow(color: Color.black.opacity(0.3), radius: CGFloat(viewModel.deck.count - index)) // Dynamic shadow)
             }
         }

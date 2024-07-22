@@ -15,7 +15,7 @@ struct WSSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ActionDeckView(viewModel: ActionDeckViewModel(deck: CardsFactory().buildBaseCards().reversed(), discarded: []))
+            ActionDeckView(viewModel: ActionDeckViewModel(deck: DecksBuilder(cardsFactory: CardsFactory(), addons: [.skellige, .legendaryHunt], difficultyLevel: .easy).buildActionDeck(for: .easy).actionDeck, discarded: []))
         }.environmentObject(appDependencies)
     }
 }

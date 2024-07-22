@@ -66,8 +66,11 @@ struct CardView: View {
         return DragGesture()
             .onChanged { gesture in
                 offset = gesture.translation
+                scale = 1.1
+                isLifted = true
             }
             .onEnded { _ in
+                scale = 1.0
                 if abs(offset.width) > 100 {
                     offset.width = offset.width > 0 ? 1000 : -1000
                     withAnimation {
@@ -78,6 +81,7 @@ struct CardView: View {
                 } else {
                     offset = .zero
                 }
+                isLifted = false
             }
     }
 
