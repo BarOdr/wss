@@ -62,6 +62,16 @@ final class ActionDeckViewModel: ObservableObject {
         deck.removeAll { element in
             element == card
         }
+        discarded.append(card)
+//        if deck.isEmpty {
+//            let level3Cards = discarded.filter { card in
+//                card.level == 3 || card.cardType == .legendaryHunt
+//            }.shuffled()
+//            level3Cards.forEach { card in
+//                card.isDrawn = false
+//            }
+//            deck = level3Cards
+//        }
     }
 }
 
@@ -82,6 +92,10 @@ struct ActionDeckView: View {
                 CardView(card: card, discardBlock: { card in withAnimation { viewModel.discard(card: card) }})
                     .offset(x: CGFloat(index) * 1.00025, y: CGFloat(index) * -1.00025) // Adjust offset for a 3D effect
                     .shadow(color: Color.black.opacity(0.3), radius: CGFloat(viewModel.deck.count - index)) // Dynamic shadow)
+            }
+            if viewModel.deck.isEmpty {
+                Text("Empty!")
+                    .font(.custom("PFDinTextCondPro-Regular", size: 20))
             }
         }
     }
