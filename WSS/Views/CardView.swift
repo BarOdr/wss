@@ -50,6 +50,7 @@ struct CardView: View {
                     .degrees(rotationAngle),
                     axis: (x: 0.0, y: 1.0, z: 0.0)
                 )
+                .shadow(color: Color.black.opacity(isLifted ? 0.5 : 0.0), radius: isLifted ? 100 : 0, x: 0, y: isLifted ? 100 : 0)
         }
         .onTapGesture(count: 2) {
             performDrawAnimation()
