@@ -79,7 +79,13 @@ struct ActionDeckView: View {
                 .ignoresSafeArea()
 
             ForEach(Array(viewModel.deck.enumerated()), id: \.element) { index, card in
-                CardView(card: card, discardBlock: { card in viewModel.discard(card: card)})
+                CardView(card: card, discardBlock:
+                            { card in
+                    withAnimation {
+                        viewModel.discard(card: card)
+                    }
+                }
+                )
             }
         }
     }

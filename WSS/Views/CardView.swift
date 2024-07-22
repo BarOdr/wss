@@ -59,7 +59,9 @@ struct CardView: View {
                 if abs(offset.width) > 100 {
                     offset.width = offset.width > 0 ? 1000 : -1000
                     withAnimation {
-                        discardBlock(card)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            discardBlock(card)
+                        }
                     }
                 } else {
                     offset = .zero
