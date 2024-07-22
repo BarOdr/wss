@@ -9,30 +9,28 @@ import SwiftUI
 
 final class ActionDeckViewModel: ObservableObject {
 
-    @Published var deckManager: DeckManager
+    @Published var deck: [ActionCardModel]
 
     init() {
-        let factory = CardsFactory()
-        deckManager = DeckManager(
-            deck: DecksBuilder(
-                cardsFactory: factory,
-                addons: [.skellige],
-                difficultyLevel: .easy
-            ).buildDecks().actionDeck,
-            discarded: []
-        )
+        deck = DecksBuilder(
+            cardsFactory: CardsFactory(),
+            addons: [.skellige],
+            difficultyLevel: .easy
+        ).buildDecks().actionDeck
     }
 
     func drawFirstCard() throws {
-        try deckManager.drawFirstCard()
+        deck.first?.isDrawn.toggle()
     }
 
     func discardFirstCard() throws {
-        try deckManager.discardFirstCard()
+        deck.removeFirst()
     }
 
-    init(deckManager: DeckManager) {
-        self.deckManager = deckManager
+    func discard(card: ActionCardModel) {
+        deck.removeAll { element in
+            element == card
+        }
     }
 }
 
@@ -49,12 +47,11 @@ struct ActionDeckView: View {
                 .scaledToFill()
                 .ignoresSafeArea()
 
-            ForEach(Array(viewModel.deckManager.deck.enumerated()), id: \.element) { index, card in
+            ForEach(Array(viewModel.deck.enumerated()), id: \.element) { index, card in
                 CardView(
-                    viewModel: CardViewModel(
-                        deckManager: viewModel.deckManager,
-                        card: card
-                    )
+                    viewModel: CardViewModel(card: card, discardBlock: { card in
+                        viewModel.discard(card: card)
+                    })
                 )
             }
         }

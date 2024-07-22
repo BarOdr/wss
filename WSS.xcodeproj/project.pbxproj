@@ -17,7 +17,6 @@
 		F3937D5B2C4C058E0070BF77 /* SmoothOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3937D5A2C4C058E0070BF77 /* SmoothOperator.swift */; };
 		F3937D5E2C4C0A350070BF77 /* ActionDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3937D5D2C4C0A350070BF77 /* ActionDeckView.swift */; };
 		F3937D602C4C0A470070BF77 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3937D5F2C4C0A470070BF77 /* CardView.swift */; };
-		F3937D622C4C0CA10070BF77 /* DeckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3937D612C4C0CA10070BF77 /* DeckManager.swift */; };
 		F39AC93C2C49279200A5E42A /* ActionCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39AC93B2C49279200A5E42A /* ActionCardModel.swift */; };
 		F3A48F4D2C495633009E54AF /* CardFileNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A48F4C2C495633009E54AF /* CardFileNames.swift */; };
 		F3E9F7472C4BE5390060FD6D /* Array+reduced.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E9F7462C4BE5390060FD6D /* Array+reduced.swift */; };
@@ -418,7 +417,6 @@
 				F3A48F4D2C495633009E54AF /* CardFileNames.swift in Sources */,
 				F3F73E322C441A24005E77CA /* WSSApp.swift in Sources */,
 				F39AC93C2C49279200A5E42A /* ActionCardModel.swift in Sources */,
-				F3937D622C4C0CA10070BF77 /* DeckManager.swift in Sources */,
 				F3937D5E2C4C0A350070BF77 /* ActionDeckView.swift in Sources */,
 				F3937D602C4C0A470070BF77 /* CardView.swift in Sources */,
 				F3E9F7472C4BE5390060FD6D /* Array+reduced.swift in Sources */,
