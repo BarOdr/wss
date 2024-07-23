@@ -28,7 +28,6 @@ struct GameTabsView: View {
                         withAnimation {
                             selectedTab = .actions
                         }
-                        print("Show action deck")
                     } label: {
                         Text("Akcje")
                             .font(.witcherHeader(size: 30))
@@ -39,7 +38,6 @@ struct GameTabsView: View {
                         withAnimation(.easeInOut) {
                             selectedTab = .challenges
                         }
-                        print("Show challenges deck")
                     } label: {
                         withAnimation(.easeInOut) {
                             Text("Wyzwania")
@@ -52,10 +50,12 @@ struct GameTabsView: View {
 
                 // Views with slide transition
                 ZStack {
-                    View1()
+                    Text("View1")
+//                    View1()
                         .offset(x: selectedTab == .actions ? 0 : UIScreen.main.bounds.width)
                         .zIndex(selectedTab == .actions ? 1 : 0) // Ensure the active view is on top
-                    View2()
+                    Text("View2")
+//                    View2()
                         .offset(x: selectedTab == .challenges ? 0 : -UIScreen.main.bounds.width)
                         .zIndex(selectedTab == .challenges ? 1 : 0) // Ensure the active view is on top
                 }
@@ -78,20 +78,4 @@ struct GameTabsView: View {
 
 #Preview {
     GameTabsView()
-}
-
-struct View1: View {
-    var body: some View {
-        Color.red
-            .overlay(Text("View 1").font(.largeTitle).foregroundColor(.white))
-            .edgesIgnoringSafeArea(.all)
-    }
-}
-
-struct View2: View {
-    var body: some View {
-        Color.green
-            .overlay(Text("View 2").font(.largeTitle).foregroundColor(.white))
-            .edgesIgnoringSafeArea(.all)
-    }
 }
