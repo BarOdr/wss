@@ -4,6 +4,7 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Thewitcher-jnOj.ttf</string>
 		<string>PFDinTextCondPro-Bold.ttf</string>
 		<string>PFDinTextCondPro-Regular.ttf</string>
 	</array>

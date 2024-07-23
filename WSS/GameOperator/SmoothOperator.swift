@@ -7,7 +7,11 @@
 
 import Foundation
 
-final class GameOperator {
+final class GameConfiguration {
+    
+}
+
+final class SmoothOperator {
 
     private var decks: BaseDecks
 
@@ -18,6 +22,4 @@ final class GameOperator {
             difficultyLevel: difficulty
         ).buildDecks()
     }
-
-    
 }

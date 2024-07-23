@@ -9,6 +9,7 @@ import SwiftUI
 
 final class CardViewModel: ObservableObject {
     @Published var card: ActionCardModel
+
     var discardBlock: (ActionCardModel) -> ()
 
     init(card: ActionCardModel, discardBlock: @escaping (ActionCardModel) -> ()) {
@@ -32,6 +33,7 @@ struct CardView: View {
     @State private var scale: CGFloat = 1.0
     @State private var rotationAngle: Double = 0.0
     @State private var isImageVisible = true
+    @State private var isAnimating = false
 
     @ObservedObject var card: ActionCardModel
     
@@ -53,15 +55,20 @@ struct CardView: View {
                 .shadow(color: Color.black.opacity(isLifted ? 0.5 : 0.0), radius: isLifted ? 100 : 0, x: 0, y: isLifted ? 100 : 0)
         }
         .onTapGesture(count: 2) {
-            performDrawAnimation()
+            if !isAnimating {
+                performDrawAnimation()
+            }
         }
         .gesture(
             cardOffScreenDragGesture()
         )
         .animation(.spring(), value: offset)
         .offset(offset)
+        .onChange(of: isAnimating) { oldValue, newValue in
+
+        }
     }
-    
+
     func cardOffScreenDragGesture() -> some Gesture {
         return DragGesture()
             .onChanged { gesture in
@@ -86,6 +93,9 @@ struct CardView: View {
     }
 
     func performDrawAnimation() {
+        guard !isAnimating else { return }
+        isAnimating = true
+
         guard card.isDrawn == false else {
             return
         }
@@ -115,6 +125,10 @@ struct CardView: View {
                 isLifted = false
                 scale = 1.0
             }
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            isAnimating = false
         }
     }
 }

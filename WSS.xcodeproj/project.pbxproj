@@ -11,13 +11,15 @@
 		F35725582C4BB2FA00B4A223 /* Array+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35725572C4BB2FA00B4A223 /* Array+extensions.swift */; };
 		F38966132C4F1E4100A468F5 /* PFDinTextCondPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F38966102C4F1E4100A468F5 /* PFDinTextCondPro-Bold.ttf */; };
 		F38966142C4F1E4100A468F5 /* PFDinTextCondPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F38966112C4F1E4100A468F5 /* PFDinTextCondPro-Regular.ttf */; };
+		F38966182C4F21D900A468F5 /* Thewitcher-jnOj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F38966172C4F212900A468F5 /* Thewitcher-jnOj.ttf */; };
+		F389661A2C4F235C00A468F5 /* Font+customFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38966192C4F235C00A468F5 /* Font+customFonts.swift */; };
 		F38C72502C49E201004CDD4E /* DecksBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C724F2C49E201004CDD4E /* DecksBuilder.swift */; };
 		F38C72522C49E42F004CDD4E /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C72512C49E42F004CDD4E /* Difficulty.swift */; };
 		F38C72562C49E850004CDD4E /* DifficultyLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */; };
 		F38C72582C4A09C9004CDD4E /* CardsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C72572C4A09C9004CDD4E /* CardsFactory.swift */; };
 		F38C725C2C4A0EA5004CDD4E /* DeckBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C725B2C4A0EA5004CDD4E /* DeckBuilderTests.swift */; };
 		F3937D5B2C4C058E0070BF77 /* SmoothOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3937D5A2C4C058E0070BF77 /* SmoothOperator.swift */; };
-		F3937D5E2C4C0A350070BF77 /* ActionDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3937D5D2C4C0A350070BF77 /* ActionDeckView.swift */; };
+		F3937D5E2C4C0A350070BF77 /* DeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3937D5D2C4C0A350070BF77 /* DeckView.swift */; };
 		F3937D602C4C0A470070BF77 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3937D5F2C4C0A470070BF77 /* CardView.swift */; };
 		F3937D622C4C0CA10070BF77 /* DeckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3937D612C4C0CA10070BF77 /* DeckManager.swift */; };
 		F39AC93C2C49279200A5E42A /* ActionCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39AC93B2C49279200A5E42A /* ActionCardModel.swift */; };
@@ -45,13 +47,15 @@
 		F38966102C4F1E4100A468F5 /* PFDinTextCondPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PFDinTextCondPro-Bold.ttf"; sourceTree = "<group>"; };
 		F38966112C4F1E4100A468F5 /* PFDinTextCondPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PFDinTextCondPro-Regular.ttf"; sourceTree = "<group>"; };
 		F38966152C4F1EC100A468F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F38966172C4F212900A468F5 /* Thewitcher-jnOj.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Thewitcher-jnOj.ttf"; sourceTree = "<group>"; };
+		F38966192C4F235C00A468F5 /* Font+customFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+customFonts.swift"; sourceTree = "<group>"; };
 		F38C724F2C49E201004CDD4E /* DecksBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksBuilder.swift; sourceTree = "<group>"; };
 		F38C72512C49E42F004CDD4E /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
 		F38C72552C49E850004CDD4E /* DifficultyLevelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyLevelTests.swift; sourceTree = "<group>"; };
 		F38C72572C4A09C9004CDD4E /* CardsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsFactory.swift; sourceTree = "<group>"; };
 		F38C725B2C4A0EA5004CDD4E /* DeckBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckBuilderTests.swift; sourceTree = "<group>"; };
 		F3937D5A2C4C058E0070BF77 /* SmoothOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmoothOperator.swift; sourceTree = "<group>"; };
-		F3937D5D2C4C0A350070BF77 /* ActionDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionDeckView.swift; sourceTree = "<group>"; };
+		F3937D5D2C4C0A350070BF77 /* DeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckView.swift; sourceTree = "<group>"; };
 		F3937D5F2C4C0A470070BF77 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F3937D612C4C0CA10070BF77 /* DeckManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckManager.swift; sourceTree = "<group>"; };
 		F39AC93B2C49279200A5E42A /* ActionCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCardModel.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 		F38966122C4F1E4100A468F5 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				F38966172C4F212900A468F5 /* Thewitcher-jnOj.ttf */,
 				F38966102C4F1E4100A468F5 /* PFDinTextCondPro-Bold.ttf */,
 				F38966112C4F1E4100A468F5 /* PFDinTextCondPro-Regular.ttf */,
 			);
@@ -173,7 +178,7 @@
 		F3937D5C2C4C0A1A0070BF77 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F3937D5D2C4C0A350070BF77 /* ActionDeckView.swift */,
+				F3937D5D2C4C0A350070BF77 /* DeckView.swift */,
 				F3937D5F2C4C0A470070BF77 /* CardView.swift */,
 			);
 			path = Views;
@@ -266,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				F3E9F7462C4BE5390060FD6D /* Array+reduced.swift */,
+				F38966192C4F235C00A468F5 /* Font+customFonts.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -410,6 +416,7 @@
 				F38966132C4F1E4100A468F5 /* PFDinTextCondPro-Bold.ttf in Resources */,
 				F3F73E3B2C441A25005E77CA /* Preview Assets.xcassets in Resources */,
 				F38966142C4F1E4100A468F5 /* PFDinTextCondPro-Regular.ttf in Resources */,
+				F38966182C4F21D900A468F5 /* Thewitcher-jnOj.ttf in Resources */,
 				F3F73E382C441A25005E77CA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,10 +441,11 @@
 				F38C72582C4A09C9004CDD4E /* CardsFactory.swift in Sources */,
 				F33946C72C441BFB007D817B /* TextFromImageRecognizer.swift in Sources */,
 				F3A48F4D2C495633009E54AF /* CardFileNames.swift in Sources */,
+				F389661A2C4F235C00A468F5 /* Font+customFonts.swift in Sources */,
 				F3F73E322C441A24005E77CA /* WSSApp.swift in Sources */,
 				F39AC93C2C49279200A5E42A /* ActionCardModel.swift in Sources */,
 				F3937D622C4C0CA10070BF77 /* DeckManager.swift in Sources */,
-				F3937D5E2C4C0A350070BF77 /* ActionDeckView.swift in Sources */,
+				F3937D5E2C4C0A350070BF77 /* DeckView.swift in Sources */,
 				F3937D602C4C0A470070BF77 /* CardView.swift in Sources */,
 				F3E9F7472C4BE5390060FD6D /* Array+reduced.swift in Sources */,
 			);

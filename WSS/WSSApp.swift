@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import UIKit
 
 @main
 struct WSSApp: App {
@@ -15,11 +16,11 @@ struct WSSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ActionDeckView(viewModel: ActionDeckViewModel(deck: DecksBuilder(cardsFactory: CardsFactory(), addons: [.skellige, .legendaryHunt], difficultyLevel: .easy).buildActionDeck(for: .easy).actionDeck, discarded: []))
+            DeckView(viewModel: DeckViewModel(deck: DecksBuilder(cardsFactory: CardsFactory(), addons: [.skellige, .legendaryHunt], difficultyLevel: .easy).buildActionDeck(for: .easy).actionDeck, discarded: []))
         }.environmentObject(appDependencies)
     }
 }
 
 final class AppDependencies: ObservableObject {
-    let gameOperator: GameOperator = GameOperator(addons: [], difficulty: .easy)
+    let gameOperator: SmoothOperator = SmoothOperator(addons: [], difficulty: .easy)
 }
