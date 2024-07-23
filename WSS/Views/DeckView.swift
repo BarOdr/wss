@@ -94,10 +94,6 @@ struct DeckView: View {
     var body: some View {
 
         ZStack {
-            Image("wooden_background", bundle: .main)
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
             VStack {
                 ZStack {
                     ForEach(Array(viewModel.deck.enumerated()), id: \.element) { index, card in
