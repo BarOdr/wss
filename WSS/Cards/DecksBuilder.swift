@@ -21,10 +21,19 @@ enum AddonType {
     }
 }
 
-struct BaseDecks {
+final class BaseDecks {
     let actionDeck: [ActionCardModel]
     let automaTrophies: [ActionCardModel]
     let challengesDeck: [ActionCardModel]
+    init(
+        actionDeck: [ActionCardModel],
+        automaTrophies: [ActionCardModel],
+        challengesDeck: [ActionCardModel]
+    ) {
+        self.actionDeck = actionDeck
+        self.automaTrophies = automaTrophies
+        self.challengesDeck = challengesDeck
+    }
 }
 
 final class DecksBuilder {
@@ -32,15 +41,18 @@ final class DecksBuilder {
     private let cardsFactory: CardsFactory
     private let addons: [AddonType]
     private let difficultyLevel: Difficulty
+    private let witcher: Witcher
 
     init(
         cardsFactory: CardsFactory,
         addons: [AddonType],
-        difficultyLevel: Difficulty
+        difficultyLevel: Difficulty,
+        witcher: Witcher
     ) {
         self.cardsFactory = cardsFactory
         self.addons = addons
         self.difficultyLevel = difficultyLevel
+        self.witcher = witcher
     }
 
     // MARK: - Public methods
@@ -63,6 +75,9 @@ final class DecksBuilder {
         // TODO: - fix this, select according to the table how many cards there should be. The actual numbers might differ so don't unit test it so hard
         let deckSize = difficulty.challengesDeckSize
         let reducedArray = remainingCards.reduced(tolimit: deckSize)
+        for card in reducedArray {
+            card.update(backName: "back_\(witcher.rawValue)")
+        }
         return reducedArray
     }
 

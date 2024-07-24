@@ -19,7 +19,8 @@ final class SmoothOperator {
         self.decks = DecksBuilder(
             cardsFactory: CardsFactory(),
             addons: addons,
-            difficultyLevel: difficulty
+            difficultyLevel: difficulty,
+            witcher: .ciri
         ).buildDecks()
     }
 }

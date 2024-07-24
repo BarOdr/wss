@@ -45,16 +45,7 @@ final class DeckViewModel: ObservableObject {
         initialArrayCount = level3Cards.count
         deck = level3Cards
     }
-
-    func drawFirstCard() throws {
-        print("Drawing card.")
-        guard !deck.isEmpty else {
-            print("Deck empty.")
-            throw DeckError.deckEmpty
-        }
-        deck[0].isDrawn = true
-    }
-
+    
     func draw(card: ActionCardModel) {
         guard let cardIndex = deck.firstIndex(of: card) else {
             print("Could not draw. Index not found.")

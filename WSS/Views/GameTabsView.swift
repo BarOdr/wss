@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+final class GameTabsViewModel: ObservableObject {
+    @Published var decks: BaseDecks
+    init(decks: BaseDecks) {
+        self.decks = decks
+    }
+}
+
 struct GameTabsView: View {
 
     enum Tab {
@@ -15,6 +22,7 @@ struct GameTabsView: View {
     }
 
     @State var selectedTab: Tab = .actions
+    @StateObject var viewModel: GameTabsViewModel
 
     var body: some View {
         ZStack {
@@ -32,7 +40,7 @@ struct GameTabsView: View {
                         Text("Akcje")
                             .font(.witcherHeader(size: 30))
                             .foregroundStyle(tabButtonColor(for: .actions))
-                            .opacity(opacity(for: .actions))
+                            .opacity(tabBarButtonOpacity(for: .actions))
                     }
                     Button {
                         withAnimation(.easeInOut) {
@@ -43,26 +51,13 @@ struct GameTabsView: View {
                             Text("Wyzwania")
                                 .font(.witcherHeader(size: 30))
                                 .foregroundStyle(tabButtonColor(for: .challenges))
-                                .opacity(opacity(for: .challenges))
+                                .opacity(tabBarButtonOpacity(for: .challenges))
                         }
                     }
                 }
+                DeckView(viewModel: DeckViewModel(deck: viewModel.decks.challengesDeck, discarded: []))
 
-                // Views with slide transition
-                ZStack {
-                    Text("View1")
-//                    View1()
-                        .offset(x: selectedTab == .actions ? 0 : UIScreen.main.bounds.width)
-                        .zIndex(selectedTab == .actions ? 1 : 0) // Ensure the active view is on top
-                    Text("View2")
-//                    View2()
-                        .offset(x: selectedTab == .challenges ? 0 : -UIScreen.main.bounds.width)
-                        .zIndex(selectedTab == .challenges ? 1 : 0) // Ensure the active view is on top
-                }
-                .animation(.spring(response: 0.6, dampingFraction: 0.8, blendDuration: 0.3), value: selectedTab)
-                .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure full screen coverage
-
-                .clipped() // Ensure views do not bleed outside their bounds
+//                dissolvableDecks
             }
         }
     }
@@ -71,11 +66,36 @@ struct GameTabsView: View {
         (selectedTab == tab) ? .white : .gray
     }
 
-    private func opacity(for tab: Tab) -> CGFloat {
+    private func tabBarButtonOpacity(for tab: Tab) -> CGFloat {
         (selectedTab == tab) ? 1 : 0.5
     }
-}
 
-#Preview {
-    GameTabsView()
+    private func deckOpacity(for tab: Tab) -> CGFloat {
+        (selectedTab == tab) ? 1 : 0
+    }
+
+    private var dissolvableDecks: some View {
+        ZStack {
+            DeckView(viewModel: DeckViewModel(deck: viewModel.decks.actionDeck, discarded: []))
+                .opacity(deckOpacity(for: selectedTab))
+            DeckView(viewModel: DeckViewModel(deck: viewModel.decks.challengesDeck, discarded: []))
+                .opacity(deckOpacity(for: selectedTab))
+        }
+    }
+    
+
+    private var slidableDecks: some View {
+        // Views with slide transition
+        ZStack {
+            DeckView(viewModel: DeckViewModel(deck: viewModel.decks.challengesDeck, discarded: []))
+                .offset(x: selectedTab == .actions ? 0 : -UIScreen.main.bounds.width)
+                .zIndex(selectedTab == .actions ? 1 : 0) // Ensure the active view is on top
+            DeckView(viewModel: DeckViewModel(deck: viewModel.decks.challengesDeck, discarded: []))
+                .offset(x: selectedTab == .challenges ? 0 : UIScreen.main.bounds.width)
+                .zIndex(selectedTab == .challenges ? 1 : 0) // Ensure the active view is on top
+        }
+        .animation(.spring(response: 0.6, dampingFraction: 0.8, blendDuration: 0.3), value: selectedTab)
+        .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure full screen coverage
+        .clipped() // Ensure views do not bleed outside their bounds
+    }
 }

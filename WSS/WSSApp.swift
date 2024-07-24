@@ -16,8 +16,19 @@ struct WSSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            GameTabsView()
-//            DeckView(viewModel: DeckViewModel(deck: DecksBuilder(cardsFactory: CardsFactory(), addons: [.skellige, .legendaryHunt], difficultyLevel: .easy).buildActionDeck(for: .easy).actionDeck, discarded: []))
+            GameTabsView(
+                viewModel: GameTabsViewModel(
+                    decks: DecksBuilder(
+                        cardsFactory: CardsFactory(),
+                        addons: [
+                            .legendaryHunt,
+                            .skellige
+                        ],
+                        difficultyLevel: .medium,
+                        witcher: .ciri
+                    ).buildDecks()
+                )
+            )
         }.environmentObject(appDependencies)
     }
 }

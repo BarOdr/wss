@@ -24,15 +24,24 @@ final class ActionCardModel: ObservableObject, Hashable {
 
     @Published var isDrawn: Bool = false {
         didSet {
+            updateImageName()
             print("Is drawn: \(isDrawn)")
-            imageName = isDrawn ? frontName : backName
         }
     }
 
-    @Published var imageName: String
+    @Published var imageName: String {
+        didSet {
+            print("imageName set: \(imageName)")
+        }
+    }
 
     private let frontName: String
-    private let backName: String
+    private var backName: String {
+        didSet {
+            updateImageName()
+            print("backName set: \(backName)")
+        }
+    }
     let cardType: ActionCardType
     let level: Int
     // file number, not sure if will be useful
@@ -52,7 +61,8 @@ final class ActionCardModel: ObservableObject, Hashable {
         self.cardType = cardType
         self.level = level
         self.number = number
-        self.imageName = isDrawn ? frontName : backName
+        self.imageName = ""
+        self.updateImageName()
     }
 
     // Implement Equatable
@@ -74,6 +84,14 @@ final class ActionCardModel: ObservableObject, Hashable {
          hasher.combine(level)
          hasher.combine(number)
      }
+
+    func update(backName: String) {
+        self.backName = backName
+    }
+
+    private func updateImageName() {
+        imageName = isDrawn ? frontName : backName
+    }
 }
 
 enum ActionCardType: Hashable, Equatable {

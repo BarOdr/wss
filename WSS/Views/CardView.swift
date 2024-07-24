@@ -64,9 +64,6 @@ struct CardView: View {
         )
         .animation(.spring(), value: offset)
         .offset(offset)
-        .onChange(of: isAnimating) { oldValue, newValue in
-
-        }
     }
 
     func cardOffScreenDragGesture() -> some Gesture {
