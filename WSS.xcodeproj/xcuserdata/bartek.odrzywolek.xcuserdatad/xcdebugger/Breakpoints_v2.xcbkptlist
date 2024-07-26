@@ -34,36 +34,6 @@
             endingLineNumber = "72"
             landmarkName = "body"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "043BC993-08C8-4B0E-956E-2D7309D36B9E - 8be9509e5709ca1a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WSS.CardView.body.getter : some"
-                  moduleName = "WSS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bartek.odrzywolek/DATA/CODE/==%20WSS/WWS/WSS/Views/CardView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72">
-               </Location>
-               <Location
-                  uuid = "043BC993-08C8-4B0E-956E-2D7309D36B9E - 8be9509e5709cba0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WSS.CardView.body.getter : some"
-                  moduleName = "WSS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bartek.odrzywolek/DATA/CODE/==%20WSS/WWS/WSS/Views/CardView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "82"
-                  endingLineNumber = "82">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

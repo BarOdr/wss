@@ -13,19 +13,19 @@ final class DeckBuilderTests: XCTestCase {
     func test_deckBuilder_easy_no_addons() throws {
         // given
         let factory = CardsFactory()
-        let sut = DecksBuilder(cardsFactory: factory, addons: [], difficultyLevel: .easy)
+        let sut = DecksBuilder(cardsFactory: factory, addons: [], difficultyLevel: .easy, witcher: .ciri)
 
         // when
         let decks = sut.buildDecks()
 
         // them
         // all decks combined
-        let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let allDeckCombined = (decks.actionDeck.remainingCards + decks.automaTrophies + decks.challengesDeck.remainingCards)
 
         XCTAssertEqual(allDeckCombined.count, 27)
-        XCTAssertTrue(decks.actionDeck.isUnique)
+        XCTAssertTrue(decks.actionDeck.remainingCards.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
-        XCTAssertTrue(decks.challengesDeck.isUnique)
+        XCTAssertTrue(decks.challengesDeck.remainingCards.isUnique)
         XCTAssertTrue(allDeckCombined.isUnique)
         XCTAssertEqual(getBaseGeneralCards(from: allDeckCombined).count, 18)
         XCTAssertEqual(getBaseAdvancedCards(from: allDeckCombined).count, 9)
@@ -33,44 +33,44 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertEqual(getLegendaryHuntCards(from: allDeckCombined).count, 0)
 
         // action deck
-        XCTAssertEqual(decks.actionDeck.count, 13)
+        XCTAssertEqual(decks.actionDeck.remainingCards.count, 13)
 
-        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 10)
-        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck.remainingCards).count, 10)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck.remainingCards).count, 3)
 
-        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 4)
-        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck.remainingCards).count, 4)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 4)
-        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck.remainingCards).count, 4)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
-        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck.remainingCards).count, 2)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
         XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
-        XCTAssertEqual(decks.challengesDeck.count, 11)
+        XCTAssertEqual(decks.challengesDeck.remainingCards.count, 11)
     }
 
     func test_deckBuilder_medium_no_addons() throws {
         // given
         let factory = CardsFactory()
-        let sut = DecksBuilder(cardsFactory: factory, addons: [], difficultyLevel: .medium)
+        let sut = DecksBuilder(cardsFactory: factory, addons: [], difficultyLevel: .medium, witcher: .ciri)
 
         // when
         let decks = sut.buildDecks()
 
         // them
         // all decks combined
-        let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let allDeckCombined = (decks.actionDeck.remainingCards + decks.automaTrophies + decks.challengesDeck.remainingCards)
 
         XCTAssertEqual(allDeckCombined.count, 27)
-        XCTAssertTrue(decks.actionDeck.isUnique)
+        XCTAssertTrue(decks.actionDeck.remainingCards.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
-        XCTAssertTrue(decks.challengesDeck.isUnique)
+        XCTAssertTrue(decks.challengesDeck.remainingCards.isUnique)
         XCTAssertTrue(allDeckCombined.isUnique)
         XCTAssertEqual(getBaseGeneralCards(from: allDeckCombined).count, 18)
         XCTAssertEqual(getBaseAdvancedCards(from: allDeckCombined).count, 9)
@@ -78,337 +78,337 @@ final class DeckBuilderTests: XCTestCase {
         XCTAssertEqual(getLegendaryHuntCards(from: allDeckCombined).count, 0)
 
         // action deck
-        XCTAssertEqual(decks.actionDeck.count, 12)
+        XCTAssertEqual(decks.actionDeck.remainingCards.count, 12)
 
-        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 9)
-        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck.remainingCards).count, 9)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck.remainingCards).count, 3)
 
-        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 3)
-        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck.remainingCards).count, 3)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 3)
-        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck.remainingCards).count, 3)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 3)
-        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck.remainingCards).count, 3)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
         XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
-        XCTAssertEqual(decks.challengesDeck.count, 12)
+        XCTAssertEqual(decks.challengesDeck.remainingCards.count, 12)
     }
 
     func test_deckBuilder_hard_no_addons() throws {
         // given
         let factory = CardsFactory()
-        let sut = DecksBuilder(cardsFactory: factory, addons: [], difficultyLevel: .hard)
+        let sut = DecksBuilder(cardsFactory: factory, addons: [], difficultyLevel: .hard, witcher: .ciri)
 
         // when
         let decks = sut.buildDecks()
 
         // them
         // all decks combined
-        let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let allDeckCombined = (decks.actionDeck.remainingCards + decks.automaTrophies + decks.challengesDeck.remainingCards)
 
         XCTAssertEqual(allDeckCombined.count, 24)
-        XCTAssertTrue(decks.actionDeck.isUnique)
+        XCTAssertTrue(decks.actionDeck.remainingCards.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
-        XCTAssertTrue(decks.challengesDeck.isUnique)
+        XCTAssertTrue(decks.challengesDeck.remainingCards.isUnique)
         XCTAssertTrue(allDeckCombined.isUnique)
         XCTAssertEqual(getSkelligeCards(from: allDeckCombined).count, 0)
         XCTAssertEqual(getLegendaryHuntCards(from: allDeckCombined).count, 0)
 
         // action deck
-        XCTAssertEqual(decks.actionDeck.count, 9)
+        XCTAssertEqual(decks.actionDeck.remainingCards.count, 9)
 
-        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 6)
-        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck.remainingCards).count, 6)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck.remainingCards).count, 3)
 
-        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 2)
-        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck.remainingCards).count, 2)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 2)
-        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck.remainingCards).count, 2)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
-        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck.remainingCards).count, 2)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
         XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
-        XCTAssertEqual(decks.challengesDeck.count, 12)
+        XCTAssertEqual(decks.challengesDeck.remainingCards.count, 12)
     }
 
     func test_deckBuilder_easy_skellige() throws {
         // given
         let factory = CardsFactory()
-        let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige], difficultyLevel: .easy)
+        let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige], difficultyLevel: .easy, witcher: .ciri)
 
         // when
         let decks = sut.buildDecks()
 
         // them
         // all decks combined
-        let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let allDeckCombined = (decks.actionDeck.remainingCards + decks.automaTrophies + decks.challengesDeck.remainingCards)
 
         XCTAssertEqual(allDeckCombined.count, 27)
-        XCTAssertTrue(decks.actionDeck.isUnique)
+        XCTAssertTrue(decks.actionDeck.remainingCards.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
-        XCTAssertTrue(decks.challengesDeck.isUnique)
+        XCTAssertTrue(decks.challengesDeck.remainingCards.isUnique)
         XCTAssertTrue(allDeckCombined.isUnique)
         XCTAssertEqual(getLegendaryHuntCards(from: allDeckCombined).count, 0)
 
         // action deck
-        XCTAssertEqual(decks.actionDeck.count, 13)
+        XCTAssertEqual(decks.actionDeck.remainingCards.count, 13)
 
-        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 10)
-        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck.remainingCards).count, 10)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck.remainingCards).count, 3)
 
-        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 4)
-        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck.remainingCards).count, 4)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 4)
-        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck.remainingCards).count, 4)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
-        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck.remainingCards).count, 2)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
         XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
-        XCTAssertEqual(decks.challengesDeck.count, 11)
+        XCTAssertEqual(decks.challengesDeck.remainingCards.count, 11)
     }
 
     func test_deckBuilder_medium_skellige() throws {
         // given
         let factory = CardsFactory()
-        let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige], difficultyLevel: .medium)
+        let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige], difficultyLevel: .medium, witcher: .ciri)
 
         // when
         let decks = sut.buildDecks()
 
         // them
         // all decks combined
-        let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let allDeckCombined = (decks.actionDeck.remainingCards + decks.automaTrophies + decks.challengesDeck.remainingCards)
 
         XCTAssertEqual(allDeckCombined.count, 27)
-        XCTAssertTrue(decks.actionDeck.isUnique)
+        XCTAssertTrue(decks.actionDeck.remainingCards.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
-        XCTAssertTrue(decks.challengesDeck.isUnique)
+        XCTAssertTrue(decks.challengesDeck.remainingCards.isUnique)
         XCTAssertTrue(allDeckCombined.isUnique)
         XCTAssertEqual(getLegendaryHuntCards(from: allDeckCombined).count, 0)
 
         // action deck
-        XCTAssertEqual(decks.actionDeck.count, 12)
+        XCTAssertEqual(decks.actionDeck.remainingCards.count, 12)
 
-        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 9)
-        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck.remainingCards).count, 9)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck.remainingCards).count, 3)
 
-        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 3)
-        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck.remainingCards).count, 3)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 3)
-        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck.remainingCards).count, 3)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 3)
-        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck.remainingCards).count, 3)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
         XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
-        XCTAssertEqual(decks.challengesDeck.count, 12)
+        XCTAssertEqual(decks.challengesDeck.remainingCards.count, 12)
     }
 
     func test_deckBuilder_hard_skellige() throws {
         // given
         let factory = CardsFactory()
-        let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige], difficultyLevel: .hard)
+        let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige], difficultyLevel: .hard, witcher: .ciri)
 
         // when
         let decks = sut.buildDecks()
 
         // them
         // all decks combined
-        let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let allDeckCombined = (decks.actionDeck.remainingCards + decks.automaTrophies + decks.challengesDeck.remainingCards)
 
         XCTAssertEqual(allDeckCombined.count, 24)
-        XCTAssertTrue(decks.actionDeck.isUnique)
+        XCTAssertTrue(decks.actionDeck.remainingCards.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
-        XCTAssertTrue(decks.challengesDeck.isUnique)
+        XCTAssertTrue(decks.challengesDeck.remainingCards.isUnique)
         XCTAssertTrue(allDeckCombined.isUnique)
         XCTAssertEqual(getLegendaryHuntCards(from: allDeckCombined).count, 0)
 
         // action deck
-        XCTAssertEqual(decks.actionDeck.count, 9)
+        XCTAssertEqual(decks.actionDeck.remainingCards.count, 9)
 
-        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 6)
-        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck.remainingCards).count, 6)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck.remainingCards).count, 3)
 
-        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 2)
-        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck.remainingCards).count, 2)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 2)
-        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck.remainingCards).count, 2)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
-        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck.remainingCards).count, 2)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
         XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
-        XCTAssertEqual(decks.challengesDeck.count, 12)
+        XCTAssertEqual(decks.challengesDeck.remainingCards.count, 12)
     }
 
     func test_deckBuilder_easy_skellige_legendary_hunt() throws {
         // given
         let factory = CardsFactory()
-        let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige, .legendaryHunt], difficultyLevel: .easy)
+        let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige, .legendaryHunt], difficultyLevel: .easy, witcher: .ciri)
 
         // when
         let decks = sut.buildDecks()
 
         // them
         // all decks combined
-        let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let allDeckCombined = (decks.actionDeck.remainingCards + decks.automaTrophies + decks.challengesDeck.remainingCards)
 
         XCTAssertEqual(allDeckCombined.count, 28)
-        XCTAssertTrue(decks.actionDeck.isUnique)
+        XCTAssertTrue(decks.actionDeck.remainingCards.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
-        XCTAssertTrue(decks.challengesDeck.isUnique)
+        XCTAssertTrue(decks.challengesDeck.remainingCards.isUnique)
         XCTAssertTrue(allDeckCombined.isUnique)
         XCTAssertEqual(getBaseGeneralCards(from: allDeckCombined).count, 18)
         XCTAssertEqual(getBaseAdvancedCards(from: allDeckCombined).count, 9)
         XCTAssertEqual(getLegendaryHuntCards(from: allDeckCombined).count, 1)
 
         // action deck
-        XCTAssertEqual(decks.actionDeck.count, 14)
+        XCTAssertEqual(decks.actionDeck.remainingCards.count, 14)
 
-        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 10)
-        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck.remainingCards).count, 10)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck.remainingCards).count, 3)
 
-        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 4)
-        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck.remainingCards).count, 4)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 4)
-        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck.remainingCards).count, 4)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
-        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck.remainingCards).count, 2)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
         // legendary hunt
-        XCTAssertEqual(getLevel3Cards(from: decks.actionDeck).count, 4)
-        XCTAssertEqual(getLegendaryHuntCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel3Cards(from: decks.actionDeck.remainingCards).count, 4)
+        XCTAssertEqual(getLegendaryHuntCards(from: decks.actionDeck.remainingCards).count, 1)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
         XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
-        XCTAssertEqual(decks.challengesDeck.count, 11)
+        XCTAssertEqual(decks.challengesDeck.remainingCards.count, 11)
     }
 
     func test_deckBuilder_medium_skellige_legendary_hunt() throws {
         // given
         let factory = CardsFactory()
-        let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige, .legendaryHunt], difficultyLevel: .medium)
+        let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige, .legendaryHunt], difficultyLevel: .medium, witcher: .ciri)
 
         // when
         let decks = sut.buildDecks()
 
         // them
         // all decks combined
-        let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let allDeckCombined = (decks.actionDeck.remainingCards + decks.automaTrophies + decks.challengesDeck.remainingCards)
 
         XCTAssertEqual(allDeckCombined.count, 29)
-        XCTAssertTrue(decks.actionDeck.isUnique)
+        XCTAssertTrue(decks.actionDeck.remainingCards.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
-        XCTAssertTrue(decks.challengesDeck.isUnique)
+        XCTAssertTrue(decks.challengesDeck.remainingCards.isUnique)
         XCTAssertTrue(allDeckCombined.isUnique)
         XCTAssertEqual(getBaseGeneralCards(from: allDeckCombined).count, 18)
         XCTAssertEqual(getBaseAdvancedCards(from: allDeckCombined).count, 9)
         XCTAssertEqual(getLegendaryHuntCards(from: allDeckCombined).count, 2)
 
         // action deck
-        XCTAssertEqual(decks.actionDeck.count, 14)
+        XCTAssertEqual(decks.actionDeck.remainingCards.count, 14)
 
-        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 9)
-        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck.remainingCards).count, 9)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck.remainingCards).count, 3)
 
-        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 3)
-        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck.remainingCards).count, 3)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 3)
-        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck.remainingCards).count, 3)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 3)
-        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck.remainingCards).count, 3)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
         // legendary hunt
-        XCTAssertEqual(getLevel3Cards(from: decks.actionDeck).count, 6)
-        XCTAssertEqual(getLegendaryHuntCards(from: decks.actionDeck).count, 2)
+        XCTAssertEqual(getLevel3Cards(from: decks.actionDeck.remainingCards).count, 6)
+        XCTAssertEqual(getLegendaryHuntCards(from: decks.actionDeck.remainingCards).count, 2)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
         XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
-        XCTAssertEqual(decks.challengesDeck.count, 12)
+        XCTAssertEqual(decks.challengesDeck.remainingCards.count, 12)
     }
 
     func test_deckBuilder_hard_skellige_legendary_hunt() throws {
         // given
         let factory = CardsFactory()
-        let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige, .legendaryHunt], difficultyLevel: .hard)
+        let sut = DecksBuilder(cardsFactory: factory, addons: [.skellige, .legendaryHunt], difficultyLevel: .hard, witcher: .ciri)
 
         // when
         let decks = sut.buildDecks()
 
         // them
         // all decks combined
-        let allDeckCombined = (decks.actionDeck + decks.automaTrophies + decks.challengesDeck)
+        let allDeckCombined = (decks.actionDeck.remainingCards + decks.automaTrophies + decks.challengesDeck.remainingCards)
 
         XCTAssertEqual(allDeckCombined.count, 27)
-        XCTAssertTrue(decks.actionDeck.isUnique)
+        XCTAssertTrue(decks.actionDeck.remainingCards.isUnique)
         XCTAssertTrue(decks.automaTrophies.isUnique)
-        XCTAssertTrue(decks.challengesDeck.isUnique)
+        XCTAssertTrue(decks.challengesDeck.remainingCards.isUnique)
         XCTAssertTrue(allDeckCombined.isUnique)
         XCTAssertEqual(getLegendaryHuntCards(from: allDeckCombined).count, 3)
 
         // action deck
-        XCTAssertEqual(decks.actionDeck.count, 12)
+        XCTAssertEqual(decks.actionDeck.remainingCards.count, 12)
 
-        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck).count, 6)
-        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getBaseGeneralCards(from: decks.actionDeck.remainingCards).count, 6)
+        XCTAssertEqual(getBaseAdvancedCards(from: decks.actionDeck.remainingCards).count, 3)
 
-        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck).count, 2)
-        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel1GeneralCards(from: decks.actionDeck.remainingCards).count, 2)
+        XCTAssertEqual(getLevel1AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck).count, 2)
-        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel2GeneralCards(from: decks.actionDeck.remainingCards).count, 2)
+        XCTAssertEqual(getLevel2AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
-        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck).count, 2)
-        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck).count, 1)
+        XCTAssertEqual(getLevel3GeneralCards(from: decks.actionDeck.remainingCards).count, 2)
+        XCTAssertEqual(getLevel3AdvancedCards(from: decks.actionDeck.remainingCards).count, 1)
 
         // legendary hunt
-        XCTAssertEqual(getLevel3Cards(from: decks.actionDeck).count, 6)
-        XCTAssertEqual(getLegendaryHuntCards(from: decks.actionDeck).count, 3)
+        XCTAssertEqual(getLevel3Cards(from: decks.actionDeck.remainingCards).count, 6)
+        XCTAssertEqual(getLegendaryHuntCards(from: decks.actionDeck.remainingCards).count, 3)
 
         // automa trophies
         XCTAssertEqual(decks.automaTrophies.count, 3)
         XCTAssertEqual(getLevel3Cards(from: decks.automaTrophies).count, 3)
 
         // challenges deck
-        XCTAssertEqual(decks.challengesDeck.count, 12)
+        XCTAssertEqual(decks.challengesDeck.remainingCards.count, 12)
     }
 
     private func getBaseGeneralCards(from array: [ActionCardModel]) -> [ActionCardModel] {
