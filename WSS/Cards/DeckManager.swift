@@ -31,32 +31,32 @@ final class DeckManager: ObservableObject {
 
     func draw(card: ActionCardModel) {
         print("About to draw card")
-        guard let cardIndex = deck.remaining.firstIndex(of: card) else {
+        guard let cardIndex = deck.remainingCards.firstIndex(of: card) else {
             print("Could not draw. Index not found.")
             return
         }
         print("Drawing card: \(card.number)")
-        let card = deck.remaining[cardIndex]
+        let card = deck.remainingCards[cardIndex]
         card.isDrawn = true
         actions.append(.draw(card: card))
     }
 
     func discard(card: ActionCardModel) {
         print("About to discard a card")
-        deck.remaining.removeAll { element in
+        deck.remainingCards.removeAll { element in
             let match = element == card
             if match {
                 print("Removing card \(card.number)")
             }
             return match
         }
-        deck.discarded.append(card)
+        deck.discardedCards.append(card)
         actions.append(.discard(card: card))
     }
 
     func drawTopCard() throws {
         print("Drawing card.")
-        guard let topCard = deck.remaining.last else {
+        guard let topCard = deck.remainingCards.last else {
             print("Deck empty.")
             throw DeckError.deckEmpty
         }
@@ -66,12 +66,12 @@ final class DeckManager: ObservableObject {
 
     func discardTopCard() throws {
         print("Discarding card.")
-        guard let topCard = deck.remaining.last else {
+        guard let topCard = deck.remainingCards.last else {
             print("Deck empty.")
             throw DeckError.deckEmpty
         }
-        deck.remaining.removeLast()
-        deck.discarded.append(topCard)
+        deck.remainingCards.removeLast()
+        deck.discardedCards.append(topCard)
         actions.append(.discard(card: topCard))
     }
 
@@ -82,8 +82,8 @@ final class DeckManager: ObservableObject {
         }
         switch action {
         case .discard(let card):
-            deck.discarded.removeLast()
-            deck.remaining.append(card)
+            deck.discardedCards.removeLast()
+            deck.remainingCards.append(card)
         case .draw(let card):
             card.isDrawn = false
         }

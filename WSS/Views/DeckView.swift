@@ -39,7 +39,7 @@ struct DeckView: View {
         ZStack {
             VStack {
                 ZStack {
-                    ForEach(Array(viewModel.deckManager.deck.remaining.enumerated()), id: \.element) {
+                    ForEach(Array(viewModel.deckManager.deck.remainingCards.enumerated()), id: \.element) {
                         index,
                         card in
                         CardView(card: card,
@@ -58,10 +58,10 @@ struct DeckView: View {
                             }
                         })
                             .offset(x: CGFloat(index) * 1.00025, y: CGFloat(index) * -1.00025) // Adjust offset for a 3D effect
-                            .shadow(color: Color.black.opacity(0.3), radius: CGFloat(viewModel.deckManager.deck.remaining.count - index)) // Dynamic shadow)
+                            .shadow(color: Color.black.opacity(0.3), radius: CGFloat(viewModel.deckManager.deck.remainingCards.count - index)) // Dynamic shadow)
                     }
                 }
-                if !viewModel.deckManager.deck.remaining.isEmpty {
+                if !viewModel.deckManager.deck.remainingCards.isEmpty {
                     HStack {
                         Spacer()
                         Button(action: {
@@ -79,7 +79,7 @@ struct DeckView: View {
                 }
             }
 
-            if viewModel.deckManager.deck.remaining.isEmpty {
+            if viewModel.deckManager.deck.remainingCards.isEmpty {
                 Button(action: {
                     withAnimation {
                         print("Empty button pressed - implement reloading")
