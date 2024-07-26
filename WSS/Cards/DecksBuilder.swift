@@ -96,9 +96,9 @@ final class DecksBuilder {
         // TODO: - fix this, select according to the table how many cards there should be. The actual numbers might differ so don't unit test it so hard
         let deckSize = difficulty.challengesDeckSize
         let reducedArray = remainingCards.reduced(tolimit: deckSize)
-        for card in reducedArray {
-            card.update(backName: "back_\(witcher.rawValue)")
-        }
+            .map { model in
+                model.updating(backName: "back_\(witcher.rawValue)")
+            }
         return reducedArray
     }
 

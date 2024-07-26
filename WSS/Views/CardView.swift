@@ -18,7 +18,7 @@ final class CardViewModel: ObservableObject {
     }
 
     func draw() {
-        card.isDrawn.toggle()
+        card = card.updating(isDrawn: true)
     }
 
     func discard() {
@@ -35,7 +35,7 @@ struct CardView: View {
     @State private var isImageVisible = true
     @State private var isAnimating = false
 
-    @ObservedObject var card: ActionCardModel
+    var card: ActionCardModel
     
     var discardBlock: (ActionCardModel) -> ()
     var drawBlock: (ActionCardModel) -> ()

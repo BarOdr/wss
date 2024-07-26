@@ -88,8 +88,9 @@ final class Deck: ObservableObject, Codable {
             return
         }
         print("Drawing card: \(card.number)")
-        let card = remainingCards[cardIndex]
-        card.isDrawn = true
+        let card = remainingCards[cardIndex].updating(isDrawn: true)
+        remainingCards.remove(at: cardIndex)
+        remainingCards.insert(card, at: cardIndex)
         actions.append(.draw(card: card))
         objectWillChange.send()
     }
@@ -108,29 +109,6 @@ final class Deck: ObservableObject, Codable {
         objectWillChange.send()
     }
 
-    func drawTopCard() throws {
-        print("Drawing card.")
-        guard let topCard = remainingCards.last else {
-            print("Deck empty.")
-            throw DeckError.deckEmpty
-        }
-        topCard.isDrawn = true
-        actions.append(.draw(card: topCard))
-        objectWillChange.send()
-    }
-
-    func discardTopCard() throws {
-        print("Discarding card.")
-        guard let topCard = remainingCards.last else {
-            print("Deck empty.")
-            throw DeckError.deckEmpty
-        }
-        remainingCards.removeLast()
-        discardedCards.append(topCard)
-        actions.append(.discard(card: topCard))
-        objectWillChange.send()
-    }
-
     func undo() {
         print("About to undo")
         guard let action = actions.last else {
@@ -139,10 +117,15 @@ final class Deck: ObservableObject, Codable {
         }
         switch action {
         case .discard(let card):
+            print("Undoing discard action")
             discardedCards.removeLast()
             remainingCards.append(card)
         case .draw(let card):
-            card.isDrawn = false
+            print("Undoing draw action")
+            if let index = remainingCards.firstIndex(of: card) {
+                remainingCards.remove(at: index)
+                remainingCards.insert(card.updating(isDrawn: false), at: index)
+            }
         }
         actions.removeLast()
         objectWillChange.send()

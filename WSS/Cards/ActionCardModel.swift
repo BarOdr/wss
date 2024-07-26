@@ -20,24 +20,13 @@ struct WitcherAbilityCardModel: Hashable {
     let backName: String
 }
 
-final class ActionCardModel: ObservableObject, Hashable, Codable, Identifiable {
+struct ActionCardModel: Hashable, Codable, Identifiable {
 
-    @Published var isDrawn: Bool = false {
-        didSet {
-            updateImageName()
-            print("Is drawn: \(isDrawn)")
-        }
-    }
-
-    @Published var imageName: String
-
+    let isDrawn: Bool
+    let imageName: String
     let id = UUID()
     let frontName: String
-    var backName: String {
-        didSet {
-            updateImageName()
-        }
-    }
+    let backName: String
     let cardType: ActionCardType
     let level: Int
     let number: Int
@@ -56,8 +45,7 @@ final class ActionCardModel: ObservableObject, Hashable, Codable, Identifiable {
         self.cardType = cardType
         self.level = level
         self.number = number
-        self.imageName = ""
-        self.updateImageName()
+        self.imageName = isDrawn ? frontName : backName
     }
 
     // Implement Equatable
@@ -91,35 +79,37 @@ final class ActionCardModel: ObservableObject, Hashable, Codable, Identifiable {
         case number
     }
 
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(isDrawn, forKey: .isDrawn)
-        try container.encode(imageName, forKey: .imageName)
-        try container.encode(frontName, forKey: .frontName)
-        try container.encode(backName, forKey: .backName)
-        try container.encode(cardType, forKey: .cardType)
-        try container.encode(level, forKey: .level)
-        try container.encode(number, forKey: .number)
+    func updating(isDrawn: Bool) -> Self {
+        Self.init(
+            isDrawn: isDrawn,
+            frontName: frontName,
+            backName: backName,
+            cardType: cardType,
+            level: level,
+            number: number
+        )
     }
 
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        isDrawn = try container.decode(Bool.self, forKey: .isDrawn)
-        imageName = try container.decode(String.self, forKey: .imageName)
-        frontName = try container.decode(String.self, forKey: .frontName)
-        backName = try container.decode(String.self, forKey: .backName)
-        cardType = try container.decode(ActionCardType.self, forKey: .cardType)
-        level = try container.decode(Int.self, forKey: .level)
-        number = try container.decode(Int.self, forKey: .number)
-        self.updateImageName()
-    }
-    
-    func update(backName: String) {
-        self.backName = backName
+    func updating(backName: String) -> Self {
+        Self.init(
+            isDrawn: isDrawn,
+            frontName: frontName,
+            backName: backName,
+            cardType: cardType,
+            level: level,
+            number: number
+        )
     }
 
-    private func updateImageName() {
-        imageName = isDrawn ? frontName : backName
+    func updated() -> Self {
+        Self.init(
+            isDrawn: isDrawn,
+            frontName: frontName,
+            backName: backName,
+            cardType: cardType,
+            level: level,
+            number: number
+        )
     }
 }
 
