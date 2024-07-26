@@ -83,8 +83,7 @@ struct GameTabsView: View {
 
     private var dissolvableDecks: some View {
         Group {
-            let deckViewModel = DeckViewModel(deckManager: DeckManager(deck: viewModel.decks.actionDeck))
-            DeckView(viewModel: deckViewModel)
+            DeckView(deck: viewModel.decks.actionDeck)
 
 //            switch selectedTab {
 //            case .actions:

@@ -21,64 +21,6 @@ enum AddonType {
     }
 }
 
-final class Deck: ObservableObject, Codable {
-    @Published var remainingCards: [ActionCardModel] {
-        didSet {
-            remainingCount = remainingCards.count
-        }
-    }
-    @Published var remainingCount: Int {
-        didSet {
-            print("Remaining count set to: \(remainingCount)")
-        }
-    }
-    @Published var discardedCards: [ActionCardModel] {
-        didSet {
-            discardedCount = discardedCards.count
-        }
-    }
-    @Published var discardedCount: Int {
-        didSet {
-            print("Discarded count set to: \(discardedCount)")
-        }
-    }
-    let initialCount: Int
-
-    init(remaining: [ActionCardModel], discarded: [ActionCardModel]) {
-        self.initialCount = remaining.count
-        self.remainingCards = remaining
-        self.remainingCount = remaining.count
-        self.discardedCards = discarded
-        self.discardedCount = discarded.count
-    }
-
-    enum CodingKeys: String, CodingKey {
-         case initialCount
-         case deck
-         case remainingCount
-         case discarded
-         case discardedCount
-     }
-
-     func encode(to encoder: Encoder) throws {
-         var container = encoder.container(keyedBy: CodingKeys.self)
-         try container.encode(initialCount, forKey: .initialCount)
-         try container.encode(remainingCards, forKey: .deck)
-         try container.encode(remainingCount, forKey: .remainingCount)
-         try container.encode(discardedCards, forKey: .discarded)
-         try container.encode(discardedCount, forKey: .discardedCount)
-     }
-
-     required init(from decoder: Decoder) throws {
-         let container = try decoder.container(keyedBy: CodingKeys.self)
-         initialCount = try container.decode(Int.self, forKey: .initialCount)
-         remainingCards = try container.decode([ActionCardModel].self, forKey: .deck)
-         remainingCount = try container.decode(Int.self, forKey: .remainingCount)
-         discardedCards = try container.decode([ActionCardModel].self, forKey: .discarded)
-         discardedCount = try container.decode(Int.self, forKey: .discardedCount)
-     }
-}
-
 final class BaseDecks: ObservableObject, Codable {
     @Published var actionDeck: Deck
     @Published var automaTrophies: [ActionCardModel]

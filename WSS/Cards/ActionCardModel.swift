@@ -20,7 +20,7 @@ struct WitcherAbilityCardModel: Hashable {
     let backName: String
 }
 
-final class ActionCardModel: ObservableObject, Hashable, Codable {
+final class ActionCardModel: ObservableObject, Hashable, Codable, Identifiable {
 
     @Published var isDrawn: Bool = false {
         didSet {
@@ -31,6 +31,7 @@ final class ActionCardModel: ObservableObject, Hashable, Codable {
 
     @Published var imageName: String
 
+    let id = UUID()
     let frontName: String
     var backName: String {
         didSet {

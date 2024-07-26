@@ -7,71 +7,30 @@
 
 import SwiftUI
 
-final class DeckViewModel: ObservableObject {
-
-    @Published var deckManager: DeckManager
-
-    enum DeckError: Error {
-        case deckEmpty
-    }
-
-    init(deckManager: DeckManager) {
-        self.deckManager = deckManager
-    }
-
-    func draw(card: ActionCardModel) {
-        deckManager.draw(card: card)
-    }
-
-    func discard(card: ActionCardModel) {
-        deckManager.discard(card: card)
-    }
-}
-
 struct DeckView: View {
 
     @EnvironmentObject var appDependencies: AppDependencies
 
-    @StateObject var viewModel: DeckViewModel
+    @StateObject var deck: Deck
 
     var body: some View {
 
         ZStack {
             VStack {
                 ZStack {
-                    ForEach(Array(viewModel.deckManager.deck.remainingCards.enumerated()), id: \.element) {
-                        index,
-                        card in
-                        CardView(card: card,
-                                 discardBlock: {
-                            card in withAnimation {
-                                viewModel.discard(
-                                    card: card
-                                )
-                            }
-                        },
-                                 drawBlock: {
-                            card in withAnimation {
-                                viewModel.draw(
-                                    card: card
-                                )
-                            }
-                        })
-                            .offset(x: CGFloat(index) * 1.00025, y: CGFloat(index) * -1.00025) // Adjust offset for a 3D effect
-                            .shadow(color: Color.black.opacity(0.3), radius: CGFloat(viewModel.deckManager.deck.remainingCards.count - index)) // Dynamic shadow)
-                    }
+                    cardsStack
                 }
-                if !viewModel.deckManager.deck.remainingCards.isEmpty {
+                if !deck.remainingCards.isEmpty {
                     HStack {
                         Spacer()
                         Button(action: {
-                            viewModel.deckManager.undo()
+                            deck.undo()
                         }, label: {
                             Text("Undo")
                                 .font(.witcherTextRegular(size: 20))
                                 .foregroundStyle(.white)
                         })
-                        Text("\(String(viewModel.deckManager.deck.remainingCount))/\(String(viewModel.deckManager.deck.initialCount))")
+                        Text("\(String(deck.remainingCount))/\(String(deck.initialCount))")
                             .font(.witcherTextRegular(size: 20))
                             .foregroundStyle(.white)
                             .padding(EdgeInsets(top: 10, leading: 40, bottom: 10, trailing: 40))
@@ -79,7 +38,7 @@ struct DeckView: View {
                 }
             }
 
-            if viewModel.deckManager.deck.remainingCards.isEmpty {
+            if deck.remainingCards.isEmpty {
                 Button(action: {
                     withAnimation {
                         print("Empty button pressed - implement reloading")
@@ -92,5 +51,29 @@ struct DeckView: View {
             }
         }
 
+    }
+
+    var cardsStack: some View {
+        ForEach(Array(deck.remainingCards.enumerated()), id: \.element) {
+            index,
+            card in
+            CardView(card: card,
+                     discardBlock: {
+                card in withAnimation {
+                    deck.discard(
+                        card: card
+                    )
+                }
+            },
+                     drawBlock: {
+                card in withAnimation {
+                    deck.draw(
+                        card: card
+                    )
+                }
+            })
+                .offset(x: CGFloat(index) * 1.00025, y: CGFloat(index) * -1.00025) // Adjust offset for a 3D effect
+                .shadow(color: Color.black.opacity(0.3), radius: CGFloat(deck.remainingCards.count - index)) // Dynamic shadow)
+        }
     }
 }
