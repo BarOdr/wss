@@ -56,11 +56,12 @@ struct GameTabsView: View {
                     }
                 }.padding()
 
-//                DeckView(viewModel: DeckViewModel(deck: viewModel.decks.challengesDeck, discarded: []))
-
-//                VStack {
-                    dissolvableDecks
-//                }
+                switch selectedTab {
+                case .actions:
+                    DeckView(deck: viewModel.decks.actionDeck)
+                case .challenges:
+                    DeckView(deck: viewModel.decks.challengesDeck)
+                }
             }
         }
     }
