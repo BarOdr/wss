@@ -55,14 +55,30 @@ struct CardView: View {
                 )
                 .shadow(color: Color.black.opacity(isLifted ? 0.5 : 0.0), radius: isLifted ? 100 : 0, x: 0, y: isLifted ? 100 : 0)
         }
-        .onTapGesture(count: 2) {
-            if !isAnimating {
-                performDrawAnimation()
-            }
-        }
+
         .gesture(
-            cardOffScreenDragGesture()
+            TapGesture(count: 2)
+                .onEnded {
+                    discardBlock(card)
+                }
+                .exclusively(
+                    before: TapGesture(count: 1)
+                        .onEnded {
+                            drawBlock(card)
+                        }
+                )
         )
+//        .onTapGesture(count: 2) {
+//            drawBlock(card)
+//
+//            // disable animation for now
+////            if !isAnimating {
+////                performDrawAnimation()
+////            }
+//        }
+//        .gesture(
+//            cardOffScreenDragGesture()
+//        )
         .animation(.spring(), value: offset)
         .offset(offset)
     }
@@ -78,11 +94,15 @@ struct CardView: View {
                 scale = 1.0
                 if abs(offset.width) > 100 {
                     offset.width = offset.width > 0 ? 1000 : -1000
-                    withAnimation {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            discardBlock(card)
-                        }
-                    }
+
+                    discardBlock(card)
+
+                    // disable animations for now
+//                    withAnimation {
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+//                            discardBlock(card)
+//                        }
+//                    }
                 } else {
                     offset = .zero
                 }

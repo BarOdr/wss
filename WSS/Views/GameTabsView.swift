@@ -116,19 +116,3 @@ struct GameTabsView: View {
 //        .clipped() // Ensure views do not bleed outside their bounds
 //    }
 }
-
-struct FirstTabView: View {
-    var body: some View {
-        Text("First Tab Content")
-            .font(.largeTitle)
-            .padding()
-    }
-}
-
-struct SecondTabView: View {
-    var body: some View {
-        Text("Second Tab Content")
-            .font(.largeTitle)
-            .padding()
-    }
-}

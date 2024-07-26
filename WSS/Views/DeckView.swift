@@ -59,18 +59,29 @@ struct DeckView: View {
             card in
             CardView(card: card,
                      discardBlock: {
-                card in withAnimation {
-                    deck.discard(
-                        card: card
-                    )
-                }
+                card in
+                deck.discard(
+                    card: card
+                )
+                // disable animation for now
+//                withAnimation {
+//                    deck.discard(
+//                        card: card
+//                    )
+//                }
             },
                      drawBlock: {
-                card in withAnimation {
-                    deck.draw(
-                        card: card
-                    )
-                }
+                card in
+                deck.draw(
+                    card: card
+                )
+                
+                // disable animation for now
+//                withAnimation {
+//                    deck.draw(
+//                        card: card
+//                    )
+//                }
             })
                 .offset(x: CGFloat(index) * 1.00025, y: CGFloat(index) * -1.00025) // Adjust offset for a 3D effect
                 .shadow(color: Color.black.opacity(0.3), radius: CGFloat(deck.remainingCards.count - index)) // Dynamic shadow)
