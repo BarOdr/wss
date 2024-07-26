@@ -29,17 +29,12 @@ final class ActionCardModel: ObservableObject, Hashable, Codable {
         }
     }
 
-    @Published var imageName: String {
-        didSet {
-            print("imageName set: \(imageName)")
-        }
-    }
+    @Published var imageName: String
 
     let frontName: String
     var backName: String {
         didSet {
             updateImageName()
-            print("backName set: \(backName)")
         }
     }
     let cardType: ActionCardType

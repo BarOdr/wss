@@ -22,23 +22,31 @@ enum AddonType {
 }
 
 final class Deck: ObservableObject, Codable {
-    @Published var deck: [ActionCardModel] {
+    @Published var remaining: [ActionCardModel] {
         didSet {
-            remainingCount = deck.count
+            remainingCount = remaining.count
         }
     }
-    @Published var remainingCount: Int
+    @Published var remainingCount: Int {
+        didSet {
+            print("Remaining count set to: \(remainingCount)")
+        }
+    }
     @Published var discarded: [ActionCardModel] {
         didSet {
             discardedCount = discarded.count
         }
     }
-    @Published var discardedCount: Int
+    @Published var discardedCount: Int {
+        didSet {
+            print("Discarded count set to: \(discardedCount)")
+        }
+    }
     let initialCount: Int
 
     init(deck: [ActionCardModel], discarded: [ActionCardModel]) {
         self.initialCount = deck.count
-        self.deck = deck
+        self.remaining = deck
         self.remainingCount = deck.count
         self.discarded = discarded
         self.discardedCount = discarded.count
@@ -55,7 +63,7 @@ final class Deck: ObservableObject, Codable {
      func encode(to encoder: Encoder) throws {
          var container = encoder.container(keyedBy: CodingKeys.self)
          try container.encode(initialCount, forKey: .initialCount)
-         try container.encode(deck, forKey: .deck)
+         try container.encode(remaining, forKey: .deck)
          try container.encode(remainingCount, forKey: .remainingCount)
          try container.encode(discarded, forKey: .discarded)
          try container.encode(discardedCount, forKey: .discardedCount)
@@ -64,7 +72,7 @@ final class Deck: ObservableObject, Codable {
      required init(from decoder: Decoder) throws {
          let container = try decoder.container(keyedBy: CodingKeys.self)
          initialCount = try container.decode(Int.self, forKey: .initialCount)
-         deck = try container.decode([ActionCardModel].self, forKey: .deck)
+         remaining = try container.decode([ActionCardModel].self, forKey: .deck)
          remainingCount = try container.decode(Int.self, forKey: .remainingCount)
          discarded = try container.decode([ActionCardModel].self, forKey: .discarded)
          discardedCount = try container.decode(Int.self, forKey: .discardedCount)

@@ -14,6 +14,11 @@ enum ReversibleAction {
 
 final class DeckManager: ObservableObject {
 
+    @Published var deck: Deck {
+        didSet {
+            print("Deck did set")
+        }
+    }
     var actions: [ReversibleAction] = []
 
     enum DeckError: Error {
@@ -24,52 +29,53 @@ final class DeckManager: ObservableObject {
         self.deck = deck
     }
 
-    @Published var deck: Deck {
-        didSet {
-            print("Deck did set called")
-            print($deck.count)
-        }
-    }
-
     func draw(card: ActionCardModel) {
-        guard let cardIndex = deck.deck.firstIndex(of: card) else {
+        print("About to draw card")
+        guard let cardIndex = deck.remaining.firstIndex(of: card) else {
             print("Could not draw. Index not found.")
             return
         }
         print("Drawing card: \(card.number)")
-        let card = deck.deck[cardIndex]
+        let card = deck.remaining[cardIndex]
         card.isDrawn = true
-        actions.append(ReversibleAction.draw(card: card))
+        actions.append(.draw(card: card))
     }
 
     func discard(card: ActionCardModel) {
-        deck.deck.removeAll { element in
-            element == card
+        print("About to discard a card")
+        deck.remaining.removeAll { element in
+            let match = element == card
+            if match {
+                print("Removing card \(card.number)")
+            }
+            return match
         }
+        deck.discarded.append(card)
+        actions.append(.discard(card: card))
     }
 
     func drawTopCard() throws {
         print("Drawing card.")
-        guard let topCard = deck.deck.last else {
+        guard let topCard = deck.remaining.last else {
             print("Deck empty.")
             throw DeckError.deckEmpty
         }
         topCard.isDrawn = true
-        actions.append(ReversibleAction.draw(card: topCard))
+        actions.append(.draw(card: topCard))
     }
 
     func discardTopCard() throws {
         print("Discarding card.")
-        guard let topCard = deck.deck.last else {
+        guard let topCard = deck.remaining.last else {
             print("Deck empty.")
             throw DeckError.deckEmpty
         }
-        deck.deck.removeLast()
+        deck.remaining.removeLast()
         deck.discarded.append(topCard)
-        actions.append(ReversibleAction.discard(card: topCard))
+        actions.append(.discard(card: topCard))
     }
 
-    func revertLastAction() {
+    func undo() {
         guard let action = actions.last else {
             print("Nothing to revert")
             return
@@ -77,7 +83,7 @@ final class DeckManager: ObservableObject {
         switch action {
         case .discard(let card):
             deck.discarded.removeLast()
-            deck.deck.append(card)
+            deck.remaining.append(card)
         case .draw(let card):
             card.isDrawn = false
         }

@@ -38,6 +38,7 @@ struct CardView: View {
     @ObservedObject var card: ActionCardModel
     
     var discardBlock: (ActionCardModel) -> ()
+    var drawBlock: (ActionCardModel) -> ()
 
     var body: some View {
         ZStack {
@@ -109,7 +110,7 @@ struct CardView: View {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
             isImageVisible = false
-            card.isDrawn = true
+            drawBlock(card)
             isImageVisible = true
 
             withAnimation(.easeInOut(duration: 0.25)) {
