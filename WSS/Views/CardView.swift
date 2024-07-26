@@ -46,7 +46,7 @@ struct CardView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .aspectRatio(contentMode: .fit)
                 .padding(EdgeInsets(top: 10, leading: 40, bottom: 10, trailing: 40))
-                .scaleEffect(x: -1, y: 1)
+//                .scaleEffect(x: -1, y: 1)
                 .scaleEffect(scale)
                 .rotation3DEffect(
                     .degrees(rotationAngle),

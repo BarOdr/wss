@@ -21,18 +21,89 @@ enum AddonType {
     }
 }
 
-final class BaseDecks {
-    let actionDeck: [ActionCardModel]
-    let automaTrophies: [ActionCardModel]
-    let challengesDeck: [ActionCardModel]
+final class Deck: ObservableObject, Codable {
+    @Published var deck: [ActionCardModel] {
+        didSet {
+            remainingCount = deck.count
+        }
+    }
+    @Published var remainingCount: Int
+    @Published var discarded: [ActionCardModel] {
+        didSet {
+            discardedCount = discarded.count
+        }
+    }
+    @Published var discardedCount: Int
+    let initialCount: Int
+
+    init(deck: [ActionCardModel], discarded: [ActionCardModel]) {
+        self.initialCount = deck.count
+        self.deck = deck
+        self.remainingCount = deck.count
+        self.discarded = discarded
+        self.discardedCount = discarded.count
+    }
+
+    enum CodingKeys: String, CodingKey {
+         case initialCount
+         case deck
+         case remainingCount
+         case discarded
+         case discardedCount
+     }
+
+     func encode(to encoder: Encoder) throws {
+         var container = encoder.container(keyedBy: CodingKeys.self)
+         try container.encode(initialCount, forKey: .initialCount)
+         try container.encode(deck, forKey: .deck)
+         try container.encode(remainingCount, forKey: .remainingCount)
+         try container.encode(discarded, forKey: .discarded)
+         try container.encode(discardedCount, forKey: .discardedCount)
+     }
+
+     required init(from decoder: Decoder) throws {
+         let container = try decoder.container(keyedBy: CodingKeys.self)
+         initialCount = try container.decode(Int.self, forKey: .initialCount)
+         deck = try container.decode([ActionCardModel].self, forKey: .deck)
+         remainingCount = try container.decode(Int.self, forKey: .remainingCount)
+         discarded = try container.decode([ActionCardModel].self, forKey: .discarded)
+         discardedCount = try container.decode(Int.self, forKey: .discardedCount)
+     }
+}
+
+final class BaseDecks: ObservableObject, Codable {
+    @Published var actionDeck: Deck
+    @Published var automaTrophies: [ActionCardModel]
+    @Published var challengesDeck: Deck
+
     init(
-        actionDeck: [ActionCardModel],
+        actionDeck: Deck,
         automaTrophies: [ActionCardModel],
-        challengesDeck: [ActionCardModel]
+        challengesDeck: Deck
     ) {
         self.actionDeck = actionDeck
         self.automaTrophies = automaTrophies
         self.challengesDeck = challengesDeck
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case actionDeck
+        case automaTrophies
+        case challengesDeck
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(actionDeck, forKey: .actionDeck)
+        try container.encode(automaTrophies, forKey: .automaTrophies)
+        try container.encode(challengesDeck, forKey: .challengesDeck)
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        actionDeck = try container.decode(Deck.self, forKey: .actionDeck)
+        automaTrophies = try container.decode([ActionCardModel].self, forKey: .automaTrophies)
+        challengesDeck = try container.decode(Deck.self, forKey: .challengesDeck)
     }
 }
 
@@ -65,9 +136,9 @@ final class DecksBuilder {
             remainingCards: automaTrophiesTuple.remainingCards
         ).shuffled()
         return BaseDecks(
-            actionDeck: actionDeckTuple.actionDeck,
+            actionDeck: Deck(deck: actionDeckTuple.actionDeck, discarded: []),
             automaTrophies: automaTrophiesTuple.pickedCards,
-            challengesDeck: challengesDeck
+            challengesDeck: Deck(deck: challengesDeck, discarded: [])
         )
     }
 

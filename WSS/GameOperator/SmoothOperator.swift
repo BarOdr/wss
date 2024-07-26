@@ -7,20 +7,22 @@
 
 import Foundation
 
-final class GameConfiguration {
-    
+struct GameConfiguration {
+    let witcher: Witcher
+    let addons: [AddonType]
+    let difficulty: Difficulty
 }
 
-final class SmoothOperator {
+final class SmoothOperator: ObservableObject {
 
-    private var decks: BaseDecks
+    @Published var decks: BaseDecks
 
-    init(addons: [AddonType], difficulty: Difficulty) {
+    init(configuration: GameConfiguration) {
         self.decks = DecksBuilder(
             cardsFactory: CardsFactory(),
-            addons: addons,
-            difficultyLevel: difficulty,
-            witcher: .ciri
+            addons: configuration.addons,
+            difficultyLevel: configuration.difficulty,
+            witcher: configuration.witcher
         ).buildDecks()
     }
 }

@@ -34,5 +34,14 @@ struct WSSApp: App {
 }
 
 final class AppDependencies: ObservableObject {
-    let gameOperator: SmoothOperator = SmoothOperator(addons: [], difficulty: .easy)
+    let gameOperator: SmoothOperator = SmoothOperator(
+        configuration: GameConfiguration(
+            witcher: .ciri,
+            addons: [
+                .legendaryHunt,
+                .skellige
+            ],
+            difficulty: .medium
+        )
+    )
 }
