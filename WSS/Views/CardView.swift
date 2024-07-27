@@ -7,25 +7,6 @@
 
 import SwiftUI
 
-final class CardViewModel: ObservableObject {
-    @Published var card: ActionCardModel
-
-    var discardBlock: (ActionCardModel) -> ()
-
-    init(card: ActionCardModel, discardBlock: @escaping (ActionCardModel) -> ()) {
-        self.card = card
-        self.discardBlock = discardBlock
-    }
-
-    func draw() {
-        card = card.updating(isDrawn: true)
-    }
-
-    func discard() {
-        discardBlock(card)
-    }
-}
-
 struct CardView: View {
 
     @State private var offset: CGSize = .zero
@@ -47,7 +28,6 @@ struct CardView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .aspectRatio(contentMode: .fit)
                 .padding(EdgeInsets(top: 10, leading: 40, bottom: 10, trailing: 40))
-//                .scaleEffect(x: -1, y: 1)
                 .scaleEffect(scale)
                 .rotation3DEffect(
                     .degrees(rotationAngle),
@@ -55,22 +35,6 @@ struct CardView: View {
                 )
                 .shadow(color: Color.black.opacity(isLifted ? 0.5 : 0.0), radius: isLifted ? 100 : 0, x: 0, y: isLifted ? 100 : 0)
         }
-
-        // simple gestures
-//        .gesture(
-//            TapGesture(count: 2)
-//                .onEnded {
-//                    discardBlock(card)
-//                }
-//                .exclusively(
-//                    before: TapGesture(count: 1)
-//                        .onEnded {
-//                            drawBlock(card)
-//                        }
-//                )
-//        )
-
-
         .onTapGesture(count: 2) {
             if !isAnimating {
                 performDrawAnimation()
@@ -110,9 +74,11 @@ struct CardView: View {
         guard !isAnimating else { return }
         isAnimating = true
 
+
         guard card.isDrawn == false else {
             return
         }
+
         withAnimation(.easeInOut(duration: 0.2)) {
             isLifted = true
             scale = 1.1
@@ -140,7 +106,6 @@ struct CardView: View {
                 scale = 1.0
             }
         }
-
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             isAnimating = false
         }

@@ -20,7 +20,13 @@ struct WitcherAbilityCardModel: Hashable {
     let backName: String
 }
 
-struct ActionCardModel: Hashable, Codable {
+struct ActionCardModel: Hashable, Codable, Identifiable {
+
+    var id: Int {
+        var hasher = Hasher()
+        hash(into: &hasher)
+        return hasher.finalize()
+    }
 
     let isDrawn: Bool
     let imageName: String
@@ -59,7 +65,6 @@ struct ActionCardModel: Hashable, Codable {
 
     // Implement Hashable
     func hash(into hasher: inout Hasher) {
-        hasher.combine(isDrawn)
         hasher.combine(frontName)
         hasher.combine(backName)
         hasher.combine(cardType)

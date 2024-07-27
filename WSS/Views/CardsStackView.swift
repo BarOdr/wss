@@ -13,7 +13,7 @@ struct CardsStackView: View {
     var drawBlock: (ActionCardModel) -> ()
 
     var body: some View {
-        ForEach(Array(cards.enumerated()), id: \.element) {
+        ForEach(Array(cards.enumerated()), id: \.element.id) {
             index,
             card in
             CardView(card: card,
