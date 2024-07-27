@@ -42,12 +42,14 @@ final class Deck: ObservableObject, Codable {
             print("Discarded count set to: \(discardedCount)")
         }
     }
+    @Published var actionsCount: Int = 0
     @Published var initialCount: Int
 
     private let backup: [ActionCardModel]
     private let deckType: DeckType
-    var actions: [Data] = [] {
+    private var actions: [Data] = [] {
         didSet {
+            actionsCount = actions.count
             print("Actions count: \(actions.count)")
         }
     }
@@ -136,6 +138,24 @@ final class Deck: ObservableObject, Codable {
         initialCount = remainingCards.count
     }
 
+    func resetWithOriginalOrder() {
+        remainingCards = backup
+        discardedCards = []
+    }
+
+    func resetAndShuffle() {
+        remainingCards = backup.shuffled()
+        discardedCards = []
+    }
+
+    func addAutomaTrophy() {
+
+    }
+
+    func removeAutomaThropies() {
+
+    }
+
     // MARK: - State management
 
     private func appendEncodedSelfToActions() throws {
@@ -160,24 +180,5 @@ final class Deck: ObservableObject, Codable {
         }
         actions.removeLast()
         try? restoreState(from: previousState)
-    }
-
-
-    func resetWithOriginalOrder() {
-        remainingCards = backup
-        discardedCards = []
-    }
-
-    func resetAndShuffle() {
-        remainingCards = backup.shuffled()
-        discardedCards = []
-    }
-
-    func addAutomaTrophy() {
-        
-    }
-
-    func removeAutomaThropies() {
-        
     }
 }
