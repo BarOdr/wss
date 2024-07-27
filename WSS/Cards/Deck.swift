@@ -117,7 +117,7 @@ final class Deck: ObservableObject, Codable {
         try? appendEncodedSelfToActions()
         print("About to discard a card")
         remainingCards.removeAll { element in
-            let match = element == card
+            let match = (element == card)
             if match {
                 print("Removing card \(card.number)")
             }

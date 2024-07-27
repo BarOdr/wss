@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-struct DeckView: View {
-
+struct ActionDeckView: View {
     @EnvironmentObject var appDependencies: AppDependencies
 
     @StateObject var deck: Deck
@@ -62,37 +61,17 @@ struct DeckView: View {
     }
 
     var remainingCardsView: some View {
-        Text("\(String(deck.remainingCount))/\(String(deck.initialCount))")
-            .font(.witcherTextRegular(size: 20))
-            .foregroundStyle(.white)
-            .padding(EdgeInsets(top: 10, leading: 40, bottom: 10, trailing: 40))
+        RemainingCardsCountView(
+            remainingCount: deck.remainingCount,
+            initialCount: deck.initialCount
+        )
     }
-    
+
     var cardsStack: some View {
-        ForEach(Array(deck.remainingCards.enumerated()), id: \.element) {
-            index,
-            card in
-            CardView(card: card,
-                     discardBlock: {
-                card in
-                // disable animation for now
-                withAnimation {
-                    deck.discard(
-                        card: card
-                    )
-                }
-            },
-                     drawBlock: {
-                card in
-                // disable animation for now
-                withAnimation {
-                    deck.draw(
-                        card: card
-                    )
-                }
-            })
-                .offset(x: CGFloat(index) * 1.00025, y: CGFloat(index) * -1.00025) // Adjust offset for a 3D effect
-                .shadow(color: Color.black.opacity(0.3), radius: CGFloat(deck.remainingCards.count - index)) // Dynamic shadow)
+        CardsStackView(cards: deck.remainingCards) { card in
+            deck.discard(card: card)
+        } drawBlock: { card in
+            deck.draw(card: card)
         }
     }
 }

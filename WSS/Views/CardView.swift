@@ -71,10 +71,7 @@ struct CardView: View {
 //        )
 
 
-
-
         .onTapGesture(count: 2) {
-            // disable animation for now
             if !isAnimating {
                 performDrawAnimation()
             }
@@ -97,7 +94,6 @@ struct CardView: View {
                 scale = 1.0
                 if abs(offset.width) > 100 {
                     offset.width = offset.width > 0 ? 1000 : -1000
-                    // disable animations for now
                     withAnimation {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                             discardBlock(card)

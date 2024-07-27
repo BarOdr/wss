@@ -82,10 +82,10 @@ struct GameTabsView: View {
     private var slidableDecks: some View {
         // Views with slide transition
         ZStack {
-            DeckView(deck: viewModel.decks.actionDeck)
+            ActionDeckView(deck: viewModel.decks.actionDeck)
                 .offset(x: selectedTab == .actions ? 0 : -UIScreen.main.bounds.width)
                 .zIndex(selectedTab == .actions ? 1 : 0) // Ensure the active view is on top
-            DeckView(deck: viewModel.decks.challengesDeck)
+            ActionDeckView(deck: viewModel.decks.challengesDeck)
                 .offset(x: selectedTab == .challenges ? 0 : UIScreen.main.bounds.width)
                 .zIndex(selectedTab == .challenges ? 1 : 0) // Ensure the active view is on top
         }
