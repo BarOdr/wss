@@ -18,7 +18,22 @@ struct DeckView: View {
         ZStack {
             VStack {
                 ZStack {
-                    cardsStack
+                    if deck.remainingCards.isEmpty {
+                        if deck.remainingCards.isEmpty {
+                            Button(action: {
+                                deck.resetWithLevelThreeCardsShuffled()
+                                withAnimation {
+                                    print("Empty button pressed - implement reloading")
+                                }
+                            }, label: {
+                                Text("Reload")
+                                    .font(.witcherHeader(size: 40))
+                                    .foregroundStyle(.white)
+                            })
+                        }
+                    } else {
+                        cardsStack
+                    }
                 }
                 HStack {
                     Spacer()
@@ -36,18 +51,7 @@ struct DeckView: View {
                 }
             }
 
-//            if deck.remainingCards.isEmpty {
-//                Button(action: {
-//                    deck.resetWithOriginalOrder()
-//                    withAnimation {
-//                        print("Empty button pressed - implement reloading")
-//                    }
-//                }, label: {
-//                    Text("Reload")
-//                        .font(.witcherHeader(size: 40))
-//                        .foregroundStyle(.white)
-//                })
-//            }
+
         }
 
     }
@@ -78,9 +82,5 @@ struct DeckView: View {
                 .offset(x: CGFloat(index) * 1.00025, y: CGFloat(index) * -1.00025) // Adjust offset for a 3D effect
                 .shadow(color: Color.black.opacity(0.3), radius: CGFloat(deck.remainingCards.count - index)) // Dynamic shadow)
         }
-    }
-
-    func aaa() {
-        deck = Deck(cards: [], deckType: .actions)
     }
 }
