@@ -33,16 +33,18 @@ struct ChooseWitcherView: View {
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(cards) { card in
                         if selectedCard == nil || selectedCard?.id != card.id {
-                            WitcherCardView(card: card)
-                                .matchedGeometryEffect(id: card.id, in: namespace)
-                                .shadow(radius: 10) // Add shadow to cards in grid
-                                .onTapGesture {
-                                    withAnimation(.spring()) {
-                                        selectedCard = card
-                                        isCardEnlarged = true
-                                    }
+                            WitcherCardView(card: card, singleTapAction: {
+                                withAnimation(.spring()) {
+                                    selectedCard = card
+                                    isCardEnlarged = true
                                 }
-                                .zIndex(0) // Ensure the card in the grid is below the enlarged card
+                            }, doubleTapAction: {
+                                // Handle double tap action
+                                print("Double tapped on card: \(card.id)")
+                            })
+                            .matchedGeometryEffect(id: card.id, in: namespace)
+                            .shadow(radius: 10)
+                            .zIndex(0)
                         }
                     }
                 }
@@ -50,6 +52,7 @@ struct ChooseWitcherView: View {
             }
 
             if let card = selectedCard, isCardEnlarged {
+                // Background overlay to detect taps outside the card
                 Color.black.opacity(0.5)
                     .edgesIgnoringSafeArea(.all)
                     .onTapGesture {
@@ -60,22 +63,21 @@ struct ChooseWitcherView: View {
                             selectedCard = nil
                         }
                     }
-                    .zIndex(1) // Ensure the overlay is above the grid
+                    .zIndex(1)
 
-                WitcherCardView(card: card)
-                    .matchedGeometryEffect(id: card.id, in: namespace)
-                    .frame(maxWidth: UIScreen.main.bounds.width - 80)
-                    .shadow(radius: 20)
-                    .onTapGesture {
-                        withAnimation(.spring()) {
-                            isCardEnlarged = false
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            selectedCard = nil
-                        }
-                    }
-                    .zIndex(2) // Ensure the enlarged card is above the overlay
+                WitcherCardView(card: card, doubleTapAction: {
+                    // Handle double tap action when card is enlarged
+                    print("Double tapped on enlarged card: \(card.id)")
+                })
+                .matchedGeometryEffect(id: card.id, in: namespace)
+                .frame(maxWidth: UIScreen.main.bounds.width - 80)
+                .shadow(radius: 20)
+                .onTapGesture(count: 2) {
+                    print("Double tapped on enlarged card: \(card.id)")
+                }
+                .zIndex(2)
             }
         }
+        .animation(.spring(), value: isCardEnlarged)
     }
 }
