@@ -29,6 +29,11 @@
 		F3937D602C4C0A470070BF77 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3937D5F2C4C0A470070BF77 /* CardView.swift */; };
 		F39AC93C2C49279200A5E42A /* ActionCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39AC93B2C49279200A5E42A /* ActionCardModel.swift */; };
 		F3A48F4D2C495633009E54AF /* CardFileNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A48F4C2C495633009E54AF /* CardFileNames.swift */; };
+		F3AC0F522C55B1C6001EB18C /* GameConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AC0F512C55B1C6001EB18C /* GameConfigurationView.swift */; };
+		F3AC0F542C55B1FD001EB18C /* WoodenBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AC0F532C55B1FD001EB18C /* WoodenBackgroundView.swift */; };
+		F3AC0F572C55B390001EB18C /* WitcherCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AC0F562C55B390001EB18C /* WitcherCardModel.swift */; };
+		F3AC0F592C55B3D0001EB18C /* WitcherCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AC0F582C55B3D0001EB18C /* WitcherCardView.swift */; };
+		F3AC0F5B2C55B40A001EB18C /* ScrollableGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AC0F5A2C55B40A001EB18C /* ScrollableGridView.swift */; };
 		F3E9F7472C4BE5390060FD6D /* Array+reduced.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E9F7462C4BE5390060FD6D /* Array+reduced.swift */; };
 		F3F73E322C441A24005E77CA /* WSSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F73E312C441A24005E77CA /* WSSApp.swift */; };
 		F3F73E382C441A25005E77CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F73E372C441A25005E77CA /* Assets.xcassets */; };
@@ -70,6 +75,11 @@
 		F3937D5F2C4C0A470070BF77 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F39AC93B2C49279200A5E42A /* ActionCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCardModel.swift; sourceTree = "<group>"; };
 		F3A48F4C2C495633009E54AF /* CardFileNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFileNames.swift; sourceTree = "<group>"; };
+		F3AC0F512C55B1C6001EB18C /* GameConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameConfigurationView.swift; sourceTree = "<group>"; };
+		F3AC0F532C55B1FD001EB18C /* WoodenBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoodenBackgroundView.swift; sourceTree = "<group>"; };
+		F3AC0F562C55B390001EB18C /* WitcherCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitcherCardModel.swift; sourceTree = "<group>"; };
+		F3AC0F582C55B3D0001EB18C /* WitcherCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitcherCardView.swift; sourceTree = "<group>"; };
+		F3AC0F5A2C55B40A001EB18C /* ScrollableGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableGridView.swift; sourceTree = "<group>"; };
 		F3B1A6E22C49329900D1A682 /* back_automa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back_automa.jpg; sourceTree = "<group>"; };
 		F3B1A7192C4932DB00D1A682 /* skellige_06_general_lvl_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = skellige_06_general_lvl_2.jpg; sourceTree = "<group>"; };
 		F3B1A71A2C4932DB00D1A682 /* skellige_01_general_lvl_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = skellige_01_general_lvl_1.jpg; sourceTree = "<group>"; };
@@ -205,6 +215,10 @@
 				F35C9E062C50084D00548E74 /* GameTabsView.swift */,
 				F3076B1F2C552F0C0041A71A /* CardsStackView.swift */,
 				F3076B232C552FB40041A71A /* RemainingCardsCountView.swift */,
+				F3AC0F512C55B1C6001EB18C /* GameConfigurationView.swift */,
+				F3AC0F532C55B1FD001EB18C /* WoodenBackgroundView.swift */,
+				F3AC0F582C55B3D0001EB18C /* WitcherCardView.swift */,
+				F3AC0F5A2C55B40A001EB18C /* ScrollableGridView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,9 +229,17 @@
 				F3076B252C5532460041A71A /* Deck */,
 				F38C72512C49E42F004CDD4E /* Difficulty.swift */,
 				F38C72572C4A09C9004CDD4E /* CardsFactory.swift */,
-				F39AC93B2C49279200A5E42A /* ActionCardModel.swift */,
 			);
 			path = Cards;
+			sourceTree = "<group>";
+		};
+		F3AC0F552C55B381001EB18C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F39AC93B2C49279200A5E42A /* ActionCardModel.swift */,
+				F3AC0F562C55B390001EB18C /* WitcherCardModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F3B1A7182C49329900D1A682 /* CardImages */ = {
@@ -313,6 +335,7 @@
 		F3F73E302C441A24005E77CA /* WSS */ = {
 			isa = PBXGroup;
 			children = (
+				F3AC0F552C55B381001EB18C /* Models */,
 				F38966122C4F1E4100A468F5 /* Fonts */,
 				F3937D5C2C4C0A1A0070BF77 /* Views */,
 				F3937D592C4C05730070BF77 /* GameOperator */,
@@ -454,6 +477,7 @@
 				F3937D5B2C4C058E0070BF77 /* SmoothOperator.swift in Sources */,
 				F38C72502C49E201004CDD4E /* DecksBuilder.swift in Sources */,
 				F38C72582C4A09C9004CDD4E /* CardsFactory.swift in Sources */,
+				F3AC0F522C55B1C6001EB18C /* GameConfigurationView.swift in Sources */,
 				F3A48F4D2C495633009E54AF /* CardFileNames.swift in Sources */,
 				F389661A2C4F235C00A468F5 /* Font+customFonts.swift in Sources */,
 				F3F73E322C441A24005E77CA /* WSSApp.swift in Sources */,
@@ -461,10 +485,14 @@
 				F35C9E072C50084D00548E74 /* GameTabsView.swift in Sources */,
 				F3076B272C5532510041A71A /* ActionDeck.swift in Sources */,
 				F3076B292C5532640041A71A /* ChallengesDeck.swift in Sources */,
+				F3AC0F542C55B1FD001EB18C /* WoodenBackgroundView.swift in Sources */,
 				F3076B202C552F0C0041A71A /* CardsStackView.swift in Sources */,
+				F3AC0F572C55B390001EB18C /* WitcherCardModel.swift in Sources */,
 				F39AC93C2C49279200A5E42A /* ActionCardModel.swift in Sources */,
 				F3076B222C552F800041A71A /* ChallengesDeckView.swift in Sources */,
+				F3AC0F592C55B3D0001EB18C /* WitcherCardView.swift in Sources */,
 				F3937D5E2C4C0A350070BF77 /* ActionDeckView.swift in Sources */,
+				F3AC0F5B2C55B40A001EB18C /* ScrollableGridView.swift in Sources */,
 				F3076B1E2C54365C0041A71A /* Deck.swift in Sources */,
 				F3937D602C4C0A470070BF77 /* CardView.swift in Sources */,
 				F3E9F7472C4BE5390060FD6D /* Array+reduced.swift in Sources */,

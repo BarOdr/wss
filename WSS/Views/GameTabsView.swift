@@ -26,10 +26,7 @@ struct GameTabsView: View {
 
     var body: some View {
         ZStack {
-            Image("wooden_background", bundle: .main)
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
+            WoodenBackgroundView()
             ZStack {
                 VStack {
                     HStack {

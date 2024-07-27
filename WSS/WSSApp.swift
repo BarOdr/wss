@@ -16,19 +16,20 @@ struct WSSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            GameTabsView(
-                viewModel: GameTabsViewModel(
-                    decks: DecksBuilder(
-                        cardsFactory: CardsFactory(),
-                        addons: [
-                            .legendaryHunt,
-                            .skellige
-                        ],
-                        difficultyLevel: .medium,
-                        witcher: .ciri
-                    ).buildDecks()
-                )
-            )
+            ScrollableGridView()
+//            GameTabsView(
+//                viewModel: GameTabsViewModel(
+//                    decks: DecksBuilder(
+//                        cardsFactory: CardsFactory(),
+//                        addons: [
+//                            .legendaryHunt,
+//                            .skellige
+//                        ],
+//                        difficultyLevel: .medium,
+//                        witcher: .ciri
+//                    ).buildDecks()
+//                )
+//            )
         }.environmentObject(appDependencies)
     }
 }

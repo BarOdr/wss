@@ -137,7 +137,7 @@ enum CardSubtype: String, Codable {
     case advanced
 }
 
-enum Witcher: String, Hashable, Codable {
+enum Witcher: String, Hashable, Codable, CaseIterable {
     case bear
     case cat
     case ciri
