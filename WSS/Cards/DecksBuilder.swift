@@ -22,14 +22,14 @@ enum AddonType {
 }
 
 final class BaseDecks: ObservableObject, Codable {
-    @Published var actionDeck: Deck
+    @Published var actionDeck: ActionDeck
     @Published var automaTrophies: [ActionCardModel]
-    @Published var challengesDeck: Deck
+    @Published var challengesDeck: ChallengesDeck
 
     init(
-        actionDeck: Deck,
+        actionDeck: ActionDeck,
         automaTrophies: [ActionCardModel],
-        challengesDeck: Deck
+        challengesDeck: ChallengesDeck
     ) {
         self.actionDeck = actionDeck
         self.automaTrophies = automaTrophies
@@ -51,9 +51,9 @@ final class BaseDecks: ObservableObject, Codable {
 
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        actionDeck = try container.decode(Deck.self, forKey: .actionDeck)
+        actionDeck = try container.decode(ActionDeck.self, forKey: .actionDeck)
         automaTrophies = try container.decode([ActionCardModel].self, forKey: .automaTrophies)
-        challengesDeck = try container.decode(Deck.self, forKey: .challengesDeck)
+        challengesDeck = try container.decode(ChallengesDeck.self, forKey: .challengesDeck)
     }
 }
 
@@ -86,9 +86,9 @@ final class DecksBuilder {
             remainingCards: automaTrophiesTuple.remainingCards
         ).shuffled()
         return BaseDecks(
-            actionDeck: Deck(cards: actionDeckTuple.actionDeck, deckType: .actions),
+            actionDeck: ActionDeck(cards: actionDeckTuple.actionDeck, deckType: .actions),
             automaTrophies: automaTrophiesTuple.pickedCards,
-            challengesDeck: Deck(cards: challengesDeck, deckType: .challenges)
+            challengesDeck: ChallengesDeck(cards: challengesDeck, deckType: .challenges)
         )
     }
 

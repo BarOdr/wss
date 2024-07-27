@@ -85,7 +85,7 @@ struct GameTabsView: View {
             ActionDeckView(deck: viewModel.decks.actionDeck)
                 .offset(x: selectedTab == .actions ? 0 : -UIScreen.main.bounds.width)
                 .zIndex(selectedTab == .actions ? 1 : 0) // Ensure the active view is on top
-            ActionDeckView(deck: viewModel.decks.challengesDeck)
+            ChallengesDeckView(deck: viewModel.decks.challengesDeck)
                 .offset(x: selectedTab == .challenges ? 0 : UIScreen.main.bounds.width)
                 .zIndex(selectedTab == .challenges ? 1 : 0) // Ensure the active view is on top
         }

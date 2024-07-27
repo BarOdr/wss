@@ -19,7 +19,7 @@ enum DeckType: Codable {
     case challenges
 }
 
-final class Deck: ObservableObject, Codable {
+class Deck: ObservableObject, Codable {
     @Published var remainingCards: [ActionCardModel] {
         didSet {
             remainingCount = remainingCards.count
@@ -126,18 +126,6 @@ final class Deck: ObservableObject, Codable {
         discardedCards.append(card)
     }
 
-    // for action deck
-    func resetWithLevelThreeCardsShuffled() {
-        try? appendEncodedSelfToActions()
-        remainingCards = discardedCards
-            .filter { model in
-                model.level == 3 || model.cardType == .legendaryHunt
-            }
-            .shuffled()
-        discardedCards = []
-        initialCount = remainingCards.count
-    }
-
     func resetWithOriginalOrder() {
         remainingCards = backup
         discardedCards = []
@@ -148,17 +136,9 @@ final class Deck: ObservableObject, Codable {
         discardedCards = []
     }
 
-    func addAutomaTrophy() {
-
-    }
-
-    func removeAutomaThropies() {
-
-    }
-
     // MARK: - State management
 
-    private func appendEncodedSelfToActions() throws {
+    func appendEncodedSelfToActions() throws {
         let state = try JSONEncoder().encode(self)
         actions.append(state)
     }
@@ -180,5 +160,29 @@ final class Deck: ObservableObject, Codable {
         }
         actions.removeLast()
         try? restoreState(from: previousState)
+    }
+}
+
+final class ActionDeck: Deck {
+    // for action deck
+    func resetWithLevelThreeCardsShuffled() {
+        try? appendEncodedSelfToActions()
+        remainingCards = discardedCards
+            .filter { model in
+                model.level == 3 || model.cardType == .legendaryHunt
+            }
+            .shuffled()
+        discardedCards = []
+        initialCount = remainingCards.count
+    }
+}
+
+final class ChallengesDeck: Deck {
+    func addAutomaTrophy() {
+
+    }
+
+    func removeAutomaThropies() {
+
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct ActionDeckView: View {
     @EnvironmentObject var appDependencies: AppDependencies
 
-    @StateObject var deck: Deck
+    @StateObject var deck: ActionDeck
 
     var body: some View {
 
@@ -34,7 +34,6 @@ struct ActionDeckView: View {
                 }
             }
         }
-
     }
 
     var actionsResetWithLevelThreeCardsShuffled: some View {

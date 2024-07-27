@@ -39,7 +39,7 @@ struct ChallengesDeckView: View {
 
     var actionsResetWithLevelThreeCardsShuffled: some View {
         Button(action: {
-            deck.resetWithLevelThreeCardsShuffled()
+            
             withAnimation {
                 print("Empty button pressed - implement reloading")
             }
