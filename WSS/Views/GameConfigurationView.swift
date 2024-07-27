@@ -15,6 +15,6 @@ struct GameConfigurationView: View {
     }
 
     var chooseWitcherView: some View {
-        ScrollableGridView()
+        ChooseWitcherView()
     }
 }

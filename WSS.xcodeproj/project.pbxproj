@@ -33,7 +33,7 @@
 		F3AC0F542C55B1FD001EB18C /* WoodenBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AC0F532C55B1FD001EB18C /* WoodenBackgroundView.swift */; };
 		F3AC0F572C55B390001EB18C /* WitcherCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AC0F562C55B390001EB18C /* WitcherCardModel.swift */; };
 		F3AC0F592C55B3D0001EB18C /* WitcherCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AC0F582C55B3D0001EB18C /* WitcherCardView.swift */; };
-		F3AC0F5B2C55B40A001EB18C /* ScrollableGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AC0F5A2C55B40A001EB18C /* ScrollableGridView.swift */; };
+		F3AC0F5B2C55B40A001EB18C /* ChooseWitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AC0F5A2C55B40A001EB18C /* ChooseWitcherView.swift */; };
 		F3E9F7472C4BE5390060FD6D /* Array+reduced.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E9F7462C4BE5390060FD6D /* Array+reduced.swift */; };
 		F3F73E322C441A24005E77CA /* WSSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F73E312C441A24005E77CA /* WSSApp.swift */; };
 		F3F73E382C441A25005E77CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F73E372C441A25005E77CA /* Assets.xcassets */; };
@@ -79,7 +79,7 @@
 		F3AC0F532C55B1FD001EB18C /* WoodenBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoodenBackgroundView.swift; sourceTree = "<group>"; };
 		F3AC0F562C55B390001EB18C /* WitcherCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitcherCardModel.swift; sourceTree = "<group>"; };
 		F3AC0F582C55B3D0001EB18C /* WitcherCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitcherCardView.swift; sourceTree = "<group>"; };
-		F3AC0F5A2C55B40A001EB18C /* ScrollableGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableGridView.swift; sourceTree = "<group>"; };
+		F3AC0F5A2C55B40A001EB18C /* ChooseWitcherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseWitcherView.swift; sourceTree = "<group>"; };
 		F3B1A6E22C49329900D1A682 /* back_automa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back_automa.jpg; sourceTree = "<group>"; };
 		F3B1A7192C4932DB00D1A682 /* skellige_06_general_lvl_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = skellige_06_general_lvl_2.jpg; sourceTree = "<group>"; };
 		F3B1A71A2C4932DB00D1A682 /* skellige_01_general_lvl_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = skellige_01_general_lvl_1.jpg; sourceTree = "<group>"; };
@@ -218,7 +218,7 @@
 				F3AC0F512C55B1C6001EB18C /* GameConfigurationView.swift */,
 				F3AC0F532C55B1FD001EB18C /* WoodenBackgroundView.swift */,
 				F3AC0F582C55B3D0001EB18C /* WitcherCardView.swift */,
-				F3AC0F5A2C55B40A001EB18C /* ScrollableGridView.swift */,
+				F3AC0F5A2C55B40A001EB18C /* ChooseWitcherView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -492,7 +492,7 @@
 				F3076B222C552F800041A71A /* ChallengesDeckView.swift in Sources */,
 				F3AC0F592C55B3D0001EB18C /* WitcherCardView.swift in Sources */,
 				F3937D5E2C4C0A350070BF77 /* ActionDeckView.swift in Sources */,
-				F3AC0F5B2C55B40A001EB18C /* ScrollableGridView.swift in Sources */,
+				F3AC0F5B2C55B40A001EB18C /* ChooseWitcherView.swift in Sources */,
 				F3076B1E2C54365C0041A71A /* Deck.swift in Sources */,
 				F3937D602C4C0A470070BF77 /* CardView.swift in Sources */,
 				F3E9F7472C4BE5390060FD6D /* Array+reduced.swift in Sources */,

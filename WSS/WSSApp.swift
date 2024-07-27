@@ -16,7 +16,7 @@ struct WSSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ScrollableGridView()
+            ChooseWitcherView()
 //            GameTabsView(
 //                viewModel: GameTabsViewModel(
 //                    decks: DecksBuilder(
