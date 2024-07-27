@@ -67,14 +67,11 @@ struct ChooseWitcherView: View {
 
                 WitcherCardView(card: card, doubleTapAction: {
                     // Handle double tap action when card is enlarged
-                    print("Double tapped on enlarged card: \(card.id)")
+                    print("Double tapped son enlarged card: \(card.id)")
                 })
                 .matchedGeometryEffect(id: card.id, in: namespace)
                 .frame(maxWidth: UIScreen.main.bounds.width - 80)
                 .shadow(radius: 20)
-                .onTapGesture(count: 2) {
-                    print("Double tapped on enlarged card: \(card.id)")
-                }
                 .zIndex(2)
             }
         }
