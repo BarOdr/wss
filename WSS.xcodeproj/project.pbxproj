@@ -11,6 +11,8 @@
 		F3076B202C552F0C0041A71A /* CardsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3076B1F2C552F0C0041A71A /* CardsStackView.swift */; };
 		F3076B222C552F800041A71A /* ChallengesDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3076B212C552F800041A71A /* ChallengesDeckView.swift */; };
 		F3076B242C552FB40041A71A /* RemainingCardsCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3076B232C552FB40041A71A /* RemainingCardsCountView.swift */; };
+		F3076B272C5532510041A71A /* ActionDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3076B262C5532510041A71A /* ActionDeck.swift */; };
+		F3076B292C5532640041A71A /* ChallengesDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3076B282C5532640041A71A /* ChallengesDeck.swift */; };
 		F33946C72C441BFB007D817B /* TextFromImageRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33946C62C441BFB007D817B /* TextFromImageRecognizer.swift */; };
 		F35725582C4BB2FA00B4A223 /* Array+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35725572C4BB2FA00B4A223 /* Array+extensions.swift */; };
 		F35C9E072C50084D00548E74 /* GameTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35C9E062C50084D00548E74 /* GameTabsView.swift */; };
@@ -50,6 +52,8 @@
 		F3076B1F2C552F0C0041A71A /* CardsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsStackView.swift; sourceTree = "<group>"; };
 		F3076B212C552F800041A71A /* ChallengesDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesDeckView.swift; sourceTree = "<group>"; };
 		F3076B232C552FB40041A71A /* RemainingCardsCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainingCardsCountView.swift; sourceTree = "<group>"; };
+		F3076B262C5532510041A71A /* ActionDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionDeck.swift; sourceTree = "<group>"; };
+		F3076B282C5532640041A71A /* ChallengesDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesDeck.swift; sourceTree = "<group>"; };
 		F33946C62C441BFB007D817B /* TextFromImageRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFromImageRecognizer.swift; sourceTree = "<group>"; };
 		F35725572C4BB2FA00B4A223 /* Array+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extensions.swift"; sourceTree = "<group>"; };
 		F35C9E062C50084D00548E74 /* GameTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTabsView.swift; sourceTree = "<group>"; };
@@ -150,6 +154,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F3076B252C5532460041A71A /* Deck */ = {
+			isa = PBXGroup;
+			children = (
+				F3076B1D2C54365C0041A71A /* Deck.swift */,
+				F3076B262C5532510041A71A /* ActionDeck.swift */,
+				F3076B282C5532640041A71A /* ChallengesDeck.swift */,
+			);
+			path = Deck;
+			sourceTree = "<group>";
+		};
 		F33946C82C441D8B007D817B /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,7 +221,7 @@
 		F39AC93A2C49278000A5E42A /* Cards */ = {
 			isa = PBXGroup;
 			children = (
-				F3076B1D2C54365C0041A71A /* Deck.swift */,
+				F3076B252C5532460041A71A /* Deck */,
 				F38C724F2C49E201004CDD4E /* DecksBuilder.swift */,
 				F38C72512C49E42F004CDD4E /* Difficulty.swift */,
 				F3A48F4C2C495633009E54AF /* CardFileNames.swift */,
@@ -457,6 +471,8 @@
 				F3F73E322C441A24005E77CA /* WSSApp.swift in Sources */,
 				F3076B242C552FB40041A71A /* RemainingCardsCountView.swift in Sources */,
 				F35C9E072C50084D00548E74 /* GameTabsView.swift in Sources */,
+				F3076B272C5532510041A71A /* ActionDeck.swift in Sources */,
+				F3076B292C5532640041A71A /* ChallengesDeck.swift in Sources */,
 				F3076B202C552F0C0041A71A /* CardsStackView.swift in Sources */,
 				F39AC93C2C49279200A5E42A /* ActionCardModel.swift in Sources */,
 				F3076B222C552F800041A71A /* ChallengesDeckView.swift in Sources */,

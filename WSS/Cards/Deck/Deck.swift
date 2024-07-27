@@ -45,8 +45,8 @@ class Deck: ObservableObject, Codable {
     @Published var actionsCount: Int = 0
     @Published var initialCount: Int
 
-    private let backup: [ActionCardModel]
-    private let deckType: DeckType
+    var backup: [ActionCardModel]
+    var deckType: DeckType
     private var actions: [Data] = [] {
         didSet {
             actionsCount = actions.count
@@ -160,29 +160,5 @@ class Deck: ObservableObject, Codable {
         }
         actions.removeLast()
         try? restoreState(from: previousState)
-    }
-}
-
-final class ActionDeck: Deck {
-    // for action deck
-    func resetWithLevelThreeCardsShuffled() {
-        try? appendEncodedSelfToActions()
-        remainingCards = discardedCards
-            .filter { model in
-                model.level == 3 || model.cardType == .legendaryHunt
-            }
-            .shuffled()
-        discardedCards = []
-        initialCount = remainingCards.count
-    }
-}
-
-final class ChallengesDeck: Deck {
-    func addAutomaTrophy() {
-
-    }
-
-    func removeAutomaThropies() {
-
     }
 }

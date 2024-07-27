@@ -10,7 +10,7 @@ import SwiftUI
 struct ChallengesDeckView: View {
     @EnvironmentObject var appDependencies: AppDependencies
 
-    @StateObject var deck: Deck
+    @StateObject var deck: ChallengesDeck
 
     var body: some View {
 
@@ -39,7 +39,7 @@ struct ChallengesDeckView: View {
 
     var actionsResetWithLevelThreeCardsShuffled: some View {
         Button(action: {
-            
+
             withAnimation {
                 print("Empty button pressed - implement reloading")
             }
