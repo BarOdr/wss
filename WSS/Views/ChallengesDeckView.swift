@@ -16,6 +16,7 @@ struct ChallengesDeckView: View {
 
         ZStack {
             VStack {
+                Spacer()
                 ZStack {
                     if deck.remainingCards.isEmpty {
 
@@ -38,6 +39,7 @@ struct ChallengesDeckView: View {
                 }
             }
         }
+        .padding(EdgeInsets(top: 0, leading: 0, bottom: 40, trailing: 0))
     }
 
     var addAutomaTrophyButton: some View {

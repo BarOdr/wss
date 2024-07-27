@@ -30,35 +30,40 @@ struct GameTabsView: View {
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
-            VStack {
-                Spacer()
-                HStack {
-                    Button {
-                        withAnimation {
-                            selectedTab = .actions
-                        }
-                    } label: {
-                        Text("Akcje")
-                            .font(.witcherHeader(size: 30))
-                            .foregroundStyle(tabButtonColor(for: .actions))
-                            .opacity(tabBarButtonOpacity(for: .actions))
-                    }
-                    Button {
-                        withAnimation(.easeInOut) {
-                            selectedTab = .challenges
-                        }
-                    } label: {
-                        withAnimation(.easeInOut) {
-                            Text("Wyzwania")
+            ZStack {
+                VStack {
+                    HStack {
+                        Button {
+                            withAnimation {
+                                selectedTab = .actions
+                            }
+                        } label: {
+                            Text("Akcje")
                                 .font(.witcherHeader(size: 30))
-                                .foregroundStyle(tabButtonColor(for: .challenges))
-                                .opacity(tabBarButtonOpacity(for: .challenges))
+                                .foregroundStyle(tabButtonColor(for: .actions))
+                                .opacity(tabBarButtonOpacity(for: .actions))
+                        }
+                        Button {
+                            withAnimation(.easeInOut) {
+                                selectedTab = .challenges
+                            }
+                        } label: {
+                            withAnimation(.easeInOut) {
+                                Text("Wyzwania")
+                                    .font(.witcherHeader(size: 30))
+                                    .foregroundStyle(tabButtonColor(for: .challenges))
+                                    .opacity(tabBarButtonOpacity(for: .challenges))
+                            }
                         }
                     }
+                    Spacer()
                 }
-                .padding(EdgeInsets(top: 40, leading: 0, bottom: 0, trailing: 0))
-                slidableDecks
-                Spacer()
+                .padding(EdgeInsets(top: 100, leading: 0, bottom: 0, trailing: 0))
+                .zIndex(1)
+                HStack(alignment: .bottom) {
+                    Spacer()
+                    slidableDecks
+                }
             }
         }
     }

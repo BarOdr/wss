@@ -16,6 +16,7 @@ struct ActionDeckView: View {
 
         ZStack {
             VStack {
+                Spacer()
                 ZStack {
                     if deck.remainingCards.isEmpty {
                         actionsResetWithLevelThreeCardsShuffled
@@ -34,6 +35,7 @@ struct ActionDeckView: View {
                 }
             }
         }
+        .padding(EdgeInsets(top: 0, leading: 0, bottom: 40, trailing: 0))
     }
 
     var actionsResetWithLevelThreeCardsShuffled: some View {
