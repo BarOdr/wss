@@ -23,7 +23,7 @@ struct ActionDeckView: View {
                         cardsStack
                     }
                 }
-                HStack {
+                HStack(spacing: 10) {
                     Spacer()
                     if deck.actionsCount != 0 && !deck.remainingCards.isEmpty {
                         undoButton
@@ -56,7 +56,7 @@ struct ActionDeckView: View {
             Text("cofnij")
                 .font(.witcherTextRegular(size: 20))
                 .foregroundStyle(.white)
-        }).padding(EdgeInsets(top: 10, leading: 40, bottom: 10, trailing: 40))
+        })
 
     }
 

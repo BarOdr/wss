@@ -23,7 +23,7 @@ struct ChallengesDeckView: View {
                         cardsStack
                     }
                 }
-                HStack {
+                HStack(spacing: 10) {
                     Spacer()
                     shuffleButton
                     if !deck.automaTrophies.isEmpty {
@@ -61,7 +61,6 @@ struct ChallengesDeckView: View {
                 .font(.witcherTextRegular(size: 20))
                 .foregroundStyle(.white)
         })
-        .padding(EdgeInsets(top: 10, leading: 40, bottom: 10, trailing: 40))
     }
 
     var shuffleButton: some View {
