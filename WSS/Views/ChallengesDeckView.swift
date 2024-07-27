@@ -98,4 +98,3 @@ struct ChallengesDeckView: View {
         }
     }
 }
-

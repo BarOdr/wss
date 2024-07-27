@@ -13,7 +13,6 @@
 		F3076B242C552FB40041A71A /* RemainingCardsCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3076B232C552FB40041A71A /* RemainingCardsCountView.swift */; };
 		F3076B272C5532510041A71A /* ActionDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3076B262C5532510041A71A /* ActionDeck.swift */; };
 		F3076B292C5532640041A71A /* ChallengesDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3076B282C5532640041A71A /* ChallengesDeck.swift */; };
-		F33946C72C441BFB007D817B /* TextFromImageRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33946C62C441BFB007D817B /* TextFromImageRecognizer.swift */; };
 		F35725582C4BB2FA00B4A223 /* Array+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35725572C4BB2FA00B4A223 /* Array+extensions.swift */; };
 		F35C9E072C50084D00548E74 /* GameTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35C9E062C50084D00548E74 /* GameTabsView.swift */; };
 		F38966132C4F1E4100A468F5 /* PFDinTextCondPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F38966102C4F1E4100A468F5 /* PFDinTextCondPro-Bold.ttf */; };
@@ -54,7 +53,6 @@
 		F3076B232C552FB40041A71A /* RemainingCardsCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainingCardsCountView.swift; sourceTree = "<group>"; };
 		F3076B262C5532510041A71A /* ActionDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionDeck.swift; sourceTree = "<group>"; };
 		F3076B282C5532640041A71A /* ChallengesDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesDeck.swift; sourceTree = "<group>"; };
-		F33946C62C441BFB007D817B /* TextFromImageRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFromImageRecognizer.swift; sourceTree = "<group>"; };
 		F35725572C4BB2FA00B4A223 /* Array+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extensions.swift"; sourceTree = "<group>"; };
 		F35C9E062C50084D00548E74 /* GameTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTabsView.swift; sourceTree = "<group>"; };
 		F38966102C4F1E4100A468F5 /* PFDinTextCondPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PFDinTextCondPro-Bold.ttf"; sourceTree = "<group>"; };
@@ -160,6 +158,7 @@
 				F3076B1D2C54365C0041A71A /* Deck.swift */,
 				F3076B262C5532510041A71A /* ActionDeck.swift */,
 				F3076B282C5532640041A71A /* ChallengesDeck.swift */,
+				F38C724F2C49E201004CDD4E /* DecksBuilder.swift */,
 			);
 			path = Deck;
 			sourceTree = "<group>";
@@ -210,21 +209,11 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		F39AC9392C49276E00A5E42A /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				F33946C62C441BFB007D817B /* TextFromImageRecognizer.swift */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
 		F39AC93A2C49278000A5E42A /* Cards */ = {
 			isa = PBXGroup;
 			children = (
 				F3076B252C5532460041A71A /* Deck */,
-				F38C724F2C49E201004CDD4E /* DecksBuilder.swift */,
 				F38C72512C49E42F004CDD4E /* Difficulty.swift */,
-				F3A48F4C2C495633009E54AF /* CardFileNames.swift */,
 				F38C72572C4A09C9004CDD4E /* CardsFactory.swift */,
 				F39AC93B2C49279200A5E42A /* ActionCardModel.swift */,
 			);
@@ -234,6 +223,7 @@
 		F3B1A7182C49329900D1A682 /* CardImages */ = {
 			isa = PBXGroup;
 			children = (
+				F3A48F4C2C495633009E54AF /* CardFileNames.swift */,
 				F3B1A6E22C49329900D1A682 /* back_automa.jpg */,
 				F3B1A7202C4932DB00D1A682 /* back_automa-alternate.jpg */,
 				F3B1A71C2C4932DB00D1A682 /* legendary-hunt_01_lvl_3.jpg */,
@@ -329,7 +319,6 @@
 				F3E9F7452C4BE5300060FD6D /* Extensions */,
 				F3B1A7182C49329900D1A682 /* CardImages */,
 				F39AC93A2C49278000A5E42A /* Cards */,
-				F39AC9392C49276E00A5E42A /* Utilities */,
 				F33946C82C441D8B007D817B /* Assets */,
 				F3F73E312C441A24005E77CA /* WSSApp.swift */,
 				F3F73E372C441A25005E77CA /* Assets.xcassets */,
@@ -465,7 +454,6 @@
 				F3937D5B2C4C058E0070BF77 /* SmoothOperator.swift in Sources */,
 				F38C72502C49E201004CDD4E /* DecksBuilder.swift in Sources */,
 				F38C72582C4A09C9004CDD4E /* CardsFactory.swift in Sources */,
-				F33946C72C441BFB007D817B /* TextFromImageRecognizer.swift in Sources */,
 				F3A48F4D2C495633009E54AF /* CardFileNames.swift in Sources */,
 				F389661A2C4F235C00A468F5 /* Font+customFonts.swift in Sources */,
 				F3F73E322C441A24005E77CA /* WSSApp.swift in Sources */,

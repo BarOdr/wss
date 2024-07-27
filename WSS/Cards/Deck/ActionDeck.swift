@@ -8,7 +8,6 @@
 import Foundation
 
 final class ActionDeck: Deck {
-    // for action deck
     func resetWithLevelThreeCardsShuffled() {
         try? appendEncodedSelfToActions()
         remainingCards = discardedCards
