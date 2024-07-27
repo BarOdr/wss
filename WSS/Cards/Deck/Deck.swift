@@ -127,11 +127,13 @@ class Deck: ObservableObject, Codable {
     }
 
     func resetWithOriginalOrder() {
+        try? appendEncodedSelfToActions()
         remainingCards = backup
         discardedCards = []
     }
 
     func resetAndShuffle() {
+        try? appendEncodedSelfToActions()
         remainingCards = backup.shuffled()
         discardedCards = []
     }

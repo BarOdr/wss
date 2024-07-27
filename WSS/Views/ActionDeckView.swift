@@ -24,18 +24,23 @@ struct ActionDeckView: View {
                         cardsStack
                     }
                 }
-                HStack(spacing: 10) {
-                    Spacer()
-                    if deck.actionsCount != 0 && !deck.remainingCards.isEmpty {
-                        undoButton
-                    }
-                    if !deck.remainingCards.isEmpty {
-                        remainingCardsView
-                    }
-                }
+                accessoriesView
+                    .frame(height: 70)
             }
         }
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 40, trailing: 0))
+    }
+
+    var accessoriesView: some View {
+        HStack(spacing: 10) {
+            Spacer()
+            if deck.actionsCount != 0 && !deck.remainingCards.isEmpty {
+                undoButton
+            }
+            if !deck.remainingCards.isEmpty {
+                remainingCardsView
+            }
+        }
     }
 
     var actionsResetWithLevelThreeCardsShuffled: some View {

@@ -24,22 +24,27 @@ struct ChallengesDeckView: View {
                         cardsStack
                     }
                 }
-                HStack(spacing: 10) {
-                    Spacer()
-                    shuffleButton
-                    if !deck.automaTrophies.isEmpty {
-                        addAutomaTrophyButton
-                    }
-                    if deck.actionsCount != 0 && !deck.remainingCards.isEmpty {
-                        undoButton
-                    }
-                    if !deck.remainingCards.isEmpty {
-                        remainingCardsView
-                    }
-                }
+                accessoriesView
+                    .frame(height: 90)
             }
         }
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 40, trailing: 0))
+    }
+
+    var accessoriesView: some View {
+        HStack {
+            Spacer()
+            shuffleButton
+            if !deck.automaTrophies.isEmpty {
+                addAutomaTrophyButton
+            }
+            if deck.actionsCount != 0 && !deck.remainingCards.isEmpty {
+                undoButton
+            }
+            if !deck.remainingCards.isEmpty {
+                remainingCardsView
+            }
+        }
     }
 
     var addAutomaTrophyButton: some View {
