@@ -143,7 +143,7 @@ class Deck: ObservableObject, Codable {
         actions.append(state)
     }
 
-    private func restoreState(from data: Data) throws {
+    func restoreState(from data: Data) throws {
         let selfObject = try JSONDecoder().decode(Self.self, from: data)
         self.initialCount = selfObject.initialCount
         self.remainingCards = selfObject.remainingCards

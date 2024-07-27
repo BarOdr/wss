@@ -18,13 +18,17 @@ struct ChallengesDeckView: View {
             VStack {
                 ZStack {
                     if deck.remainingCards.isEmpty {
-                        actionsResetWithLevelThreeCardsShuffled
+
                     } else {
                         cardsStack
                     }
                 }
                 HStack {
                     Spacer()
+                    shuffleButton
+                    if !deck.automaTrophies.isEmpty {
+                        addAutomaTrophyButton
+                    }
                     if deck.actionsCount != 0 && !deck.remainingCards.isEmpty {
                         undoButton
                     }
@@ -34,18 +38,17 @@ struct ChallengesDeckView: View {
                 }
             }
         }
-
     }
 
-    var actionsResetWithLevelThreeCardsShuffled: some View {
+    var addAutomaTrophyButton: some View {
         Button(action: {
-
+            deck.addAutomaTrophyToDeck()
             withAnimation {
                 print("Empty button pressed - implement reloading")
             }
         }, label: {
-            Text("Reload")
-                .font(.witcherHeader(size: 40))
+            Text("+trofeum")
+                .font(.witcherTextRegular(size: 20))
                 .foregroundStyle(.white)
         })
     }
@@ -54,7 +57,21 @@ struct ChallengesDeckView: View {
         Button(action: {
             deck.undo()
         }, label: {
-            Text("Cofnij")
+            Text("cofnij")
+                .font(.witcherTextRegular(size: 20))
+                .foregroundStyle(.white)
+        })
+        .padding(EdgeInsets(top: 10, leading: 40, bottom: 10, trailing: 40))
+    }
+
+    var shuffleButton: some View {
+        Button(action: {
+            deck.resetAndShuffle()
+            withAnimation {
+                print("Empty button pressed - implement reloading")
+            }
+        }, label: {
+            Text("tasuj")
                 .font(.witcherTextRegular(size: 20))
                 .foregroundStyle(.white)
         })

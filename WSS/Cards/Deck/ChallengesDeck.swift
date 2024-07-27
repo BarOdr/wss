@@ -9,8 +9,8 @@ import Foundation
 
 final class ChallengesDeck: Deck {
 
-    private var automaTrophies: [ActionCardModel]
-
+    private(set) var automaTrophies: [ActionCardModel]
+    
     init(cards: [ActionCardModel], automaTrophies: [ActionCardModel], deckType: DeckType) {
         self.automaTrophies = automaTrophies
         super.init(cards: cards, deckType: deckType)
@@ -29,8 +29,8 @@ final class ChallengesDeck: Deck {
 
     override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try super.encode(to: encoder)
         try container.encode(automaTrophies, forKey: .automaTrophies)
+        try super.encode(to: encoder)
     }
 
     required init(from decoder: Decoder) throws {
@@ -40,10 +40,24 @@ final class ChallengesDeck: Deck {
     }
 
     func addAutomaTrophyToDeck() {
-
+        print("About to add automa trophy to challenges deck")
+        guard let trophy = automaTrophies.randomElement() else {
+            print("No trophy remaining")
+            return
+        }
+        try? appendEncodedSelfToActions()
+        automaTrophies.removeAll { element in
+            element == trophy
+        }
+        let pseudorandomIndex = Int.random(in: 0...remainingCount - 1)
+        remainingCards.insert(trophy, at: pseudorandomIndex)
+        backup = remainingCards
+        initialCount = remainingCount + discardedCount
     }
 
-    func removeAutomaThrophyFromDeck() {
-
+    override func restoreState(from data: Data) throws {
+        try super.restoreState(from: data)
+        let selfObject = try JSONDecoder().decode(Self.self, from: data)
+        self.automaTrophies = selfObject.automaTrophies
     }
 }

@@ -53,10 +53,11 @@ struct ActionDeckView: View {
         Button(action: {
             deck.undo()
         }, label: {
-            Text("Cofnij")
+            Text("cofnij")
                 .font(.witcherTextRegular(size: 20))
                 .foregroundStyle(.white)
-        })
+        }).padding(EdgeInsets(top: 10, leading: 40, bottom: 10, trailing: 40))
+
     }
 
     var remainingCardsView: some View {

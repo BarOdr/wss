@@ -73,9 +73,9 @@ final class DecksBuilder {
     // MARK: - Public methods
 
     func buildDecks() -> BaseDecks {
-        let actionDeckTuple = buildActionDeck(for: difficultyLevel)
-        let automaTrophiesTuple = buildAutomaTrophiesDeck(from: actionDeckTuple.remainingCards)
-        let challengesDeck = buildChallengesDeck(
+        let actionDeckTuple = buildActionDeckTuple(for: difficultyLevel)
+        let automaTrophiesTuple = buildAutomaTrophiesTuple(from: actionDeckTuple.remainingCards)
+        let challengesDeck = buildChallengesDeckTuple(
             for: difficultyLevel,
             remainingCards: automaTrophiesTuple.remainingCards
         ).shuffled()
@@ -89,8 +89,7 @@ final class DecksBuilder {
         )
     }
 
-    func buildChallengesDeck(for difficulty: Difficulty, remainingCards: [ActionCardModel]) -> [ActionCardModel] {
-        // TODO: - fix this, select according to the table how many cards there should be. The actual numbers might differ so don't unit test it so hard
+    func buildChallengesDeckTuple(for difficulty: Difficulty, remainingCards: [ActionCardModel]) -> [ActionCardModel] {
         let deckSize = difficulty.challengesDeckSize
         let reducedArray = remainingCards.reduced(tolimit: deckSize)
             .map { model in
@@ -99,7 +98,7 @@ final class DecksBuilder {
         return reducedArray
     }
 
-    func buildActionDeck(for difficulty: Difficulty) -> (actionDeck: [ActionCardModel], remainingCards: [ActionCardModel]) {
+    func buildActionDeckTuple(for difficulty: Difficulty) -> (actionDeck: [ActionCardModel], remainingCards: [ActionCardModel]) {
         // we build action deck first so we pick from ALL action cards.
         // then we will pick 3 cards from the remaining 3 level cards. That will be automa trophies
         // all other remaining cards from this step will be challenges deck
@@ -174,13 +173,18 @@ final class DecksBuilder {
         return (actionDeck, level1AdvancedActionCardsTuple.remainingCards)
     }
 
-    func buildAutomaTrophiesDeck(from array: [ActionCardModel]) -> (pickedCards: [ActionCardModel], remainingCards: [ActionCardModel]) {
+    func buildAutomaTrophiesTuple(from array: [ActionCardModel]) -> (pickedCards: [ActionCardModel], remainingCards: [ActionCardModel]) {
         let level3Cards = selectAllGeneralCards(from: array, for: .three) + selectAllAdvancedCards(from: array, for: .three)
         let automaTrophiesTuple = pickCards(from: level3Cards, originalArray: array, amount: 3)
         let remainingCards = array.filter { cardModel in
             automaTrophiesTuple.pickedCards.contains(cardModel) == false
         }
-        return (automaTrophiesTuple.pickedCards, remainingCards)
+        let mappedTrophies = automaTrophiesTuple.pickedCards
+            .map { model in
+                model.updating(backName: "back_\(witcher.rawValue)")
+            }
+
+        return (mappedTrophies, remainingCards)
     }
     
     func skelligeAdjustedDeck(baseDeck: [ActionCardModel], skelligeDeck: [ActionCardModel]) -> [ActionCardModel] {
