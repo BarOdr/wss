@@ -28,3 +28,10 @@ extension Array {
         return array
     }
 }
+
+extension Array where Element: Hashable {
+    var isUnique: Bool {
+        var seen = Set<Int>()
+        return allSatisfy { seen.insert($0.hashValue).inserted }
+    }
+}

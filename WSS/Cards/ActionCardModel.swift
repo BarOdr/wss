@@ -20,11 +20,10 @@ struct WitcherAbilityCardModel: Hashable {
     let backName: String
 }
 
-struct ActionCardModel: Hashable, Codable, Identifiable {
+struct ActionCardModel: Hashable, Codable {
 
     let isDrawn: Bool
     let imageName: String
-    let id = UUID()
     let frontName: String
     let backName: String
     let cardType: ActionCardType

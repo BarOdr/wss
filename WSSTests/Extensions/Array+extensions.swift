@@ -8,10 +8,6 @@
 import Foundation
 
 extension Array where Element: Hashable {
-    var isUnique: Bool {
-        var seen = Set<Int>()
-        return allSatisfy { seen.insert($0.hashValue).inserted }
-    }
 
     static func compareArrays<T: Hashable>(_ array1: [T], _ array2: [T]) -> (areIdentical: Bool, onlyInArray2: [T]?, onlyInArray1: [T]?) {
         // Check if the arrays are identical by comparing their contents

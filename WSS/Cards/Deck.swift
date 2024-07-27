@@ -7,55 +7,65 @@
 
 import Foundation
 
-enum ReversibleAction {
+// values associated with cases are values to restore on undo.
+enum ReversibleAction: Codable {
+    case actionDeckLevelThreeRespawn(cards: [ActionCardModel], initialCount: Int)
     case draw(card: ActionCardModel)
     case discard(card: ActionCardModel)
+}
+
+enum DeckType: Codable {
+    case actions
+    case challenges
 }
 
 final class Deck: ObservableObject, Codable {
     @Published var remainingCards: [ActionCardModel] {
         didSet {
+            assert(remainingCards.isUnique)
             remainingCount = remainingCards.count
-            objectWillChange.send()
             print("Remaining cards did set")
         }
     }
     @Published var remainingCount: Int {
         didSet {
-            objectWillChange.send()
             print("Remaining count set to: \(remainingCount)")
         }
     }
     @Published var discardedCards: [ActionCardModel] {
         didSet {
             discardedCount = discardedCards.count
-            objectWillChange.send()
             print("Discarded cards did set")
         }
     }
     @Published var discardedCount: Int {
         didSet {
-            objectWillChange.send()
             print("Discarded count set to: \(discardedCount)")
         }
     }
-    let initialCount: Int
+    @Published var initialCount: Int
 
-    init(remaining: [ActionCardModel], discarded: [ActionCardModel]) {
-        self.initialCount = remaining.count
-        self.remainingCards = remaining
-        self.remainingCount = remaining.count
-        self.discardedCards = discarded
-        self.discardedCount = discarded.count
+    private let backup: [ActionCardModel]
+    private let deckType: DeckType
+
+    init(cards: [ActionCardModel], deckType: DeckType) {
+        self.initialCount = cards.count
+        self.remainingCards = cards
+        self.remainingCount = cards.count
+        self.backup = cards
+        self.discardedCards = []
+        self.discardedCount = 0
+        self.deckType = deckType
     }
 
     enum CodingKeys: String, CodingKey {
-         case initialCount
-         case deck
-         case remainingCount
-         case discarded
-         case discardedCount
-     }
+        case initialCount
+        case deck
+        case remainingCount
+        case discarded
+        case discardedCount
+        case deckType
+    }
 
      func encode(to encoder: Encoder) throws {
          var container = encoder.container(keyedBy: CodingKeys.self)
@@ -64,18 +74,21 @@ final class Deck: ObservableObject, Codable {
          try container.encode(remainingCount, forKey: .remainingCount)
          try container.encode(discardedCards, forKey: .discarded)
          try container.encode(discardedCount, forKey: .discardedCount)
+         try container.encode(deckType, forKey: .deckType)
      }
 
      required init(from decoder: Decoder) throws {
          let container = try decoder.container(keyedBy: CodingKeys.self)
          initialCount = try container.decode(Int.self, forKey: .initialCount)
          remainingCards = try container.decode([ActionCardModel].self, forKey: .deck)
+         backup = try container.decode([ActionCardModel].self, forKey: .deck)
          remainingCount = try container.decode(Int.self, forKey: .remainingCount)
          discardedCards = try container.decode([ActionCardModel].self, forKey: .discarded)
          discardedCount = try container.decode(Int.self, forKey: .discardedCount)
+         deckType = try container.decode(DeckType.self, forKey: .deckType)
      }
 
-    var actions: [ReversibleAction] = []
+    private var actions: [ReversibleAction] = []
 
     enum DeckError: Error {
         case deckEmpty
@@ -92,7 +105,6 @@ final class Deck: ObservableObject, Codable {
         remainingCards.remove(at: cardIndex)
         remainingCards.insert(card, at: cardIndex)
         actions.append(.draw(card: card))
-        objectWillChange.send()
     }
 
     func discard(card: ActionCardModel) {
@@ -106,7 +118,9 @@ final class Deck: ObservableObject, Codable {
         }
         discardedCards.append(card)
         actions.append(.discard(card: card))
-        objectWillChange.send()
+        if remainingCards.isEmpty, deckType == .actions {
+            resetWithLevelThreeCardsShuffled()
+        }
     }
 
     func undo() {
@@ -116,18 +130,64 @@ final class Deck: ObservableObject, Codable {
             return
         }
         switch action {
+        case .actionDeckLevelThreeRespawn(let cards, let initialCount):
+            print("Undoing level three respawn action")
+            guard let lastCard = cards.last else {
+                return
+            }
+            remainingCards = [lastCard]
+            var discarded = cards
+            discarded.removeLast()
+
+            discardedCards = discarded
+            // in this case, at this point, the last action will be drawing last card
+            // we should automatically undo it
+            actions.removeLast()
+            self.initialCount = initialCount
         case .discard(let card):
             print("Undoing discard action")
-            discardedCards.removeLast()
+            if !discardedCards.isEmpty {
+                discardedCards.removeLast()
+            }
             remainingCards.append(card)
+            actions.removeLast()
         case .draw(let card):
             print("Undoing draw action")
             if let index = remainingCards.firstIndex(of: card) {
                 remainingCards.remove(at: index)
                 remainingCards.insert(card.updating(isDrawn: false), at: index)
+                actions.removeLast()
             }
         }
-        actions.removeLast()
-        objectWillChange.send()
+    }
+
+    // for action deck
+    private func resetWithLevelThreeCardsShuffled() {
+        remainingCards = discardedCards
+            .filter { model in
+                model.level == 3 || model.cardType == .legendaryHunt
+            }
+            .shuffled()
+        actions.append(.actionDeckLevelThreeRespawn(cards: discardedCards, initialCount: initialCount))
+        discardedCards = []
+        initialCount = remainingCards.count
+    }
+
+    func resetWithOriginalOrder() {
+        remainingCards = backup
+        discardedCards = []
+    }
+
+    func resetAndShuffle() {
+        remainingCards = backup.shuffled()
+        discardedCards = []
+    }
+
+    func addAutomaTrophy() {
+        
+    }
+
+    func removeAutomaThropies() {
+        
     }
 }

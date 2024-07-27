@@ -86,9 +86,9 @@ final class DecksBuilder {
             remainingCards: automaTrophiesTuple.remainingCards
         ).shuffled()
         return BaseDecks(
-            actionDeck: Deck(remaining: actionDeckTuple.actionDeck, discarded: []),
+            actionDeck: Deck(cards: actionDeckTuple.actionDeck, deckType: .actions),
             automaTrophies: automaTrophiesTuple.pickedCards,
-            challengesDeck: Deck(remaining: challengesDeck, discarded: [])
+            challengesDeck: Deck(cards: challengesDeck, deckType: .challenges)
         )
     }
 
