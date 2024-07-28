@@ -24,30 +24,36 @@ enum AddonType {
 final class BaseDecks: ObservableObject, Codable {
     @Published var actionDeck: ActionDeck
     @Published var challengesDeck: ChallengesDeck
+    var witcher: Witcher
 
     init(
         actionDeck: ActionDeck,
-        challengesDeck: ChallengesDeck
+        challengesDeck: ChallengesDeck,
+        witcher: Witcher
     ) {
         self.actionDeck = actionDeck
         self.challengesDeck = challengesDeck
+        self.witcher = witcher
     }
 
     enum CodingKeys: String, CodingKey {
         case actionDeck
         case challengesDeck
+        case witcher
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(actionDeck, forKey: .actionDeck)
         try container.encode(challengesDeck, forKey: .challengesDeck)
+        try container.encode(witcher, forKey: .witcher)
     }
 
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         actionDeck = try container.decode(ActionDeck.self, forKey: .actionDeck)
         challengesDeck = try container.decode(ChallengesDeck.self, forKey: .challengesDeck)
+        witcher = try container.decode(Witcher.self, forKey: .witcher)
     }
 }
 
@@ -85,7 +91,7 @@ final class DecksBuilder {
                 cards: challengesDeck,
                 automaTrophies: automaTrophiesTuple.pickedCards,
                 deckType: .challenges
-            )
+            ), witcher: witcher
         )
     }
 

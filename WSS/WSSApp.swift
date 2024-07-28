@@ -26,9 +26,8 @@ struct WSSApp: App {
                             .skellige
                         ],
                         difficultyLevel: .medium,
-                        witcher: .ciri
-                    ).buildDecks()
-                )
+                        witcher: .bear
+                    ).buildDecks())
             )
         }.environmentObject(appDependencies)
     }

@@ -36,12 +36,14 @@ struct GameTabsView: View {
     @State var selectedTab: Tab = .actions
     @StateObject var viewModel: GameTabsViewModel
 
+    private let smallCardWidth: CGFloat = 50
+
     var body: some View {
         ZStack(alignment: .top) {
             WoodenBackgroundView()
-            VStack {
+            ZStack(alignment: .top) {
                 topBarView
-                    .padding()
+                    .padding(EdgeInsets(top: 40, leading: 0, bottom: 0, trailing: 0))
                 slidableDecks
             }
         }
@@ -63,21 +65,21 @@ struct GameTabsView: View {
                 }
             })
             .scaleEffect((selectedTab == .actions ? 1.2 : 1))
-            .frame(width: 50)
+            .frame(width: smallCardWidth)
             ActionableCardView(imageName: Tab.challenges.imageName, size: .small, singleTapGesture: {
                 withAnimation {
                     selectedTab = .challenges
                 }
             })
             .scaleEffect((selectedTab == .challenges ? 1.2 : 1))
-            .frame(width: 50)
-            ActionableCardView(imageName: Witcher.ciri.backImageName, size: .small, singleTapGesture: {
+            .frame(width: smallCardWidth)
+            ActionableCardView(imageName: viewModel.decks.witcher.backImageName, size: .small, singleTapGesture: {
                 withAnimation {
-                    selectedTab = .ability(witcher: .ciri)
+                    selectedTab = .ability(witcher: viewModel.decks.witcher)
                 }
             })
-            .scaleEffect((selectedTab == .ability(witcher: .ciri) ? 1.2 : 1))
-            .frame(width: 50)
+            .scaleEffect((selectedTab == .ability(witcher: viewModel.decks.witcher) ? 1.2 : 1))
+            .frame(width: smallCardWidth)
         }
     }
 
@@ -118,10 +120,10 @@ struct GameTabsView: View {
             ChallengesDeckView(deck: viewModel.decks.challengesDeck)
                 .offset(x: offsetForTab(.challenges))
                 .zIndex(zIndexForTab(.challenges))
-            ActionableCardView(imageName: Witcher.ciri.imageName, size: .big)
-                .offset(x: offsetForTab(.ability(witcher: .ciri)))
-                .zIndex(zIndexForTab(.ability(witcher: .ciri)))
-                .padding(EdgeInsets(top: 0, leading: 40, bottom: 70, trailing: 40))
+            ActionableCardView(imageName: viewModel.decks.witcher.imageName, size: .big)
+                .offset(x: offsetForTab(.ability(witcher: viewModel.decks.witcher)))
+                .zIndex(zIndexForTab(.ability(witcher: viewModel.decks.witcher)))
+                .padding(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 40))
         }
         .animation(.spring(response: 0.6, dampingFraction: 0.8, blendDuration: 0.3), value: selectedTab)
         .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure full screen coverage
