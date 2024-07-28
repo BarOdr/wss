@@ -33,59 +33,31 @@ struct GameTabsView: View {
     @State var selectedTab: Tab = .actions
     @StateObject var viewModel: GameTabsViewModel
 
-    var tabSelectorView: some View {
+    var topBarView: some View {
         HStack(spacing: 10) {
             ActionableCardView(imageName: Tab.actions.imageName, size: .small, singleTapGesture: {
-                selectedTab = .actions
+                withAnimation {
+                    selectedTab = .actions
+                }
             })
-            .frame(width: 40, height: 60)
+            .scaleEffect((selectedTab == .actions ? 1.2 : 1))
+            .frame(width: 50)
             ActionableCardView(imageName: Tab.challenges.imageName, size: .small, singleTapGesture: {
-                selectedTab = .challenges
+                withAnimation {
+                    selectedTab = .challenges
+                }
             })
-            .frame(width: 40, height: 60)
+            .scaleEffect((selectedTab == .challenges ? 1.2 : 1))
+            .frame(width: 50)
         }
     }
     
     var body: some View {
-        ZStack(alignment: .topLeading) {
+        ZStack(alignment: .top) {
             WoodenBackgroundView()
-            tabSelectorView
+            topBarView
                 .padding()
-            ZStack {
-                VStack {
-                    HStack {
-                        Button {
-                            withAnimation {
-                                selectedTab = .actions
-                            }
-                        } label: {
-                            Text("Akcje")
-                                .font(.witcherHeader(size: 30))
-                                .foregroundStyle(tabButtonColor(for: .actions))
-                                .opacity(tabBarButtonOpacity(for: .actions))
-                        }
-                        Button {
-                            withAnimation(.easeInOut) {
-                                selectedTab = .challenges
-                            }
-                        } label: {
-                            withAnimation(.easeInOut) {
-                                Text("Wyzwania")
-                                    .font(.witcherHeader(size: 30))
-                                    .foregroundStyle(tabButtonColor(for: .challenges))
-                                    .opacity(tabBarButtonOpacity(for: .challenges))
-                            }
-                        }
-                    }
-                    Spacer()
-                }
-                .padding(EdgeInsets(top: 100, leading: 0, bottom: 0, trailing: 0))
-                .zIndex(1)
-                HStack(alignment: .bottom) {
-                    Spacer()
-                    slidableDecks
-                }
-            }
+            slidableDecks
         }
     }
 

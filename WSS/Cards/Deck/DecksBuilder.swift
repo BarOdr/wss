@@ -93,7 +93,7 @@ final class DecksBuilder {
         let deckSize = difficulty.challengesDeckSize
         let reducedArray = remainingCards.reduced(tolimit: deckSize)
             .map { model in
-                model.updating(backName: "back_\(witcher.rawValue)")
+                model.updating(backName: "back_automa_challenge")
             }
         return reducedArray
     }
