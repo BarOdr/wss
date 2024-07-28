@@ -47,14 +47,6 @@ struct GameTabsView: View {
         }
     }
 
-    private func tabButtonColor(for tab: Tab) -> Color {
-        (selectedTab == tab) ? .white : .gray
-    }
-
-    private func tabBarButtonOpacity(for tab: Tab) -> CGFloat {
-        (selectedTab == tab) ? 1 : 0.5
-    }
-
     private func deckOpacity(for tab: Tab) -> CGFloat {
         (selectedTab == tab) ? 1 : 0
     }
@@ -89,15 +81,47 @@ struct GameTabsView: View {
         }
     }
 
+    private func zIndexForTab(_ tab: Tab) -> Double {
+        return selectedTab == tab ? 1 : 0
+    }
+
+    private func offsetForTab(_ tab: Tab) -> CGFloat {
+        let screenWidth = UIScreen.main.bounds.width
+        switch selectedTab {
+        case .actions:
+            switch tab {
+            case .actions: return 0
+            case .challenges: return screenWidth
+            case .ability: return screenWidth * 2
+            }
+        case .challenges:
+            switch tab {
+            case .actions: return -screenWidth
+            case .challenges: return 0
+            case .ability: return screenWidth
+            }
+        case .ability:
+            switch tab {
+            case .actions: return -screenWidth * 2
+            case .challenges: return -screenWidth
+            case .ability: return 0
+            }
+        }
+    }
+
     private var slidableDecks: some View {
         // Views with slide transition
         ZStack {
             ActionDeckView(deck: viewModel.decks.actionDeck)
-                .offset(x: selectedTab == .actions ? 0 : -UIScreen.main.bounds.width)
-                .zIndex(selectedTab == .actions ? 1 : 0) // Ensure the active view is on top
+                .offset(x: offsetForTab(.actions))
+                .zIndex(zIndexForTab(.actions))
             ChallengesDeckView(deck: viewModel.decks.challengesDeck)
-                .offset(x: selectedTab == .challenges ? 0 : UIScreen.main.bounds.width)
-                .zIndex(selectedTab == .challenges ? 1 : 0) // Ensure the active view is on top
+                .offset(x: offsetForTab(.challenges))
+                .zIndex(zIndexForTab(.challenges))
+            ActionableCardView(imageName: Witcher.ciri.imageName, size: .big)
+                .offset(x: offsetForTab(.ability(witcher: .ciri)))
+                .zIndex(zIndexForTab(.ability(witcher: .ciri)))
+                .padding(EdgeInsets(top: 0, leading: 40, bottom: 70, trailing: 40))
         }
         .animation(.spring(response: 0.6, dampingFraction: 0.8, blendDuration: 0.3), value: selectedTab)
         .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure full screen coverage
