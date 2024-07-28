@@ -8,39 +8,38 @@
 import SwiftUI
 
 struct ChooseWitcherView: View {
-    let cards: [WitcherCardModel] = {
-        var array: [WitcherCardModel] = []
-        for witcher in Witcher.allCases {
-            array.append(WitcherCardModel(imageName: "witcher_\(witcher.rawValue)"))
-        }
-        return array
-    }()
 
     @State private var selectedCard: WitcherCardModel? = nil
     @State private var isCardEnlarged: Bool = false
+
+    var witcherChosenBlock: (Witcher) -> Void
 
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
 
-    @Namespace private var namespace
+    let cards: [WitcherCardModel] = {
+        var array: [WitcherCardModel] = []
+        for witcher in Witcher.allCases {
+            array.append(WitcherCardModel(witcher: witcher))
+        }
+        return array
+    }()
+
+    var namespace: Namespace.ID
 
     var body: some View {
         ZStack {
-            WoodenBackgroundView()
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(cards) { card in
+                    ForEach(cards, id: \.id) { card in
                         if selectedCard == nil || selectedCard?.id != card.id {
-                            WitcherCardView(card: card, singleTapAction: {
+                            ActionableCardView(imageName: card.witcher.imageName, size: .big, singleTapGesture: {
                                 withAnimation(.spring()) {
                                     selectedCard = card
                                     isCardEnlarged = true
                                 }
-                            }, doubleTapAction: {
-                                // Handle double tap action
-                                print("Double tapped on card: \(card.id)")
                             })
                             .matchedGeometryEffect(id: card.id, in: namespace)
                             .shadow(radius: 10)
@@ -59,15 +58,12 @@ struct ChooseWitcherView: View {
                         withAnimation(.spring()) {
                             isCardEnlarged = false
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            selectedCard = nil
-                        }
+                        selectedCard = nil
                     }
                     .zIndex(1)
 
-                WitcherCardView(card: card, doubleTapAction: {
-                    // Handle double tap action when card is enlarged
-                    print("Double tapped son enlarged card: \(card.id)")
+                ActionableCardView(imageName: card.witcher.imageName, size: .big, doubleTapGesture: {
+                    witcherChosenBlock(card.witcher)
                 })
                 .matchedGeometryEffect(id: card.id, in: namespace)
                 .frame(maxWidth: UIScreen.main.bounds.width - 80)

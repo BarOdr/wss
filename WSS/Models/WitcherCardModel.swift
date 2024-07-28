@@ -8,6 +8,8 @@
 import Foundation
 
 struct WitcherCardModel: Identifiable, Equatable {
-    var id = UUID()
-    var imageName: String
+    var id: String {
+        "id_\(witcher.rawValue)"
+    }
+    var witcher: Witcher
 }

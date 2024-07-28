@@ -33,14 +33,15 @@ struct ActionDeckView: View {
 
     var accessoriesView: some View {
         HStack(spacing: 10) {
-            Spacer()
             if deck.actionsCount != 0 && !deck.remainingCards.isEmpty {
                 undoButton
             }
+            Spacer()
             if !deck.remainingCards.isEmpty {
                 remainingCardsView
             }
         }
+        .padding(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 0))
     }
 
     var actionsResetWithLevelThreeCardsShuffled: some View {
@@ -60,9 +61,8 @@ struct ActionDeckView: View {
         Button(action: {
             deck.undo()
         }, label: {
-            Text("cofnij")
-                .font(.witcherTextRegular(size: 20))
-                .foregroundStyle(.white)
+            Image(systemName: "arrowshape.turn.up.backward.fill")
+                .foregroundColor(.white)
         })
 
     }

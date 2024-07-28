@@ -25,26 +25,27 @@ struct ChallengesDeckView: View {
                     }
                 }
                 accessoriesView
-                    .frame(height: 90)
+                    .frame(height: 70)
             }
         }
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 40, trailing: 0))
     }
 
     var accessoriesView: some View {
-        HStack {
-            Spacer()
+        HStack(spacing: 15) {
+            if deck.actionsCount != 0 && !deck.remainingCards.isEmpty {
+                undoButton
+            }
             shuffleButton
             if !deck.automaTrophies.isEmpty {
                 addAutomaTrophyButton
             }
-            if deck.actionsCount != 0 && !deck.remainingCards.isEmpty {
-                undoButton
-            }
+            Spacer()
             if !deck.remainingCards.isEmpty {
                 remainingCardsView
             }
         }
+        .padding(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 0))
     }
 
     var addAutomaTrophyButton: some View {
@@ -54,9 +55,8 @@ struct ChallengesDeckView: View {
                 print("Empty button pressed - implement reloading")
             }
         }, label: {
-            Text("+trofeum")
-                .font(.witcherTextRegular(size: 20))
-                .foregroundStyle(.white)
+            Image(systemName: "trophy.fill")
+                .foregroundColor(.white)
         })
     }
 
@@ -64,8 +64,7 @@ struct ChallengesDeckView: View {
         Button(action: {
             deck.undo()
         }, label: {
-            Text("cofnij")
-                .font(.witcherTextRegular(size: 20))
+            Image(systemName: "arrowshape.turn.up.backward.fill")
                 .foregroundStyle(.white)
         })
     }
@@ -77,8 +76,7 @@ struct ChallengesDeckView: View {
                 print("Empty button pressed - implement reloading")
             }
         }, label: {
-            Text("tasuj")
-                .font(.witcherTextRegular(size: 20))
+            Image(systemName: "shuffle")
                 .foregroundStyle(.white)
         })
     }

@@ -19,14 +19,41 @@ struct GameTabsView: View {
     enum Tab {
         case actions
         case challenges
+
+        var imageName: String {
+            switch self {
+            case .actions:
+                return "back_automa_action"
+            case .challenges:
+                return "back_automa_challenge"
+            }
+        }
     }
 
     @State var selectedTab: Tab = .actions
     @StateObject var viewModel: GameTabsViewModel
 
+    var tabSelectorView: some View {
+        HStack(spacing: 10) {
+            EmptyView()
+        }
+    }
+    
     var body: some View {
-        ZStack {
+        ZStack(alignment: .topTrailing) {
             WoodenBackgroundView()
+
+            ZStack(alignment: .topTrailing) {
+                HStack(spacing: 10) {
+                    ActionableCardView(imageName: Witcher.ciri.backImageName, size: .small)
+                        .frame(width: 40, height: 60)
+                        .aspectRatio(contentMode: .fit)
+                    ActionableCardView(imageName: Witcher.bear.backImageName, size: .small)
+                        .frame(width: 40, height: 60)
+                        .aspectRatio(contentMode: .fit)
+                }
+            }.padding()
+
             ZStack {
                 VStack {
                     HStack {

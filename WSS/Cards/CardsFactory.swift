@@ -9,7 +9,7 @@ import Foundation
 
 struct CardsFactory {
 
-    private let actionCardBack = "back_automa"
+    private let actionCardBack = "back_automa_challenge"
 
     func buildBaseCards() -> [ActionCardModel] {
         buildCards(fileNames: CardFileNames.baseActionCards)

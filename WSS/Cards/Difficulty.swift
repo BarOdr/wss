@@ -13,12 +13,27 @@ enum Level: Int {
     case three = 3
 }
 
-enum Difficulty {
+enum Difficulty: String, CaseIterable, Identifiable {
     case easy
     case medium
     case hard
 
     // MARK: - Action cards
+
+    var description: String {
+        switch self {
+        case .easy:
+            return "EASY"
+        case .medium:
+            return "MEDIUM"
+        case .hard:
+            return "HARD"
+        }
+    }
+    
+    var id: String {
+        "difficulty_\(rawValue)"
+    }
 
     var legendaryHuntCardsAmount: Int {
         switch self {

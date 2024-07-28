@@ -145,4 +145,12 @@ enum Witcher: String, Hashable, Codable, CaseIterable {
     case manticore
     case viper
     case wolf
+
+    var imageName: String {
+        "witcher_\(rawValue)"
+    }
+
+    var backImageName: String {
+        "back_\(rawValue)"
+    }
 }
