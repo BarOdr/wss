@@ -35,25 +35,22 @@ struct GameTabsView: View {
 
     var tabSelectorView: some View {
         HStack(spacing: 10) {
-            EmptyView()
+            ActionableCardView(imageName: Tab.actions.imageName, size: .small, singleTapGesture: {
+                selectedTab = .actions
+            })
+            .frame(width: 40, height: 60)
+            ActionableCardView(imageName: Tab.challenges.imageName, size: .small, singleTapGesture: {
+                selectedTab = .challenges
+            })
+            .frame(width: 40, height: 60)
         }
     }
     
     var body: some View {
-        ZStack(alignment: .topTrailing) {
+        ZStack(alignment: .topLeading) {
             WoodenBackgroundView()
-
-            ZStack(alignment: .topTrailing) {
-                HStack(spacing: 10) {
-                    ActionableCardView(imageName: Witcher.ciri.backImageName, size: .small)
-                        .frame(width: 40, height: 60)
-                        .aspectRatio(contentMode: .fit)
-                    ActionableCardView(imageName: Witcher.bear.backImageName, size: .small)
-                        .frame(width: 40, height: 60)
-                        .aspectRatio(contentMode: .fit)
-                }
-            }.padding()
-
+            tabSelectorView
+                .padding()
             ZStack {
                 VStack {
                     HStack {
