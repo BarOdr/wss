@@ -13,7 +13,6 @@ struct ChallengesDeckView: View {
     @StateObject var deck: ChallengesDeck
 
     var body: some View {
-
         ZStack {
             VStack {
                 Spacer()

@@ -16,9 +16,10 @@ final class GameTabsViewModel: ObservableObject {
 
 struct GameTabsView: View {
 
-    enum Tab {
+    enum Tab: Equatable {
         case actions
         case challenges
+        case ability(witcher: Witcher)
 
         var imageName: String {
             switch self {
@@ -26,6 +27,8 @@ struct GameTabsView: View {
                 return "back_automa_action"
             case .challenges:
                 return "back_automa_challenge"
+            case .ability(let witcher):
+                return witcher.backImageName
             }
         }
     }
@@ -33,31 +36,14 @@ struct GameTabsView: View {
     @State var selectedTab: Tab = .actions
     @StateObject var viewModel: GameTabsViewModel
 
-    var topBarView: some View {
-        HStack(spacing: 10) {
-            ActionableCardView(imageName: Tab.actions.imageName, size: .small, singleTapGesture: {
-                withAnimation {
-                    selectedTab = .actions
-                }
-            })
-            .scaleEffect((selectedTab == .actions ? 1.2 : 1))
-            .frame(width: 50)
-            ActionableCardView(imageName: Tab.challenges.imageName, size: .small, singleTapGesture: {
-                withAnimation {
-                    selectedTab = .challenges
-                }
-            })
-            .scaleEffect((selectedTab == .challenges ? 1.2 : 1))
-            .frame(width: 50)
-        }
-    }
-    
     var body: some View {
         ZStack(alignment: .top) {
             WoodenBackgroundView()
-            topBarView
-                .padding()
-            slidableDecks
+            VStack {
+                topBarView
+                    .padding()
+                slidableDecks
+            }
         }
     }
 
@@ -75,6 +61,32 @@ struct GameTabsView: View {
 
     private func zIndex(for tab: Tab) -> CGFloat {
         (selectedTab == tab) ? 1 : 0
+    }
+
+    private var topBarView: some View {
+        HStack(spacing: 10) {
+            ActionableCardView(imageName: Tab.actions.imageName, size: .small, singleTapGesture: {
+                withAnimation {
+                    selectedTab = .actions
+                }
+            })
+            .scaleEffect((selectedTab == .actions ? 1.2 : 1))
+            .frame(width: 50)
+            ActionableCardView(imageName: Tab.challenges.imageName, size: .small, singleTapGesture: {
+                withAnimation {
+                    selectedTab = .challenges
+                }
+            })
+            .scaleEffect((selectedTab == .challenges ? 1.2 : 1))
+            .frame(width: 50)
+            ActionableCardView(imageName: Witcher.ciri.backImageName, size: .small, singleTapGesture: {
+                withAnimation {
+                    selectedTab = .ability(witcher: .ciri)
+                }
+            })
+            .scaleEffect((selectedTab == .ability(witcher: .ciri) ? 1.2 : 1))
+            .frame(width: 50)
+        }
     }
 
     private var slidableDecks: some View {
